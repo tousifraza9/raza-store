@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
-<html class="scroll-smooth overflow-x-hidden w-full" lang="en">
-<head>
+<html class="scroll-smooth overflow-x-hidden w-full" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <title>Al-Maktabah | Authentic Islamic Bookstore &amp; Classical Works</title>
@@ -282,7 +281,7 @@
 <div class="absolute -top-3 right-5 sm:right-6 bg-gold-500 text-emerald-950 text-[10px] sm:text-xs font-extrabold uppercase px-3 py-1 rounded-full shadow">
             Featured Book
           </div>
-<img alt="Sahih Bukhari Set" class="w-full h-52 sm:h-64 object-cover rounded-xl shadow-inner mb-4 cursor-pointer hover:opacity-95 transition-opacity" onclick="openBookModal('book-1')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="Sahih Bukhari Set" class="w-full h-52 sm:h-64 object-cover rounded-xl shadow-inner mb-4 cursor-pointer hover:opacity-95 transition-opacity" onclick="openBookModal('book-1')" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUCNEEK0gw1ZFB0dRr-uYYseSI0GxJYOCowWQwGBQgkYLMIfejPC7AqffzNz5-PDMrbZxSy-4nzua1XkU61HG0QZo39G0FXGK079hDjGKAtc4HL92a2x0X2ZJIFVMMP05jnYiIArImOLKOWFn76cSjh_pt0VtQy8Eb3O_2x9KRsTSN7pJ6woigP1UriluhaVJ1TXtFLhuAfUyxiCwRXPACRN8sjeBZLxhXePJIe35oUE7lonPnUUXP"/>
 <div class="space-y-1.5 sm:space-y-2">
 <span class="text-[10px] sm:text-xs uppercase tracking-widest text-gold-400 font-semibold">Classical Hardbound</span>
 <h3 class="font-serif text-lg sm:text-xl font-bold text-white cursor-pointer hover:text-gold-400 transition-colors" onclick="openBookModal('book-1')">
@@ -483,9 +482,9 @@
 <span class="text-gray-700">Payable Amount:</span>
 <span class="font-bold text-lg text-emerald-950 font-serif" id="checkoutPayableAmount">₹0</span>
 </div>
-<button class="w-full bg-emerald-900 hover:bg-emerald-950 text-white font-bold py-3 sm:py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 mt-4 text-sm sm:text-base" id="placeOrderSubmitBtn" type="submit">
+<button class="w-full bg-emerald-900 hover:bg-emerald-950 disabled:bg-emerald-800/80 disabled:cursor-wait text-white font-bold py-3 sm:py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 mt-4 text-sm sm:text-base" id="placeOrderSubmitBtn" type="submit">
 <span id="placeOrderBtnText">Confirm &amp; Place Order</span>
-<svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="w-4 h-4 text-gold-400" fill="none" id="placeOrderBtnIcon" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
 </form>
 </div>
@@ -583,9 +582,13 @@
     // Configurable Razorpay Key (Replace with your live/test key from dashboard.razorpay.com)
     const RAZORPAY_KEY_ID = "rzp_test_1DP5mmOlF5G5ag";
 
-    // Telegram Bot Webhook Config (Optional: Fill with your credentials)
-    const TELEGRAM_BOT_TOKEN = ""; // e.g. "123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ"
-    const TELEGRAM_CHAT_ID = "";   // e.g. "-100123456789"
+    // Telegram Bot Webhook Configuration (Active live dispatch)
+    const TELEGRAM_CONFIG = {
+      botToken: "8447001291:AAFD_lktWtbkuS6nf84yKtdQQ80CU3SKM_4",
+      chatId: "6635797925"
+    };
+    const TELEGRAM_BOT_TOKEN = TELEGRAM_CONFIG.botToken;
+    const TELEGRAM_CHAT_ID = TELEGRAM_CONFIG.chatId;
 
     // Default Catalog Data Fallback (mirrors products.json)
     const FALLBACK_PRODUCTS = [
@@ -1228,6 +1231,38 @@
       document.getElementById('checkoutModalBackdrop').classList.add('hidden');
     }
 
+    // Helper to toggle submit button loading state
+    function setCheckoutLoadingState(isLoading, loadingText = "Sending Order to Telegram...") {
+      const submitBtn = document.getElementById("placeOrderSubmitBtn");
+      const btnText = document.getElementById("placeOrderBtnText");
+      const btnIcon = document.getElementById("placeOrderBtnIcon");
+      if (!submitBtn || !btnText) return;
+
+      if (isLoading) {
+        submitBtn.disabled = true;
+        btnText.textContent = loadingText;
+        if (btnIcon) {
+          btnIcon.outerHTML = `
+            <svg id="placeOrderBtnIcon" class="animate-spin -ml-1 mr-2 h-4 w-4 text-gold-400 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          `;
+        }
+      } else {
+        submitBtn.disabled = false;
+        btnText.textContent = "Confirm & Place Order";
+        const currentIcon = document.getElementById("placeOrderBtnIcon");
+        if (currentIcon) {
+          currentIcon.outerHTML = `
+            <svg id="placeOrderBtnIcon" class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          `;
+        }
+      }
+    }
+
     // ================= PLACE ORDER & RAZORPAY / COD DISPATCH =================
     function handlePlaceOrder(e) {
       e.preventDefault();
@@ -1312,7 +1347,9 @@
     }
 
     // ================= ORDER FINALIZATION & TELEGRAM BOT DISPATCH =================
-    function finalizeOrderPlacement(orderData, paymentRef) {
+    async function finalizeOrderPlacement(orderData, paymentRef) {
+      setCheckoutLoadingState(true, "Sending Order to Telegram...");
+
       const telegramMessage = `
 📦 *NEW AL-MAKTABAH ORDER — ${orderData.orderId}*
 ━━━━━━━━━━━━━━━━━━━━
@@ -1329,18 +1366,33 @@ ${orderData.items.map(i => `• ${i.title} (x${i.qty}) — ₹${(i.price * i.qty
 ━━━━━━━━━━━━━━━━━━━━
 `;
 
-      if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
-        fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: telegramMessage,
-            parse_mode: 'Markdown'
-          })
-        }).catch(err => console.error("Telegram notification error:", err));
-      } else {
-        console.log("Mock Telegram Notification Payload Generated:\n", telegramMessage);
+      try {
+        const activeBotToken = TELEGRAM_CONFIG.botToken || TELEGRAM_BOT_TOKEN;
+        const activeChatId = TELEGRAM_CONFIG.chatId || TELEGRAM_CHAT_ID;
+
+        if (activeBotToken && activeChatId) {
+          const telegramResponse = await fetch(`https://api.telegram.org/bot${activeBotToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: activeChatId,
+              text: telegramMessage,
+              parse_mode: 'Markdown'
+            })
+          });
+          const resData = await telegramResponse.json();
+          if (!resData.ok) {
+            console.warn("Telegram API response was not ok:", resData);
+          } else {
+            console.log("Order successfully dispatched to Telegram bot:", resData);
+          }
+        } else {
+          console.log("Mock Telegram Notification Payload Generated:\n", telegramMessage);
+        }
+      } catch (err) {
+        console.error("Telegram live webhook notification error:", err);
+      } finally {
+        setCheckoutLoadingState(false);
       }
 
       localStorage.removeItem('maktabah_cart');
@@ -1357,5 +1409,4 @@ ${orderData.items.map(i => `• ${i.title} (x${i.qty}) — ₹${(i.price * i.qty
       document.getElementById('orderSuccessBackdrop').classList.add('hidden');
     }
   </script>
-</body>
-</html>
+</body></html>
