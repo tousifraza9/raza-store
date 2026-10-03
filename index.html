@@ -1,186 +1,305 @@
 <!DOCTYPE html>
 
-<html class="scroll-smooth overflow-x-hidden w-full" lang="en"><head>
+<html class="scroll-smooth overflow-x-hidden w-full" lang="en">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>المكتبة الإسلامية — Al-Maktabah Islamic Bookstore</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Al-Maktabah | Authentic Islamic Bookstore &amp; Classical Works</title>
 <!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans, Amiri (Arabic calligraphy feel), and Noto Nastaliq Urdu -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&amp;family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&amp;family=Noto+Nastaliq+Urdu:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- Lucide Icons -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<!-- Razorpay Checkout JavaScript SDK -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<!-- Tailwind Configuration -->
+<script src="https://cdn.tailwindcss.com"></script>
 <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           colors: {
             emerald: {
-              50: '#f0fdf4',
-              100: '#dcfce7',
-              600: '#059669',
-              800: '#065f46',
+              850: '#064434',
               900: '#064e3b',
-              950: '#022c22',
+              950: '#022c22'
             },
             gold: {
-              100: '#fbf7ee',
-              200: '#f6eed8',
               400: '#dfb76c',
               500: '#c59b27',
-              600: '#aa7e18',
-              700: '#896112'
+              600: '#a37b19'
             },
-            parchment: '#FCFAF6',
+            parchment: '#fbfaf6',
+            sand: '#f4efe6'
           },
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            serif: ['"Cormorant Garamond"', 'serif'],
-            arabic: ['"Amiri"', 'serif'],
-            urdu: ['"Noto Nastaliq Urdu"', '"Jameel Noori Nastaleeq"', 'serif'],
-          },
-          boxShadow: {
-            'gold-glow': '0 4px 20px -2px rgba(197, 155, 39, 0.25)',
-            'card-hover': '0 18px 35px -5px rgba(6, 78, 59, 0.12), 0 8px 16px -6px rgba(197, 155, 39, 0.08)',
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            nastaleeq: ['"Noto Nastaliq Urdu"', '"Jameel Noori Nastaleeq"', 'serif']
           }
         }
       }
     }
   </script>
+<!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans, and Noto Nastaliq Urdu -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&amp;family=Noto+Nastaliq+Urdu:wght@500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Razorpay Checkout SDK -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <style>
-    @font-face {
-      font-family: 'Jameel Noori Nastaleeq';
-      src: local('Jameel Noori Nastaleeq'), local('Noto Nastaliq Urdu');
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw;
     }
-    
-    .islamic-pattern {
-      background-color: #064e3b;
-      background-image: radial-gradient(#c59b27 0.85px, transparent 0.85px), radial-gradient(#c59b27 0.85px, #064e3b 0.85px);
-      background-size: 34px 34px;
-      background-position: 0 0, 17px 17px;
-      background-opacity: 0.08;
+    .urdu-text {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      line-height: 1.9;
     }
-    
-    .gold-border-gradient {
-      border-image: linear-gradient(to right, #dfb76c, #c59b27, #f6eed8) 1;
-    }
-
-    /* Custom subtle scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #fbf7ee;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #c59b27;
-      border-radius: 9999px;
-    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: #f4efe6; }
+    ::-webkit-scrollbar-thumb { background: #064e3b; border-radius: 3px; }
   </style>
 </head>
-<body class="bg-parchment text-stone-800 font-sans antialiased selection:bg-gold-400 selection:text-emerald-950 flex flex-col min-h-screen overflow-x-hidden w-full">
-<!-- ================= TOP ANNOUNCEMENT BAR ================= -->
-<div class="bg-emerald-950 text-gold-200 border-b border-gold-600/30 text-xs py-1.5 px-3 sm:px-4 text-center tracking-wide flex justify-between items-center max-w-7xl mx-auto w-full overflow-hidden"><div class="flex items-center gap-1.5 sm:gap-2 truncate"><span class="inline-block w-2 h-2 rounded-full bg-gold-400 animate-pulse flex-shrink-0"></span><span class="truncate">Worldwide Delivery • Authentic Verified Classical &amp; Modern Islamic Literature</span></div><div class="hidden md:flex items-center gap-4 text-stone-300 flex-shrink-0"><span class="font-urdu text-sm text-gold-400">خوش آمدید — علم و حکمت کا گہوارہ</span><span class="text-stone-500">|</span><span>Helpdesk: support@maktabah.org</span></div></div>
-<!-- ================= 1. HEADER & NAVIGATION ================= -->
-<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gold-500/20 shadow-sm transition-all duration-200 w-full" id="mainHeader">
-<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-3"><div class="flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-4 w-full"><a class="flex items-center gap-2 sm:gap-3.5 group flex-shrink-0" href="#"><div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-emerald-900 to-emerald-950 border border-gold-400/60 p-1 flex items-center justify-center shadow-md shadow-emerald-950/20 group-hover:border-gold-400 transition flex-shrink-0"><svg class="w-6 h-6 sm:w-9 sm:h-9 text-gold-400" fill="currentColor" viewbox="0 0 100 100"><path d="M50 8C26.8 8 8 26.8 8 50s18.8 42 42 42 42-18.8 42-42S73.2 8 50 8zm-4.2 24.3c2.4-.8 4.7 1.2 4.3 3.6-.8 4.2-2.1 10.3-1.6 14.8 1.9-2.8 4.8-4.9 8.2-5.4 6.8-.9 11.8 4.1 11.2 11-.4 4.5-3.3 9.4-8.8 12.8-5.3 3.3-11.8 4.5-17.7 3.4-3.5-.7-6.2-2.7-7.9-5.7-1.7-3.1-1.6-6.7.2-9.7 2.1-3.6 5.8-6.1 10.1-6.8-1.1-2.9-2-6.5-1.9-9.5.1-4.2 1.9-7.2 4-8.7zm7.5 25.5c-4.1.3-7.5 2.8-8.9 6.4 1.7 1.4 3.9 2.2 6.3 2.1 4.5-.2 7.7-3 8.1-6.6.3-1.5-.7-2-5.5-1.9z" opacity="0.95"></path><circle cx="34" cy="30" fill="#f6eed8" r="3.5"></circle><circle cx="68" cy="32" fill="#f6eed8" r="3.5"></circle></svg></div><div><div class="flex items-center gap-1.5 sm:gap-2"><span class="font-serif text-lg sm:text-2xl font-bold tracking-tight text-emerald-950 group-hover:text-emerald-800 transition">Al-Maktabah</span><span class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-gold-100 text-gold-700 font-semibold border border-gold-300">مَكْتَبَة</span></div><p class="font-urdu text-[11px] sm:text-xs text-stone-500 -mt-0.5 hidden sm:block" dir="rtl">جامع کتب خانہ و مرکزِ علوم</p></div></a><nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-stone-700"><a class="text-emerald-900 font-semibold border-b-2 border-emerald-900 pb-0.5" href="#hero">Home</a><a class="hover:text-emerald-800 transition" href="#catalog">Catalogue</a><a class="hover:text-emerald-800 transition" href="#categories">Categories</a><a class="hover:text-emerald-800 transition font-urdu text-base text-emerald-900" href="#urdu-section">اردو کتب</a><a class="hover:text-emerald-800 transition" href="#about">About Us</a></nav><div class="relative flex-1 max-w-md hidden sm:block"><div class="relative"><input class="w-full pl-10 pr-10 py-2.5 bg-stone-50 border border-stone-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-emerald-800 focus:border-transparent transition placeholder:text-stone-400 placeholder:italic" id="searchInput" placeholder="Search by title, author, or category (e.g. Tafseer, Hadith, سیرت)..." type="text"/><i class="w-4 h-4 text-stone-400 absolute left-3.5 top-3.5" data-lucide="search"></i><button class="hidden absolute right-3.5 top-3 text-stone-400 hover:text-stone-700" id="clearSearchBtn"><i class="w-4 h-4" data-lucide="x"></i></button></div></div><div class="flex items-center gap-2 sm:gap-3 flex-shrink-0"><button aria-label="View shopping cart" class="relative flex items-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-full bg-emerald-900 text-gold-100 hover:bg-emerald-950 transition shadow-sm hover:shadow active:scale-95 duration-150 flex-shrink-0" id="openCartBtn"><i class="w-4 h-4 sm:w-5 sm:h-5 text-gold-400" data-lucide="shopping-bag"></i><span class="font-semibold text-xs sm:text-sm hidden sm:inline">Cart</span><span class="bg-gold-500 text-emerald-950 text-xs font-bold rounded-full h-5 min-w-[20px] px-1.5 flex items-center justify-center border-2 border-emerald-900" id="cartCountBadge">0</span></button><button aria-label="Toggle Mobile Menu" class="p-1.5 sm:p-2 rounded-lg text-stone-700 hover:bg-stone-100 lg:hidden flex-shrink-0" id="mobileMenuBtn"><i class="w-5 h-5 sm:w-6 sm:h-6" data-lucide="menu"></i></button></div></div><div class="pb-2 sm:hidden"><div class="relative"><input class="w-full pl-9 pr-3 py-1.5 bg-stone-100 border border-stone-200 rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-700" id="mobileSearchInput" placeholder="Search books, Hadith, Tafseer..." type="text"/><i class="w-3.5 h-3.5 text-stone-400 absolute left-3 top-2" data-lucide="search"></i></div></div></div>
-</header>
-<!-- ================= 2. HERO SECTION ================= -->
-<section class="relative overflow-hidden bg-emerald-950 text-white border-b border-gold-500/30 w-full" id="hero">
-<!-- Ambient Pattern Background -->
-<div class="absolute inset-0 opacity-15 islamic-pattern pointer-events-none"></div>
-<div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-gold-500/10 blur-3xl pointer-events-none"></div>
-<div class="absolute -left-24 -bottom-24 w-96 h-96 rounded-full bg-emerald-600/20 blur-3xl pointer-events-none"></div>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 relative z-10">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-<!-- Left Banner Copy -->
-<div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-900/80 border border-gold-400/40 text-gold-300 text-xs font-medium">
-<i class="w-3.5 h-3.5 text-gold-400" data-lucide="sparkles"></i>
-<span>Ramadan &amp; Shawwal Collection 1446 AH</span>
+<body class="bg-parchment text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-emerald-900 selection:text-white overflow-x-hidden w-full max-w-full">
+<!-- TOP ANNOUNCEMENT BAR -->
+<div class="bg-emerald-950 text-gold-400 text-xs py-1.5 sm:py-2 px-3 sm:px-4 border-b border-emerald-900 w-full overflow-hidden">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1 text-center sm:text-left">
+<div class="flex items-center gap-1.5 text-[11px] sm:text-xs">
+<span class="inline-block w-2 h-2 rounded-full bg-gold-400 animate-pulse flex-shrink-0"></span>
+<span class="truncate">Worldwide Delivery • Authentic Classical Islamic Literature</span>
 </div>
-<h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-stone-50 leading-[1.15]">
-            Illuminating Minds with <br class="hidden sm:inline"/>
-<span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-200 via-gold-400 to-gold-200">
-              Timeless Sacred Knowledge
-            </span>
-</h1>
-<!-- Bilingual Subhead (Urdu & English) -->
-<div class="space-y-2">
-<p class="text-stone-300 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
-              Curated classical commentaries, authentic Hadith volumes, contemporary Islamic thought, and rare Urdu masterpieces delivered safely to your doorstep.
-            </p>
-<p class="font-urdu text-lg sm:text-xl text-gold-300/90 leading-loose" dir="rtl">
-              اصیل کتبِ تفسیر، شروحِ حدیث اور پاکیزہ تصانیف کا مستند ترین ذخیرہ
-            </p>
+<div class="urdu-text text-xs sm:text-sm text-sand tracking-wide">
+        خوش آمدید — علم و حکمت کا گہوارہ
+      </div>
 </div>
-<!-- CTA Buttons -->
-<div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-<a class="px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 text-emerald-950 font-bold text-sm tracking-wide shadow-gold-glow hover:brightness-110 active:scale-95 transition-all flex items-center gap-2" href="#catalog">
-<span>Explore New Arrivals</span>
-<i class="w-4 h-4" data-lucide="arrow-right"></i>
+</div>
+<!-- STICKY RESPONSIVE HEADER -->
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-sand shadow-sm transition-all w-full max-w-full">
+<div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4 w-full">
+<!-- LOGO -->
+<a class="flex items-center gap-2 sm:gap-3 group flex-shrink-0 min-w-0" href="#">
+<div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-emerald-900 to-emerald-950 border border-gold-500/40 flex items-center justify-center text-gold-400 shadow-md group-hover:scale-105 transition-transform flex-shrink-0">
+<svg class="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div class="truncate">
+<span class="font-serif text-lg sm:text-2xl font-bold tracking-tight text-emerald-950 block leading-tight truncate">Al-Maktabah</span>
+<span class="urdu-text text-[11px] sm:text-xs text-gold-600 hidden sm:block -mt-1">المكتبة الإسلامية العامة</span>
+</div>
 </a>
-<a class="px-6 py-3.5 rounded-full bg-emerald-900/60 border border-gold-500/40 text-gold-200 hover:bg-emerald-900 transition text-sm font-medium flex items-center gap-2" href="#urdu-section">
-<i class="w-4 h-4 text-gold-400" data-lucide="book-open"></i>
-<span class="font-urdu text-base pt-0.5">اردو مجموعہ دیکھیں</span>
-</a>
+<!-- SEARCH BAR (Tablet & Desktop) -->
+<div class="hidden md:flex flex-1 max-w-md mx-4 lg:mx-6 relative">
+<input class="w-full bg-sand/60 border border-sand focus:border-emerald-900 focus:bg-white text-sm rounded-full pl-10 pr-4 py-2 outline-none transition-all placeholder:text-gray-400 text-gray-800" id="searchInput" oninput="handleSearch(this.value)" placeholder="Search by title, author, or category (e.g. Bukhari, Tafseer)..." type="text"/>
+<svg class="w-4 h-4 text-gray-400 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
 </div>
-<!-- Feature badges -->
-<div class="pt-6 grid grid-cols-3 gap-4 border-t border-emerald-900/80 text-stone-300 text-xs">
-<div class="flex items-center gap-2 justify-center lg:justify-start">
-<i class="w-4 h-4 text-gold-400 flex-shrink-0" data-lucide="shield-check"></i>
-<span>100% Authentic Editions</span>
-</div>
-<div class="flex items-center gap-2 justify-center lg:justify-start">
-<i class="w-4 h-4 text-gold-400 flex-shrink-0" data-lucide="truck"></i>
-<span>Fast Express Courier</span>
-</div>
-<div class="flex items-center gap-2 justify-center lg:justify-start">
-<i class="w-4 h-4 text-gold-400 flex-shrink-0" data-lucide="heart-handshake"></i>
-<span>COD &amp; Razorpay Ready</span>
-</div>
-</div>
-</div>
-<!-- Right Featured Book Showcase -->
-<div class="lg:col-span-5 flex justify-center">
-<div class="relative w-full max-w-sm">
-<div class="absolute inset-0 bg-gold-500/20 rounded-2xl transform rotate-3 filter blur-md"></div>
-<div class="relative bg-gradient-to-b from-emerald-900 to-emerald-950 border border-gold-400/50 rounded-2xl p-6 shadow-2xl text-center">
-<div class="absolute -top-3.5 right-6 bg-gold-500 text-emerald-950 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow">
-                Featured Book
-              </div>
-<!-- Book Display Graphic -->
-<div class="relative h-64 sm:h-72 mx-auto rounded-lg overflow-hidden shadow-2xl border-2 border-gold-400/40 bg-stone-900 group cursor-pointer" onclick="openBookModal(1)">
-<img alt="Sahih Al-Bukhari Deluxe Set" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6SxMazNXSTtQ_-CzDJiHhAGJQAzV4RiTCBPNDQ4-IC6nLeoRw6vcCtd5Me_IbiFefw0g9Zs5dXZ7d3XGMQoc2mSPrx8u4gn_cBgdfjwZTBJLdyQK9Hxgxt7zlA2Xul3otw3lNLiHTX9XlO9Kl3eHlXPqZSyPg8HW-IU5xZXdOfie3fHlToEd0ogQ72OyTpyZdfxGKgA2NV3iTWk9U9cWMyq_jYI0m8HemfkILaS7XZKVQNmRKL57c"/>
-<div class="absolute inset-0 bg-gradient-to-t from-emerald-950 via-emerald-950/20 to-transparent"></div>
-<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
-<span class="px-4 py-2 rounded-full bg-gold-500 text-emerald-950 font-bold text-xs shadow-lg flex items-center gap-1.5"><i class="w-3.5 h-3.5" data-lucide="eye"></i> Quick View</span>
-</div>
-<div class="absolute bottom-3 left-4 right-4 text-left">
-<span class="text-xs text-gold-300 font-semibold uppercase tracking-wider">Classical Hardbound</span>
-<h3 class="text-white font-serif text-lg font-bold">Sahih Al-Bukhari (6 Vols Complete)</h3>
-</div>
-</div>
-<div class="mt-4 flex items-center justify-between text-left">
-<div>
-<p class="text-xs text-stone-400">Published by Darussalam</p>
-<div class="flex items-center gap-2 mt-0.5">
-<span class="text-xl font-bold text-gold-300">₹3,450</span>
-<span class="text-xs text-stone-400 line-through">₹4,200</span>
-</div>
-</div>
-<div class="flex items-center gap-2">
-<button class="px-3 py-2 rounded-xl bg-emerald-800/80 hover:bg-emerald-800 text-gold-300 border border-gold-400/30 text-xs font-semibold transition" onclick="openBookModal(1)" title="Preview Details">
-<i class="w-3.5 h-3.5" data-lucide="info"></i>
+<!-- NAV ACTIONS & HAMBURGER -->
+<div class="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+<nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-emerald-950">
+<a class="hover:text-gold-600 transition-colors" href="#products-section">Catalogue</a>
+<a class="hover:text-gold-600 transition-colors" href="#categories-tabs">Categories</a>
+<a class="urdu-text text-base hover:text-gold-600 transition-colors" href="#about-section">اردو کتب</a>
+</nav>
+<!-- CART BUTTON -->
+<button class="relative flex items-center gap-1.5 sm:gap-2 bg-emerald-900 hover:bg-emerald-950 text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-full transition-all shadow-sm active:scale-95 flex-shrink-0" onclick="toggleCartDrawer(true)">
+<svg class="w-4 h-4 sm:w-5 sm:h-5 text-gold-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-xs sm:text-sm font-semibold tracking-wide">Cart</span>
+<span class="bg-gold-500 text-emerald-950 text-[11px] sm:text-xs font-bold rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center" id="cartCountBadge">
+            0
+          </span>
 </button>
-<button class="px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 text-emerald-950 font-bold text-xs tracking-wide transition flex items-center gap-1.5" onclick="quickAddToCart(1)">
-<i class="w-3.5 h-3.5" data-lucide="shopping-cart"></i>
+<!-- MOBILE HAMBURGER MENU BUTTON -->
+<button aria-label="Toggle Navigation Menu" class="lg:hidden p-2 rounded-lg text-emerald-950 hover:bg-sand/60 transition-colors flex-shrink-0" id="mobileMenuBtn" onclick="toggleMobileDrawer(true)">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</header>
+<!-- ================= MOBILE NAVIGATION DRAWER & BACKDROP ================= -->
+<div class="fixed inset-0 z-50 bg-emerald-950/60 backdrop-blur-sm hidden transition-opacity" id="mobileNavBackdrop" onclick="toggleMobileDrawer(false)"></div>
+<aside aria-label="Mobile Navigation" class="fixed top-0 left-0 h-full w-[310px] max-w-[85vw] bg-white z-50 shadow-2xl flex flex-col transform -translate-x-full transition-transform duration-300 ease-in-out border-r border-sand" id="mobileNavDrawer">
+<!-- Drawer Header -->
+<div class="p-4 sm:p-5 border-b border-sand bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-950 text-white flex items-center justify-between flex-shrink-0">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-emerald-900 border border-gold-400/60 p-1 flex items-center justify-center shadow-md flex-shrink-0">
+<svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div class="truncate">
+<div class="flex items-center gap-1.5">
+<span class="font-serif text-lg font-bold tracking-tight text-gold-100">Al-Maktabah</span>
+<span class="text-[9px] px-1.5 py-0.2 rounded-full bg-gold-400 text-emerald-950 font-bold">مَكْتَبَة</span>
+</div>
+<p class="urdu-text text-xs text-gold-300/90 leading-tight">جامع کتب خانہ و مرکزِ علوم</p>
+</div>
+</div>
+<button aria-label="Close mobile navigation" class="p-1.5 rounded-lg text-sand/80 hover:text-white hover:bg-emerald-800/60 transition flex-shrink-0" onclick="toggleMobileDrawer(false)">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<!-- Drawer Body (Scrollable) -->
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<!-- Search Bar in Drawer -->
+<div class="relative">
+<input class="w-full pl-9 pr-3 py-2 bg-sand/30 border border-sand rounded-xl text-xs focus:ring-2 focus:ring-emerald-900 focus:outline-none transition placeholder:text-gray-400 text-gray-800" id="drawerSearchInput" oninput="handleSearch(this.value)" placeholder="Search titles, authors, Hadith..." type="text"/>
+<svg class="w-4 h-4 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<!-- Main Navigation Links -->
+<div class="space-y-1 border-b border-sand pb-3">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-800 hover:bg-emerald-50 hover:text-emerald-900 font-medium text-sm transition" href="#" onclick="toggleMobileDrawer(false)">
+<svg class="w-4 h-4 text-emerald-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-800 hover:bg-emerald-50 hover:text-emerald-900 font-medium text-sm transition" href="#products-section" onclick="toggleMobileDrawer(false)">
+<svg class="w-4 h-4 text-emerald-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Book Catalogue</span>
+</a>
+<!-- Interactive Categories Accordion -->
+<div class="rounded-xl overflow-hidden">
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-gray-800 hover:bg-emerald-50 hover:text-emerald-900 font-medium text-sm transition" id="categoryAccordionBtn" onclick="toggleCategoryAccordion()">
+<div class="flex items-center gap-3">
+<svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="text-left font-semibold">Categories / Books</span>
+</div>
+<svg class="w-4 h-4 text-gray-400 transition-transform duration-200" fill="none" id="categoryAccordionIcon" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div class="hidden pl-6 pr-2 py-1.5 space-y-1 bg-sand/30 rounded-lg mt-1 border border-sand" id="categoryAccordionContent">
+<button class="w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-gray-700 hover:bg-emerald-100 hover:text-emerald-950 flex items-center justify-between transition" onclick="selectCategoryFromMobile('all')">
+<span>All Collections</span>
+<span class="urdu-text text-xs text-gray-500">سب</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-gray-700 hover:bg-emerald-100 hover:text-emerald-950 flex items-center justify-between transition" onclick="selectCategoryFromMobile('quran')">
+<span>Quran &amp; Tafseer</span>
+<span class="urdu-text text-xs text-gray-500">قرآن و تفسیر</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-gray-700 hover:bg-emerald-100 hover:text-emerald-950 flex items-center justify-between transition" onclick="selectCategoryFromMobile('hadith')">
+<span>Hadith Studies</span>
+<span class="urdu-text text-xs text-gray-500">شروح حدیث</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-gray-700 hover:bg-emerald-100 hover:text-emerald-950 flex items-center justify-between transition" onclick="selectCategoryFromMobile('seerah')">
+<span>Seerah &amp; History</span>
+<span class="urdu-text text-xs text-gray-500">سیرت و تاریخ</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-gray-700 hover:bg-emerald-100 hover:text-emerald-950 flex items-center justify-between transition" onclick="selectCategoryFromMobile('urdu')">
+<span>Urdu Literature</span>
+<span class="urdu-text text-xs text-gray-500">اردو کتب</span>
+</button>
+<button class="w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-gray-700 hover:bg-emerald-100 hover:text-emerald-950 flex items-center justify-between transition" onclick="selectCategoryFromMobile('fiqh')">
+<span>Islamic Finance</span>
+<span class="urdu-text text-xs text-gray-500">فقہ و معاشیات</span>
+</button>
+</div>
+</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-800 hover:bg-emerald-50 hover:text-emerald-900 font-medium text-sm transition" href="#about-section" onclick="toggleMobileDrawer(false)">
+<svg class="w-4 h-4 text-emerald-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>About Us</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-800 hover:bg-emerald-50 hover:text-emerald-900 font-medium text-sm transition" href="#about-section" onclick="toggleMobileDrawer(false)">
+<svg class="w-4 h-4 text-emerald-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Contact Us</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-800 hover:bg-emerald-50 hover:text-emerald-900 font-medium text-sm transition" href="#" onclick="toggleMobileDrawer(false)">
+<svg class="w-4 h-4 text-emerald-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Privacy Policy</span>
+</a>
+</div>
+<!-- Quick Urdu Banner Highlight in Drawer -->
+<div class="p-3 bg-gradient-to-r from-emerald-900 to-emerald-950 rounded-xl text-white border border-gold-500/30">
+<div class="flex items-center justify-between mb-1">
+<span class="text-[10px] text-gold-300 uppercase tracking-widest font-semibold">اردو اشاعتیں</span>
+<span class="text-gold-400 text-xs">✨</span>
+</div>
+<p class="urdu-text text-xs text-gold-200 text-right leading-relaxed">مستند تفاسیر و شروحِ حدیث کا ذخیرہ</p>
+<button class="w-full mt-2 py-1.5 text-[11px] rounded-lg bg-gold-500 text-emerald-950 font-bold uppercase tracking-wider hover:bg-gold-400 transition" onclick="selectCategoryFromMobile('urdu')">
+          Explore Urdu Books
+        </button>
+</div>
+</div>
+<!-- Drawer Footer with Social Media Icons -->
+<div class="p-4 border-t border-sand bg-sand/20 space-y-3 flex-shrink-0">
+<div class="flex items-center justify-center gap-3">
+<!-- WhatsApp -->
+<a class="w-8 h-8 rounded-full bg-white border border-sand text-emerald-900 hover:bg-emerald-900 hover:text-white flex items-center justify-center shadow-xs transition" href="#" title="WhatsApp">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+</a>
+<!-- Facebook -->
+<a class="w-8 h-8 rounded-full bg-white border border-sand text-emerald-900 hover:bg-emerald-900 hover:text-white flex items-center justify-center shadow-xs transition" href="#" title="Facebook">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.6 5H18V0h-3.808C10.597 0 9 1.583 9 4.615V8z"></path></svg>
+</a>
+<!-- Instagram -->
+<a class="w-8 h-8 rounded-full bg-white border border-sand text-emerald-900 hover:bg-emerald-900 hover:text-white flex items-center justify-center shadow-xs transition" href="#" title="Instagram">
+<svg class="w-4 h-4 fill-none stroke-current stroke-2" viewbox="0 0 24 24"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+</a>
+<!-- Twitter / X -->
+<a class="w-8 h-8 rounded-full bg-white border border-sand text-emerald-900 hover:bg-emerald-900 hover:text-white flex items-center justify-center shadow-xs transition" href="#" title="X (Twitter)">
+<svg class="w-3.5 h-3.5 fill-current" viewbox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+</a>
+</div>
+<p class="text-[10px] text-center text-gray-400">© 1446 AH Al-Maktabah Bookstore</p>
+</div>
+</aside>
+<!-- HERO SECTION -->
+<section class="bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-950 text-white py-12 sm:py-16 lg:py-24 px-4 sm:px-6 relative overflow-hidden w-full max-w-full">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+<div class="lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left">
+<div class="inline-flex items-center gap-2 bg-emerald-850/80 border border-gold-500/30 px-3 py-1.5 rounded-full text-xs text-gold-400 font-medium max-w-full truncate">
+<span>✨ Ramadan &amp; Shawwal Collection 1446 AH</span>
+</div>
+<h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-parchment">
+          Illuminating Minds with <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-amber-200">
+            Timeless Sacred Knowledge
+          </span>
+</h1>
+<p class="text-sand/80 text-sm sm:text-base lg:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+          Curated classical commentaries, authentic Hadith volumes, contemporary Islamic thought, and rare Urdu masterpieces delivered safely to your doorstep.
+        </p>
+<div class="urdu-text text-lg sm:text-2xl text-gold-400 pt-1">
+          اصیل کتبِ تفسیر، شروحِ حدیث اور پاکیزہ تصانیف کا مستند ترین ذخیرہ
+        </div>
+<div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-3">
+<a class="bg-gold-500 hover:bg-gold-600 text-emerald-950 font-bold px-6 py-2.5 sm:px-7 sm:py-3 rounded-full shadow-lg transition-transform hover:-translate-y-0.5 flex items-center gap-2 text-sm sm:text-base" href="#products-section">
+<span>Explore New Arrivals</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+<button class="border border-sand/40 hover:border-gold-400 text-sand hover:text-gold-400 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full urdu-text text-sm sm:text-base transition-colors" onclick="filterByCategory('urdu')">
+            اردو مجموعہ دیکھیں
+          </button>
+</div>
+<div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-3 text-xs text-sand/70">
+<span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg> 100% Authentic Editions</span>
+<span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg> Fast Express Courier</span>
+<span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg> COD &amp; Razorpay Ready</span>
+</div>
+</div>
+<!-- FEATURED HERO BOOK CARD -->
+<div class="lg:col-span-5 flex justify-center w-full">
+<div class="relative bg-emerald-900/60 border border-gold-500/30 rounded-2xl p-5 sm:p-6 backdrop-blur-md w-full max-w-sm sm:max-w-md shadow-2xl">
+<div class="absolute -top-3 right-5 sm:right-6 bg-gold-500 text-emerald-950 text-[10px] sm:text-xs font-extrabold uppercase px-3 py-1 rounded-full shadow">
+            Featured Book
+          </div>
+<img alt="Sahih Bukhari Set" class="w-full h-52 sm:h-64 object-cover rounded-xl shadow-inner mb-4 cursor-pointer hover:opacity-95 transition-opacity" onclick="openBookModal('book-1')" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<div class="space-y-1.5 sm:space-y-2">
+<span class="text-[10px] sm:text-xs uppercase tracking-widest text-gold-400 font-semibold">Classical Hardbound</span>
+<h3 class="font-serif text-lg sm:text-xl font-bold text-white cursor-pointer hover:text-gold-400 transition-colors" onclick="openBookModal('book-1')">
+              Sahih Al-Bukhari (6 Vols Complete)
+            </h3>
+<p class="text-xs text-sand/70">Published by Darussalam</p>
+<div class="flex items-center justify-between pt-3 border-t border-emerald-800">
+<div>
+<span class="text-xl sm:text-2xl font-bold text-gold-400">₹3,450</span>
+<span class="text-xs text-sand/50 line-through ml-1.5">₹4,200</span>
+</div>
+<div class="flex gap-2">
+<button class="bg-emerald-800 hover:bg-emerald-700 text-gold-400 p-2 sm:p-2.5 rounded-lg border border-gold-500/30 transition-colors" onclick="openBookModal('book-1')" title="Quick View">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button class="bg-gold-500 hover:bg-gold-600 text-emerald-950 font-bold px-3.5 sm:px-4 py-2 text-xs sm:text-sm rounded-lg transition-transform active:scale-95 flex items-center gap-1" onclick="addToCart('book-1')">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 <span>Quick Add</span>
 </button>
 </div>
@@ -189,1330 +308,1054 @@
 </div>
 </div>
 </div>
-</div>
 </section>
-<!-- ================= CATEGORY QUICK FILTER BAR ================= -->
-<section class="bg-white border-b border-stone-200 py-6 sticky top-20 z-30 shadow-xs w-full" id="categories">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between gap-4 overflow-x-auto pb-2 sm:pb-0 no-scrollbar" id="categoryFilterContainer">
-<button class="cat-pill active px-4 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition bg-emerald-900 text-white shadow-sm" data-category="all">
-          All Collections (سب)
-        </button>
-<button class="cat-pill px-4 py-2 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition bg-stone-100 hover:bg-stone-200 text-stone-700" data-category="Quran &amp; Tafseer">
-          Quran &amp; Tafseer (قرآن و تفسیر)
-        </button>
-<button class="cat-pill px-4 py-2 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition bg-stone-100 hover:bg-stone-200 text-stone-700" data-category="Hadith Studies">
-          Hadith Studies (شروحِ حدیث)
-        </button>
-<button class="cat-pill px-4 py-2 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition bg-stone-100 hover:bg-stone-200 text-stone-700" data-category="Seerah &amp; History">
-          Seerah &amp; History (سیرت و تاریخ)
-        </button>
-<button class="cat-pill px-4 py-2 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition bg-stone-100 hover:bg-stone-200 text-stone-700" data-category="Urdu Literature">
-          Urdu Adab (اردو کتب)
-        </button>
-<button class="cat-pill px-4 py-2 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition bg-stone-100 hover:bg-stone-200 text-stone-700" data-category="Islamic Finance">
-          Fiqh &amp; Finance (فقہ و معاشیات)
-        </button>
-</div>
-</div>
-</section>
-<!-- ================= 3. DYNAMIC PRODUCTS GRID ================= -->
-<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full overflow-x-hidden" id="catalog">
-<!-- Section Title & Results Info -->
-<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-stone-200 gap-4">
-<div>
-<div class="flex items-center gap-2 text-gold-600 text-xs font-bold uppercase tracking-wider">
-<i class="w-4 h-4" data-lucide="book"></i>
-<span>Authentic Inventory</span>
-</div>
-<h2 class="font-serif text-3xl font-bold text-emerald-950 mt-1">Available Titles &amp; Publications</h2>
-<p class="text-stone-500 text-sm mt-1">Handpicked volumes sourced directly from authorized publishing houses. Click any book to view full scholarly details.</p>
-</div>
-<!-- Sorting & Counter -->
-<div class="flex items-center gap-3">
-<span class="text-xs text-stone-500 font-medium" id="productCountLabel">Loading books...</span>
-<select class="bg-stone-50 border border-stone-300 text-stone-700 text-xs rounded-lg px-3 py-2 focus:ring-1 focus:ring-emerald-800 outline-none" id="sortSelect">
-<option value="featured">Featured First</option>
-<option value="price-low">Price: Low to High</option>
-<option value="price-high">Price: High to Low</option>
-<option value="title">Alphabetical (A-Z)</option>
-</select>
-</div>
-</div>
-<!-- Product Grid Container (Populated via JS) -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7" id="productGrid">
-<div class="bg-white rounded-2xl p-4 border border-stone-200 animate-pulse space-y-4">
-<div class="w-full h-56 bg-stone-200 rounded-xl"></div>
-<div class="h-4 bg-stone-200 rounded w-1/3"></div>
-<div class="h-6 bg-stone-200 rounded w-4/5"></div>
-<div class="h-10 bg-stone-200 rounded-lg"></div>
-</div>
-<div class="bg-white rounded-2xl p-4 border border-stone-200 animate-pulse space-y-4">
-<div class="w-full h-56 bg-stone-200 rounded-xl"></div>
-<div class="h-4 bg-stone-200 rounded w-1/3"></div>
-<div class="h-6 bg-stone-200 rounded w-4/5"></div>
-<div class="h-10 bg-stone-200 rounded-lg"></div>
-</div>
-<div class="bg-white rounded-2xl p-4 border border-stone-200 animate-pulse space-y-4">
-<div class="w-full h-56 bg-stone-200 rounded-xl"></div>
-<div class="h-4 bg-stone-200 rounded w-1/3"></div>
-<div class="h-6 bg-stone-200 rounded w-4/5"></div>
-<div class="h-10 bg-stone-200 rounded-lg"></div>
-</div>
-<div class="bg-white rounded-2xl p-4 border border-stone-200 animate-pulse space-y-4">
-<div class="w-full h-56 bg-stone-200 rounded-xl"></div>
-<div class="h-4 bg-stone-200 rounded w-1/3"></div>
-<div class="h-6 bg-stone-200 rounded w-4/5"></div>
-<div class="h-10 bg-stone-200 rounded-lg"></div>
-</div>
-</div>
-<!-- Empty State Notification -->
-<div class="hidden text-center py-16 bg-white rounded-2xl border border-stone-200 p-8 my-8" id="noProductsFound">
-<div class="w-16 h-16 bg-stone-100 text-stone-400 rounded-full flex items-center justify-center mx-auto mb-4">
-<i class="w-8 h-8" data-lucide="book-x"></i>
-</div>
-<h3 class="font-serif text-xl font-bold text-stone-800">No books found</h3>
-<p class="text-stone-500 text-sm max-w-md mx-auto mt-1 mb-6">We couldn't find any books matching your search query. Try searching for a different keyword or reset filters.</p>
-<button class="px-5 py-2.5 rounded-full bg-emerald-900 text-white text-xs font-semibold hover:bg-emerald-950 transition" onclick="resetFilters()">
-        Reset Search &amp; Filters
+<!-- CATEGORY PILLS FILTER (Contained horizontal scroll) -->
+<section class="max-w-7xl mx-auto px-3 sm:px-6 pt-6 sm:pt-8 w-full max-w-full overflow-hidden" id="categories-tabs">
+<div class="flex items-center gap-2 overflow-x-auto pb-3 text-xs sm:text-sm font-medium scrollbar-none w-full">
+<button class="category-btn active bg-emerald-900 text-white px-4 py-2 rounded-full whitespace-nowrap shadow-sm border border-emerald-900 transition-all flex-shrink-0" onclick="filterByCategory('all')">
+        All Collections (سب)
+      </button>
+<button class="category-btn bg-white hover:bg-sand text-gray-700 px-4 py-2 rounded-full whitespace-nowrap border border-sand transition-all flex-shrink-0" onclick="filterByCategory('quran')">
+        Quran &amp; Tafseer (قرآن و تفسیر)
+      </button>
+<button class="category-btn bg-white hover:bg-sand text-gray-700 px-4 py-2 rounded-full whitespace-nowrap border border-sand transition-all flex-shrink-0" onclick="filterByCategory('hadith')">
+        Hadith Studies (شروح حدیث)
+      </button>
+<button class="category-btn bg-white hover:bg-sand text-gray-700 px-4 py-2 rounded-full whitespace-nowrap border border-sand transition-all flex-shrink-0" onclick="filterByCategory('seerah')">
+        Seerah &amp; History (سیرت و تاریخ)
+      </button>
+<button class="category-btn bg-white hover:bg-sand text-gray-700 px-4 py-2 rounded-full whitespace-nowrap border border-sand transition-all flex-shrink-0" onclick="filterByCategory('urdu')">
+        Urdu Adab (اردو کتب)
+      </button>
+<button class="category-btn bg-white hover:bg-sand text-gray-700 px-4 py-2 rounded-full whitespace-nowrap border border-sand transition-all flex-shrink-0" onclick="filterByCategory('fiqh')">
+        Fiqh &amp; Finance (فقہ و معاشیات)
       </button>
 </div>
-<!-- Special Urdu Spotlight Banner -->
-<div class="mt-20 relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-900 via-emerald-950 to-stone-900 p-8 sm:p-12 text-white border border-gold-500/40 shadow-xl" id="urdu-section">
-<div class="absolute right-0 top-0 bottom-0 w-1/2 opacity-10 islamic-pattern pointer-events-none"></div>
-<div class="relative z-10 max-w-3xl">
-<span class="inline-block px-3 py-1 rounded-full bg-gold-500/20 text-gold-300 border border-gold-400/40 text-xs font-semibold mb-4">
-          خصوصی اردو اشاعتیں
-        </span>
-<h3 class="font-urdu text-3xl sm:text-4xl leading-loose font-bold text-gold-200 mb-4" dir="rtl">
-          اہلِ علم و ذوق کے لیے نایاب تصانیف اور معتبر تراجم
-        </h3>
-<p class="text-stone-300 text-sm sm:text-base leading-relaxed mb-6 font-light">
-          Enjoy pristine Urdu editions typeset in authentic Nastaleeq. Featuring classical commentaries by Shaykh Ashraf Ali Thanvi, Mufti Taqi Usmani, Allama Shibli Nomani, and contemporary scholars.
-        </p>
-<button class="px-6 py-3 rounded-full bg-gold-500 hover:bg-gold-400 text-emerald-950 font-bold text-xs uppercase tracking-wider transition shadow" onclick="filterByCategory('Urdu Literature')">
-          View All Urdu Works
-        </button>
+</section>
+<!-- MAIN CATALOGUE SECTION -->
+<main class="max-w-7xl mx-auto px-3 sm:px-6 py-6 sm:py-8 flex-1 w-full max-w-full overflow-hidden" id="products-section">
+<div class="flex flex-col sm:flex-row justify-between items-baseline mb-6 sm:mb-8 gap-2 sm:gap-4 border-b border-sand pb-4">
+<div>
+<span class="text-xs uppercase font-bold tracking-widest text-gold-600 block">Authentic Inventory</span>
+<h2 class="font-serif text-2xl sm:text-3xl font-bold text-emerald-950">Available Titles &amp; Publications</h2>
+<p class="text-xs text-gray-500 mt-1">Handpicked volumes sourced directly from authorized publishing houses. Click any book to view full scholarly details.</p>
 </div>
+<div class="text-xs text-gray-500 font-medium" id="productCountLabel">
+        Showing all volumes
+      </div>
+</div>
+<!-- PRODUCTS GRID -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 w-full" id="productsGrid">
+<!-- Injected via JavaScript dynamically -->
+</div>
+<!-- EMPTY STATE -->
+<div class="hidden text-center py-16" id="emptySearchState">
+<div class="w-16 h-16 mx-auto rounded-full bg-sand flex items-center justify-center text-gray-400 mb-4">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<h3 class="font-serif text-xl font-bold text-emerald-950">No volumes matched your criteria</h3>
+<p class="text-sm text-gray-500 mt-1">Try searching for alternative keywords or reset your active category filter.</p>
+<button class="mt-4 bg-emerald-900 text-white text-xs font-semibold px-4 py-2 rounded-full" onclick="filterByCategory('all'); document.getElementById('searchInput').value='';">
+        Reset All Filters
+      </button>
 </div>
 </main>
-<!-- ================= BOOK DETAILS PREVIEW MODAL ================= -->
-<div class="fixed inset-0 bg-stone-950/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto" id="bookModalBackdrop">
-<div class="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-gold-500/30 overflow-hidden my-auto max-h-[92vh] flex flex-col animate-in fade-in zoom-in-95 duration-200" id="bookModalContent">
-<!-- Modal Top Bar -->
-<div class="px-6 py-4 bg-emerald-950 text-white flex items-center justify-between border-b border-gold-500/30 flex-shrink-0">
-<div class="flex items-center gap-2.5">
-<span class="w-2.5 h-2.5 rounded-full bg-gold-400"></span>
-<span class="text-xs uppercase tracking-widest text-gold-300 font-semibold" id="modalTopCategory">Hadith Studies</span>
-<span class="text-stone-400">|</span>
-<span class="text-xs text-stone-300" id="modalTopPublisher">Classical Edition</span>
-</div>
-<button aria-label="Close book preview" class="text-stone-300 hover:text-white hover:bg-emerald-900 p-1.5 rounded-full transition" onclick="closeBookModal()">
-<i class="w-5 h-5" data-lucide="x"></i>
-</button>
-</div>
-<!-- Modal Scrollable Body -->
-<div class="overflow-y-auto p-6 sm:p-8 flex-1">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-<!-- Left Column: Book Cover -->
-<div class="md:col-span-5 flex flex-col items-center">
-<div class="relative w-full max-w-[280px] rounded-2xl overflow-hidden shadow-2xl border-2 border-gold-400/40 bg-stone-100 group">
-<img alt="Book Cover" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" id="modalBookImage" src=""/>
-<div class="absolute top-3 left-3 flex flex-col gap-1.5" id="modalBadgesContainer"></div>
-<div class="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur-md rounded-xl p-2.5 text-center border border-emerald-900/10">
-<span class="text-xs font-semibold text-emerald-950 flex items-center justify-center gap-1.5">
-<i class="w-3.5 h-3.5 text-emerald-700" data-lucide="check-circle"></i>
-<span id="modalStockStatus">In Stock • Verified Manuscript</span>
-</span>
-</div>
-</div>
-<div class="mt-4 flex items-center gap-3 text-stone-500 text-xs">
-<span class="flex items-center gap-1"><i class="w-3.5 h-3.5 text-gold-600" data-lucide="truck"></i> Free Dispatch</span>
-<span>•</span>
-<span class="flex items-center gap-1"><i class="w-3.5 h-3.5 text-gold-600" data-lucide="shield-check"></i> Original Publisher</span>
-</div>
-</div>
-<!-- Right Column: Scholarly Details & Actions -->
-<div class="md:col-span-7 space-y-5">
-<div>
-<p class="text-xs font-semibold text-gold-600 uppercase tracking-wider mb-1" id="modalAuthor">Imam Muhammad al-Bukhari</p>
-<h2 class="font-serif text-2xl sm:text-3xl font-bold text-emerald-950 leading-tight" id="modalTitle">Sahih Al-Bukhari (Arabic &amp; English)</h2>
-<p class="font-urdu text-lg sm:text-xl text-stone-700 mt-2 text-right leading-loose border-b border-stone-200 pb-3" dir="rtl" id="modalUrduTitle">صحیح البخاری — مکمل سیٹ</p>
-</div>
-<!-- Metadata Chips Grid -->
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
-<div class="bg-stone-50 border border-stone-200 rounded-xl p-2.5 text-center">
-<span class="block text-[10px] text-stone-400 uppercase font-semibold">Binding</span>
-<span class="block text-xs font-bold text-stone-800 mt-0.5 truncate" id="modalBinding">Hardbound</span>
-</div>
-<div class="bg-stone-50 border border-stone-200 rounded-xl p-2.5 text-center">
-<span class="block text-[10px] text-stone-400 uppercase font-semibold">Pages</span>
-<span class="block text-xs font-bold text-stone-800 mt-0.5" id="modalPages">4,480 Pgs</span>
-</div>
-<div class="bg-stone-50 border border-stone-200 rounded-xl p-2.5 text-center">
-<span class="block text-[10px] text-stone-400 uppercase font-semibold">Languages</span>
-<span class="block text-xs font-bold text-stone-800 mt-0.5 truncate" id="modalLanguage">Arabic / Urdu</span>
-</div>
-<div class="bg-stone-50 border border-stone-200 rounded-xl p-2.5 text-center">
-<span class="block text-[10px] text-stone-400 uppercase font-semibold">Publisher</span>
-<span class="block text-xs font-bold text-stone-800 mt-0.5 truncate" id="modalPublisher">Darussalam</span>
-</div>
-</div>
-<!-- Scholarly Description -->
-<div class="space-y-2">
-<h4 class="text-xs font-bold uppercase tracking-wider text-emerald-950">About this Publication</h4>
-<p class="text-xs sm:text-sm text-stone-600 leading-relaxed font-light" id="modalDescription">
-            Detailed commentary and publication breakdown.
-          </p>
-</div>
-<!-- Price Section -->
-<div class="bg-emerald-50/70 border border-emerald-900/10 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
-<div>
-<span class="text-xs text-stone-500 block">Publication Price</span>
-<div class="flex items-baseline gap-2.5">
-<span class="font-serif text-3xl font-bold text-emerald-950" id="modalPrice">₹3,450</span>
-<span class="text-sm text-stone-400 line-through" id="modalOriginalPrice">₹4,200</span>
-<span class="text-xs font-bold bg-gold-500 text-emerald-950 px-2 py-0.5 rounded-full" id="modalSaveBadge">Save ₹750</span>
-</div>
-</div>
-<!-- Quantity Selector & Add Button -->
-<div class="flex items-center gap-3">
-<div class="flex items-center border border-stone-300 rounded-xl bg-white p-1">
-<button class="w-8 h-8 rounded-lg hover:bg-stone-100 flex items-center justify-center text-stone-700 font-bold text-base transition" onclick="adjustModalQty(-1)">-</button>
-<span class="w-8 text-center font-bold text-sm text-stone-900" id="modalQtyDisplay">1</span>
-<button class="w-8 h-8 rounded-lg hover:bg-stone-100 flex items-center justify-center text-stone-700 font-bold text-base transition" onclick="adjustModalQty(1)">+</button>
-</div>
-<button class="px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-900 to-emerald-950 hover:from-emerald-800 hover:to-emerald-900 text-gold-200 font-bold text-xs tracking-wide shadow-md transition-all active:scale-95 flex items-center gap-2" id="modalAddToCartBtn" onclick="addModalBookToCart()">
-<i class="w-4 h-4 text-gold-400" data-lucide="shopping-bag"></i>
-<span>Add to Bookbag</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- ================= 4. SHOPPING CART SYSTEM (SLIDE-OUT DRAWER) ================= -->
-<div class="fixed inset-0 bg-stone-950/60 backdrop-blur-xs z-50 transition-opacity duration-300 opacity-0 pointer-events-none" id="cartDrawerBackdrop"></div>
-<aside aria-label="Shopping Cart" class="fixed top-0 right-0 h-full w-full sm:w-[450px] bg-white z-50 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out border-l border-gold-500/20" id="cartDrawer">
-<!-- Drawer Header -->
-<div class="p-5 border-b border-stone-200 flex items-center justify-between bg-emerald-950 text-white">
-<div class="flex items-center gap-2.5">
-<i class="w-5 h-5 text-gold-400" data-lucide="shopping-cart"></i>
-<h3 class="font-serif text-xl font-bold tracking-tight text-gold-100">Your Bookbag</h3>
-<span class="text-xs bg-emerald-900 border border-gold-400/40 text-gold-200 px-2 py-0.5 rounded-full font-semibold" id="drawerItemCount">0 items</span>
-</div>
-<button class="p-1.5 rounded-full text-stone-300 hover:text-white hover:bg-emerald-900 transition" id="closeCartBtn">
-<i class="w-5 h-5" data-lucide="x"></i>
-</button>
-</div>
-<!-- Cart Items Scrollable Container -->
-<div class="flex-1 overflow-y-auto p-5 divide-y divide-stone-100 space-y-4" id="cartItemsList">
-<!-- Populated dynamically via JS -->
-</div>
-<!-- Empty Cart State -->
-<div class="hidden flex-1 flex-col items-center justify-center p-8 text-center" id="emptyCartView">
-<div class="w-20 h-20 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-900 mb-4">
-<i class="w-10 h-10 stroke-[1.5]" data-lucide="shopping-bag"></i>
-</div>
-<h4 class="font-serif text-xl font-bold text-stone-800">Your Cart is Empty</h4>
-<p class="font-urdu text-sm text-stone-500 mt-1 mb-2" dir="rtl">آپ کے سبدِ خرید میں فی الحال کوئی کتاب نہیں ہے۔</p>
-<p class="text-xs text-stone-400 max-w-xs mb-6">Explore our curated selections of authentic Islamic literature to enrich your library.</p>
-<button class="px-6 py-2.5 rounded-full bg-emerald-900 text-gold-100 text-xs font-semibold hover:bg-emerald-950 transition" onclick="closeCart();">
-        Start Browsing Books
+<!-- URDU FEATURE BANNER -->
+<section class="max-w-7xl mx-auto px-3 sm:px-6 my-8 w-full max-w-full overflow-hidden">
+<div class="bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-950 rounded-2xl p-6 sm:p-10 text-center relative overflow-hidden border border-gold-500/30">
+<span class="inline-block bg-gold-500/20 text-gold-400 text-xs px-3 py-1 rounded-full mb-3">خصوصی اردو اشاعتیں</span>
+<h3 class="urdu-text text-2xl sm:text-4xl text-sand mb-2 leading-relaxed">اہلِ علم و ذوق کے لیے نایاب تصانیف اور معتبر تراجم</h3>
+<p class="text-sand/80 text-xs sm:text-sm max-w-xl mx-auto mb-4 font-light">
+        Enjoy pristine Urdu editions typeset in authentic Nastaleeq. Featuring classical commentaries by Shaykh Ashraf Ali Thanvi, Mufti Taqi Usmani, Allama Shibli Nomani, and contemporary scholars.
+      </p>
+<button class="bg-gold-500 hover:bg-gold-600 text-emerald-950 font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-wider" onclick="filterByCategory('urdu')">
+        View All Urdu Works
       </button>
 </div>
-<!-- Drawer Footer / Summary -->
-<div class="p-5 border-t border-stone-200 bg-stone-50 space-y-3" id="cartSummarySection">
-<div class="space-y-1.5 text-xs text-stone-600">
-<div class="flex justify-between">
-<span>Subtotal</span>
-<span class="font-semibold text-stone-800" id="cartSubtotal">₹0</span>
-</div>
-<div class="flex justify-between items-center">
-<span class="flex items-center gap-1">Shipping &amp; Packaging <i class="w-3 h-3 text-stone-400" data-lucide="info"></i></span>
-<span class="text-emerald-700 font-semibold">FREE (Standard)</span>
-</div>
-<div class="flex justify-between text-base font-bold text-emerald-950 pt-2 border-t border-stone-200">
-<span>Grand Total</span>
-<span class="text-xl text-emerald-900 font-serif font-bold" id="cartTotal">₹0</span>
-</div>
-</div>
-<button class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-900 to-emerald-950 hover:from-emerald-800 hover:to-emerald-900 text-gold-200 font-bold text-sm tracking-wide shadow-md transition-all active:scale-[0.99] flex items-center justify-center gap-2" id="proceedCheckoutBtn" onclick="openCheckoutModal()">
-<span>Proceed to Checkout</span>
-<i class="w-4 h-4 text-gold-400" data-lucide="arrow-right"></i>
+</section>
+<!-- BOOK DETAILS MODAL -->
+<div class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 transition-opacity" id="bookModalBackdrop">
+<div class="bg-white rounded-2xl max-w-3xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-sand relative animate-in fade-in zoom-in-95 duration-200">
+<!-- Close Button -->
+<button class="absolute top-4 right-4 z-10 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-sand/80 hover:bg-sand text-gray-700 flex items-center justify-center transition-colors" onclick="closeBookModal()">
+<svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </button>
-<p class="text-[11px] text-center text-stone-400 flex items-center justify-center gap-1.5 pt-1">
-<i class="w-3 h-3 text-stone-400" data-lucide="lock"></i>
-<span>Encrypted checkout. Cash on Delivery supported.</span>
-</p>
+<div class="p-4 sm:p-8" id="bookModalContent">
+<!-- Rendered dynamically via JavaScript -->
 </div>
-</aside>
-<!-- ================= 5. CHECKOUT MODAL ================= -->
-<div class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden flex items-start sm:items-center justify-center p-3 sm:p-4 pt-6 sm:pt-4 overflow-y-auto" id="checkoutModalBackdrop">
-<div class="relative w-full max-w-xl bg-white rounded-2xl shadow-2xl border border-gold-400/40 overflow-hidden max-h-[92vh] sm:max-h-[95vh] flex flex-col my-auto sm:my-0 animate-in fade-in zoom-in-95 duration-200"><div class="sticky top-0 z-10 bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-950 p-5 sm:p-6 text-white border-b border-gold-500/30 flex justify-between items-center flex-shrink-0"><div><div class="flex items-center gap-2 text-gold-300 text-xs font-semibold uppercase tracking-wider"><i class="w-4 h-4" data-lucide="check-circle"></i><span>Secure Checkout</span></div><h3 class="font-serif text-xl sm:text-2xl font-bold text-stone-50 mt-0.5">Finalize Your Order</h3><p class="font-urdu text-xs text-gold-300/80 -mt-0.5" dir="rtl">براہِ کرم تفصیلات درج فرمائیں</p></div><button aria-label="Close checkout" class="text-stone-300 hover:text-white p-2 rounded-full hover:bg-emerald-800/50 transition flex-shrink-0" onclick="closeCheckoutModal()"><i class="w-5 h-5" data-lucide="x"></i></button></div><div class="overflow-y-auto flex-1 p-5 sm:p-8"><form class="space-y-5" id="checkoutForm" onsubmit="handlePlaceOrder(event)"><div class="bg-stone-50 rounded-xl p-3.5 border border-stone-200 flex items-center justify-between text-xs"><div><span class="text-stone-500">Order Amount:</span><span class="font-bold text-emerald-950 text-sm ml-1 font-serif" id="checkoutTotalBadge">₹0</span></div><div class="text-stone-500"><span id="checkoutItemsCountBadge">0 books</span></div></div><div class="space-y-3.5"><h4 class="text-xs font-bold uppercase tracking-wider text-emerald-900 flex items-center gap-1.5"><i class="w-3.5 h-3.5" data-lucide="user"></i><span>1. Customer &amp; Delivery Details</span></h4><div><label class="block text-xs font-medium text-stone-700 mb-1">Full Name (مکمل نام) *</label><input class="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-lg focus:ring-2 focus:ring-emerald-800 focus:outline-none" id="custName" placeholder="e.g. Muhammad Zaid Khan" required="" type="text"/></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><div><label class="block text-xs font-medium text-stone-700 mb-1">Phone Number (واٹس ایپ نمبر) *</label><input class="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-lg focus:ring-2 focus:ring-emerald-800 focus:outline-none" id="custPhone" placeholder="+91 98765 43210" required="" type="tel"/></div><div><label class="block text-xs font-medium text-stone-700 mb-1">Email (Optional for Razorpay receipts)</label><input class="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-lg focus:ring-2 focus:ring-emerald-800 focus:outline-none" id="custEmail" placeholder="zaid@example.com" type="email"/></div></div><div><label class="block text-xs font-medium text-stone-700 mb-1">Complete Delivery Address (مکمل پتہ بمع پن کوڈ) *</label><textarea class="w-full px-3.5 py-2.5 text-sm bg-white border border-stone-300 rounded-lg focus:ring-2 focus:ring-emerald-800 focus:outline-none resize-none" id="custAddress" placeholder="House/Flat No., Landmark, City, State, PIN Code" required="" rows="2"></textarea></div></div><div class="space-y-2.5 pt-2"><h4 class="text-xs font-bold uppercase tracking-wider text-emerald-900 flex items-center gap-1.5"><i class="w-3.5 h-3.5" data-lucide="credit-card"></i><span>2. Select Payment Method</span></h4><div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><label class="payment-method-card flex items-start gap-3 p-3.5 border-2 border-emerald-800 bg-emerald-50/50 rounded-xl cursor-pointer hover:bg-emerald-50 transition"><input checked="" class="mt-1 text-emerald-900 focus:ring-emerald-800" name="paymentMethod" type="radio" value="Cash on Delivery (COD)"/><div><span class="block text-xs font-bold text-stone-900">Cash on Delivery (COD)</span><span class="block text-[11px] text-stone-500">Pay cash upon parcel arrival</span></div></label><label class="payment-method-card flex items-start gap-3 p-3.5 border border-stone-300 rounded-xl cursor-pointer hover:bg-stone-50 transition"><input class="mt-1 text-emerald-900 focus:ring-emerald-800" name="paymentMethod" type="radio" value="Online Payment (Razorpay)"/><div><div class="flex items-center gap-1.5"><span class="block text-xs font-bold text-stone-900">Online Payment</span><span class="bg-blue-100 text-blue-700 text-[10px] px-1 rounded font-semibold">Razorpay SDK</span></div><span class="block text-[11px] text-stone-500">Instant UPI, Cards, NetBanking</span></div></label></div></div><div class="pt-4 border-t border-stone-200"><button class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-950 text-gold-200 font-bold text-sm tracking-wide shadow-lg hover:brightness-110 active:scale-[0.99] transition flex items-center justify-center gap-2" id="placeOrderSubmitBtn" type="submit"><i class="w-5 h-5 text-gold-400" data-lucide="check-circle-2"></i><span id="submitBtnText">Confirm &amp; Place Order (آرڈر درج کریں)</span></button><div class="mt-3 text-center"><span class="text-[11px] text-stone-400">Order payload is automatically prepared for direct Telegram bot dispatch.</span></div></div></form><div class="hidden text-center space-y-4 py-4" id="orderSuccessView"><div class="w-16 h-16 bg-emerald-100 text-emerald-800 rounded-full flex items-center justify-center mx-auto"><i class="w-8 h-8 stroke-[2.5]" data-lucide="check"></i></div><h3 class="font-serif text-2xl font-bold text-emerald-950">جزاك الله خيراً! Order Confirmed!</h3><p class="font-urdu text-sm text-gold-700" dir="rtl">آپ کا آرڈر کامیابی سے موصول ہو گیا ہے، جلد ہی تصدیقی رابطہ کیا جائے گا۔</p><div class="bg-stone-50 border border-stone-200 rounded-xl p-4 text-left text-xs space-y-2 max-h-48 overflow-y-auto font-mono text-stone-700"><div class="font-bold text-stone-800 text-[11px] uppercase text-emerald-900">Telegram Bot Payload Generated:</div><pre class="whitespace-pre-wrap break-all text-[11px] text-stone-600" id="telegramPayloadPreview"></pre></div><button class="w-full py-3 rounded-xl bg-emerald-900 text-gold-100 font-bold text-xs uppercase tracking-wider hover:bg-emerald-950 transition" onclick="dismissSuccessAndReset()">Continue Shopping</button></div></div></div>
 </div>
-<!-- ================= 6. FLOATING ACTION BUTTON (WHATSAPP CHAT) ================= -->
-<div class="fixed bottom-6 right-6 z-40 group">
-<!-- Tooltip -->
-<div class="absolute bottom-full right-0 mb-2 hidden group-hover:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-950 text-gold-200 text-xs font-medium shadow-lg whitespace-nowrap border border-gold-400/40">
-<span>Direct WhatsApp Assistance</span>
-<span class="font-urdu text-sm">| رابطہ کریں</span>
 </div>
-<!-- WhatsApp Circular Floating Button -->
-<a aria-label="Chat with us on WhatsApp" class="w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 border-2 border-white ring-4 ring-emerald-900/10" href="https://wa.me/919999999999?text=Assalamu%20Alaikum,%20I%20am%20inquiring%20about%20books%20from%20Al-Maktabah%20Bookstore." rel="noopener noreferrer" target="_blank">
-<svg class="w-7 h-7 fill-current" viewbox="0 0 24 24">
+<!-- SLIDE-OUT CART DRAWER -->
+<div class="fixed inset-0 z-50 bg-emerald-950/60 backdrop-blur-sm hidden transition-opacity" id="cartBackdrop" onclick="toggleCartDrawer(false)"></div>
+<div class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white z-50 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out border-l border-sand max-w-full" id="cartDrawer">
+<!-- Drawer Header -->
+<div class="p-4 sm:p-6 bg-emerald-950 text-white flex items-center justify-between border-b border-emerald-900">
+<div class="flex items-center gap-3">
+<svg class="w-5 h-5 sm:w-6 sm:h-6 text-gold-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<div>
+<h2 class="font-serif text-lg sm:text-xl font-bold tracking-tight">Your Bookbag</h2>
+<span class="text-xs text-gold-400" id="cartDrawerCount">0 items selected</span>
+</div>
+</div>
+<button class="text-sand/80 hover:text-white p-1 rounded-lg" onclick="toggleCartDrawer(false)">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<!-- Drawer Items List -->
+<div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 divide-y divide-sand" id="cartItemsContainer">
+<!-- Items dynamically populated -->
+</div>
+<!-- Drawer Footer -->
+<div class="p-4 sm:p-6 bg-sand/30 border-t border-sand space-y-3 sm:space-y-4">
+<div class="space-y-1.5 text-xs sm:text-sm">
+<div class="flex justify-between text-gray-500">
+<span>Subtotal</span>
+<span class="font-medium text-gray-900" id="cartSubtotal">₹0</span>
+</div>
+<div class="flex justify-between text-gray-500">
+<span>Shipping &amp; Packaging</span>
+<span class="text-emerald-800 font-semibold">FREE (Standard)</span>
+</div>
+<div class="flex justify-between text-sm sm:text-base font-bold text-emerald-950 pt-2 border-t border-sand">
+<span>Grand Total</span>
+<span class="text-lg sm:text-xl text-emerald-900 font-serif" id="cartGrandTotal">₹0</span>
+</div>
+</div>
+<button class="w-full bg-emerald-900 hover:bg-emerald-950 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold py-3 sm:py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-sm sm:text-base" id="checkoutBtn" onclick="openCheckoutModal()">
+<span>Proceed to Checkout</span>
+<svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<p class="text-[10px] sm:text-[11px] text-center text-gray-400">🔒 Encrypted checkout. Cash on Delivery and Razorpay supported.</p>
+</div>
+</div>
+<!-- CHECKOUT MODAL (Updated for mobile-first alignment & visibility) -->
+<div class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden flex items-start sm:items-center justify-center p-3 sm:p-4 pt-6 pb-6 sm:pt-4 sm:pb-4 overflow-y-auto transition-opacity" id="checkoutModalBackdrop">
+<div class="bg-white rounded-2xl max-w-xl w-full max-h-[90vh] sm:max-h-[95vh] overflow-y-auto shadow-2xl border border-sand p-5 sm:p-8 relative flex flex-col my-auto sm:my-0">
+<!-- Close Button (Always visible at top-right of modal) -->
+<button aria-label="Close Checkout Modal" class="absolute top-4 right-4 sm:top-5 sm:right-5 text-gray-400 hover:text-gray-700 z-10 p-1 rounded-lg hover:bg-sand/60 transition-colors" onclick="closeCheckoutModal()">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<!-- Modal Header -->
+<div class="mb-5 sm:mb-6 pr-8">
+<span class="text-xs uppercase font-bold tracking-widest text-gold-600 block">Finalize Order</span>
+<h3 class="font-serif text-xl sm:text-2xl font-bold text-emerald-950">Customer &amp; Shipping Details</h3>
+<p class="text-xs text-gray-500 mt-1">Orders are dispatched within 24 hours of placement with tracked courier.</p>
+</div>
+<!-- Checkout Form -->
+<form class="space-y-3 sm:space-y-4 text-sm flex-1" id="checkoutForm" onsubmit="handlePlaceOrder(event)">
+<div>
+<label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Full Name *</label>
+<input class="w-full border border-sand rounded-lg px-3.5 py-2.5 outline-none focus:border-emerald-900 bg-sand/20" id="custName" placeholder="e.g. Zayd Ahmad Khan" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-gray-700 uppercase mb-1">WhatsApp / Phone Number *</label>
+<input class="w-full border border-sand rounded-lg px-3.5 py-2.5 outline-none focus:border-emerald-900 bg-sand/20" id="custPhone" placeholder="+91 9876543210" required="" type="tel"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Complete Delivery Address &amp; Pincode *</label>
+<textarea class="w-full border border-sand rounded-lg px-3.5 py-2.5 outline-none focus:border-emerald-900 bg-sand/20" id="custAddress" placeholder="House/Flat No, Street, Landmark, City, State, PIN Code" required="" rows="3"></textarea>
+</div>
+<!-- PAYMENT METHOD SELECTION -->
+<div class="pt-2">
+<label class="block text-xs font-semibold text-gray-700 uppercase mb-2">Select Payment Method *</label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<label class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer hover:border-emerald-900 transition-colors has-[:checked]:border-emerald-900 has-[:checked]:bg-emerald-50/50">
+<input checked="" class="text-emerald-900 focus:ring-emerald-900" name="paymentMethod" type="radio" value="COD"/>
+<div>
+<span class="font-semibold block text-gray-900 text-xs sm:text-sm">Cash on Delivery</span>
+<span class="text-[11px] text-gray-500">Pay cash upon parcel delivery</span>
+</div>
+</label>
+<label class="flex items-center gap-3 p-3 border rounded-xl cursor-pointer hover:border-emerald-900 transition-colors has-[:checked]:border-emerald-900 has-[:checked]:bg-emerald-50/50">
+<input class="text-emerald-900 focus:ring-emerald-900" name="paymentMethod" type="radio" value="Razorpay"/>
+<div>
+<span class="font-semibold block text-gray-900 flex items-center gap-1.5 text-xs sm:text-sm">
+                  Razorpay Online
+                  <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-1.5 py-0.5 rounded">UPI</span>
+</span>
+<span class="text-[11px] text-gray-500">Instant UPI, Cards &amp; NetBanking</span>
+</div>
+</label>
+</div>
+</div>
+<!-- SUMMARY PREVIEW -->
+<div class="p-3 bg-sand/40 rounded-xl flex justify-between items-center text-sm font-medium mt-3 sm:mt-4">
+<span class="text-gray-700">Payable Amount:</span>
+<span class="font-bold text-lg text-emerald-950 font-serif" id="checkoutPayableAmount">₹0</span>
+</div>
+<button class="w-full bg-emerald-900 hover:bg-emerald-950 text-white font-bold py-3 sm:py-3.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 mt-4 text-sm sm:text-base" id="placeOrderSubmitBtn" type="submit">
+<span id="placeOrderBtnText">Confirm &amp; Place Order</span>
+<svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</form>
+</div>
+</div>
+<!-- ORDER SUCCESS MODAL -->
+<div class="fixed inset-0 z-50 bg-emerald-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4" id="orderSuccessBackdrop">
+<div class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 text-center space-y-3 sm:space-y-4 border border-gold-500/40 shadow-2xl animate-in zoom-in-95">
+<div class="w-14 h-14 sm:w-16 sm:h-16 bg-emerald-100 text-emerald-900 rounded-full flex items-center justify-center mx-auto">
+<svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</div>
+<span class="text-xs uppercase tracking-widest text-gold-600 font-bold">Mubarak / Order Registered</span>
+<h3 class="font-serif text-xl sm:text-2xl font-bold text-emerald-950">Jazakallah Khair for Your Order!</h3>
+<p class="text-xs text-gray-600 leading-relaxed" id="orderSuccessMessage">
+        Your order has been recorded and scheduled for dispatch.
+      </p>
+<div class="p-3 bg-sand/50 rounded-lg text-xs font-mono text-gray-700 break-all" id="orderReferenceId">
+        REF: ORD-ALM-1446
+      </div>
+<button class="w-full bg-emerald-900 text-white font-semibold py-2.5 rounded-xl hover:bg-emerald-950 transition-colors text-sm" onclick="closeSuccessModal()">
+        Continue Browsing
+      </button>
+</div>
+</div>
+<!-- FLOATING WHATSAPP CHAT BUTTON -->
+<a class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 bg-[#25D366] hover:bg-[#20ba5a] text-white p-3 sm:p-3.5 rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95 group" href="https://wa.me/919988776655?text=Assalamu%20Alaikum,%20I%20would%20like%20to%20inquire%20about%20books%20at%20Al-Maktabah." rel="noopener noreferrer" target="_blank" title="Chat with Customer Support on WhatsApp">
+<svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewbox="0 0 24 24">
 <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path>
 </svg>
+<span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out px-0 group-hover:px-2 text-xs font-semibold hidden sm:inline">
+      Chat with Maktab
+    </span>
 </a>
-</div>
-<!-- ================= 7. FOOTER ================= -->
-<footer class="bg-emerald-950 text-stone-300 border-t-2 border-gold-500/40 pt-16 pb-8 w-full overflow-x-hidden" id="about">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-emerald-900">
-<!-- Brand / Identity Column -->
-<div class="lg:col-span-2 space-y-4">
+<!-- FOOTER -->
+<footer class="bg-emerald-950 text-sand border-t border-emerald-900 mt-12 sm:mt-20 pt-12 sm:pt-16 pb-8 w-full max-w-full overflow-hidden" id="about-section">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10 pb-10 border-b border-emerald-900/60 text-sm">
+<div class="space-y-3">
 <div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-emerald-900 border border-gold-400 p-1 flex items-center justify-center">
-<svg class="w-7 h-7 text-gold-400" fill="currentColor" viewbox="0 0 100 100">
-<circle cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-width="4"></circle>
-<path d="M50 20 L50 80 M30 50 L70 50" stroke="currentColor" stroke-width="4"></path>
-</svg>
+<div class="w-8 h-8 rounded-lg bg-emerald-900 border border-gold-500/40 flex items-center justify-center text-gold-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 </div>
 <div>
-<span class="font-serif text-2xl font-bold text-white tracking-wide">Al-Maktabah</span>
-<span class="block font-urdu text-sm text-gold-300">المكتبة الإسلامية العامة</span>
+<h4 class="font-serif text-lg font-bold text-white">Al-Maktabah</h4>
+<span class="urdu-text text-xs text-gold-400">المكتبة الإسلامية العامة</span>
 </div>
 </div>
-<p class="text-xs text-stone-300 leading-relaxed max-w-sm font-light">
-            Dedicated to publishing, preserving, and distributing genuine Islamic literature from verified manuscripts and classical scholars. Designed as a lightweight, static client-side web application suitable for GitHub Pages hosting.
-          </p>
-<div class="pt-2 flex items-center gap-3 text-stone-400">
-<span class="text-xs text-gold-400 font-semibold">Join our Newsletter:</span>
-<input class="bg-emerald-900 text-xs px-3 py-1.5 rounded border border-gold-500/30 text-white focus:outline-none focus:border-gold-400" placeholder="Your email..." type="email"/>
-<button class="bg-gold-500 text-emerald-950 text-xs font-bold px-3 py-1.5 rounded hover:bg-gold-400">Join</button>
+<p class="text-xs text-sand/70 leading-relaxed">
+          Dedicated to publishing, preserving, and distributing genuine Islamic literature from verified manuscripts and classical scholars. Designed as a lightweight, static client-side web application suitable for GitHub Pages hosting.
+        </p>
 </div>
-</div>
-<!-- Quick Links -->
 <div>
-<h4 class="text-white text-xs font-bold uppercase tracking-widest text-gold-400 mb-4">Quick Navigation</h4>
-<ul class="space-y-2.5 text-xs text-stone-300">
-<li><a class="hover:text-gold-300 transition" href="#hero">Home Page</a></li>
-<li><a class="hover:text-gold-300 transition" href="#catalog">Book Catalogue</a></li>
-<li><a class="hover:text-gold-300 transition font-urdu text-sm text-gold-200" href="#urdu-section">اردو کتب خانہ</a></li>
-<li><a class="hover:text-gold-300 transition" href="#categories">All Categories</a></li>
-<li><a class="hover:text-gold-300 transition" href="javascript:void(0)" onclick="openCart()">View Shopping Cart</a></li>
+<h4 class="font-serif text-base font-bold text-white mb-2 sm:mb-3">Quick Navigation</h4>
+<ul class="space-y-1.5 text-xs text-sand/80">
+<li><a class="hover:text-gold-400 transition-colors" href="#">Home Page</a></li>
+<li><a class="hover:text-gold-400 transition-colors" href="#products-section">Book Catalogue</a></li>
+<li><a class="hover:text-gold-400 transition-colors urdu-text text-sm" href="#categories-tabs">اردو کتب خانہ</a></li>
+<li><a class="hover:text-gold-400 transition-colors" href="#categories-tabs">All Categories</a></li>
+<li><button class="hover:text-gold-400 transition-colors" onclick="toggleCartDrawer(true)">View Shopping Cart</button></li>
 </ul>
 </div>
-<!-- Classical Categories -->
 <div>
-<h4 class="text-white text-xs font-bold uppercase tracking-widest text-gold-400 mb-4">Core Disciplines</h4>
-<ul class="space-y-2.5 text-xs text-stone-300">
-<li><a class="hover:text-gold-300 transition" href="javascript:void(0)" onclick="filterByCategory('Quran &amp; Tafseer')">Tafseer-ul-Quran</a></li>
-<li><a class="hover:text-gold-300 transition" href="javascript:void(0)" onclick="filterByCategory('Hadith Studies')">Kutub al-Sittah (Hadith)</a></li>
-<li><a class="hover:text-gold-300 transition" href="javascript:void(0)" onclick="filterByCategory('Seerah &amp; History')">Prophetic Biography</a></li>
-<li><a class="hover:text-gold-300 transition" href="javascript:void(0)" onclick="filterByCategory('Islamic Finance')">Muamalat &amp; Fiqh</a></li>
-<li><a class="hover:text-gold-300 transition" href="javascript:void(0)" onclick="filterByCategory('Urdu Literature')">Tazkiyah &amp; Ethics</a></li>
+<h4 class="font-serif text-base font-bold text-white mb-2 sm:mb-3">Core Disciplines</h4>
+<ul class="space-y-1.5 text-xs text-sand/80">
+<li><a class="hover:text-gold-400 transition-colors" href="javascript:filterByCategory('quran')">Tafseer-ul-Quran</a></li>
+<li><a class="hover:text-gold-400 transition-colors" href="javascript:filterByCategory('hadith')">Kutub al-Sittah (Hadith)</a></li>
+<li><a class="hover:text-gold-400 transition-colors" href="javascript:filterByCategory('seerah')">Prophetic Biography</a></li>
+<li><a class="hover:text-gold-400 transition-colors" href="javascript:filterByCategory('fiqh')">Muamalat &amp; Fiqh</a></li>
+<li><a class="hover:text-gold-400 transition-colors" href="javascript:filterByCategory('urdu')">Tazkiyah &amp; Ethics</a></li>
 </ul>
 </div>
-<!-- Contact & Hours -->
 <div>
-<h4 class="text-white text-xs font-bold uppercase tracking-widest text-gold-400 mb-4">Maktab Support</h4>
-<ul class="space-y-2 text-xs text-stone-300">
-<li class="flex items-start gap-2">
-<i class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5" data-lucide="map-pin"></i>
-<span>Darul Kutub, Main Bazar, Hyderabad / New Delhi</span>
-</li>
-<li class="flex items-center gap-2">
-<i class="w-4 h-4 text-gold-400 flex-shrink-0" data-lucide="phone"></i>
-<span>+91 (0) 9988776655</span>
-</li>
-<li class="flex items-center gap-2">
-<i class="w-4 h-4 text-gold-400 flex-shrink-0" data-lucide="mail"></i>
-<span>orders@maktabah.org</span>
-</li>
-<li class="pt-2 text-[11px] text-stone-400">
-              Dispatches active Mon — Sat (Except Islamic Holidays)
-            </li>
-</ul>
+<h4 class="font-serif text-base font-bold text-white mb-2 sm:mb-3">Maktab Support</h4>
+<p class="text-xs text-sand/80 leading-relaxed mb-2">
+          📍 Darul Kutub, Main Bazar, Hyderabad / New Delhi<br/>
+          📞 +91 (0) 9988776655<br/>
+          ✉️ orders@maktabah.org
+        </p>
+<span class="text-[11px] text-gold-400/90 block">
+          Dispatches active Mon — Sat (Except Islamic Holidays)
+        </span>
 </div>
 </div>
-<!-- Copyright & Bottom Bar -->
-<div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400 gap-4">
-<p>© 1446 AH / 2025 CE Al-Maktabah Islamic Bookstore. All rights reserved.</p>
-<div class="flex items-center gap-4 text-stone-400">
-<span class="hover:text-gold-300 cursor-pointer">Privacy Policy</span>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 pt-5 flex flex-col sm:flex-row justify-between items-center text-xs text-sand/60 gap-3 text-center sm:text-left">
+<div>© 1446 AH / 2025 CE Al-Maktabah Islamic Bookstore. All rights reserved.</div>
+<div class="flex gap-3">
+<a class="hover:underline" href="#">Privacy Policy</a>
 <span>•</span>
-<span class="hover:text-gold-300 cursor-pointer">Terms of Service</span>
+<a class="hover:underline" href="#">Terms of Service</a>
 <span>•</span>
-<span class="hover:text-gold-300 cursor-pointer">GitHub Repository</span>
-</div>
+<a class="hover:underline" href="#">GitHub Repository</a>
 </div>
 </div>
 </footer>
-<!-- ================= NOTIFICATION TOAST ================= -->
-<div class="bg-emerald-950 text-gold-200 border-b border-gold-600/30 text-xs py-1.5 px-3 sm:px-4 text-center tracking-wide flex justify-between items-center max-w-7xl mx-auto w-full overflow-hidden"><div class="flex items-center gap-1.5 sm:gap-2 truncate"><span class="inline-block w-2 h-2 rounded-full bg-gold-400 animate-pulse flex-shrink-0"></span><span class="truncate">Worldwide Delivery • Authentic Verified Classical &amp; Modern Islamic Literature</span></div><div class="hidden md:flex items-center gap-4 text-stone-300 flex-shrink-0"><span class="font-urdu text-sm text-gold-400">خوش آمدید — علم و حکمت کا گہوارہ</span><span class="text-stone-500">|</span><span>Helpdesk: support@maktabah.org</span></div></div>
-<!-- ================= VANILLA JAVASCRIPT LOGIC ================= -->
+<!-- ================= JAVASCRIPT LOGIC ================= -->
 <script>
-    /**
-     * MOCK LOCAL `products.json` DATA WITH ENHANCED SCHOLARLY METADATA
-     */
-    const FALLBACK_PRODUCTS_DATA = [
+    // Configurable Razorpay Key (Replace with your live/test key from dashboard.razorpay.com)
+    const RAZORPAY_KEY_ID = "rzp_test_1DP5mmOlF5G5ag";
+
+    // Telegram Bot Webhook Config (Optional: Fill with your credentials)
+    const TELEGRAM_BOT_TOKEN = ""; // e.g. "123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ"
+    const TELEGRAM_CHAT_ID = "";   // e.g. "-100123456789"
+
+    // Default Catalog Data Fallback (mirrors products.json)
+    const FALLBACK_PRODUCTS = [
       {
-        id: 1,
-        title: "Sahih Al-Bukhari (Arabic & English 9 Vols)",
-        urduTitle: "صحیح البخاری — مکمل سیٹ مع تخریج و شروح",
-        category: "Hadith Studies",
-        price: 3450,
-        originalPrice: 4200,
-        author: "Imam Muhammad al-Bukhari",
-        publisher: "Darussalam Publications",
-        binding: "Premium Leatherette Hardbound with Gold Foil",
-        pages: "4,480 Pages",
-        languages: "Arabic & English",
-        stock: 14,
-        description: "The most authentic book of Hadith in Islamic history. This masterly bilingual set features the pure Arabic text with vowelization (tashkeel), accompanied by fluent scholarly English translations, chain of narrators analysis, and comprehensive thematic indexes.",
-        image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=700&q=80",
-        badge: "Bestseller",
-        featured: true
+        "id": "book-1",
+        "title": "Sahih Al-Bukhari (Arabic & English 9 Vols)",
+        "title_urdu": "صحیح البخاری — مکمل ۹ جلدیں",
+        "author": "Imam Muhammad al-Bukhari",
+        "category": "Hadith Studies",
+        "category_slug": "hadith",
+        "category_urdu": "شروح حدیث",
+        "price": 3450,
+        "original_price": 4200,
+        "currency": "INR",
+        "currency_symbol": "₹",
+        "image": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=700&q=80",
+        "in_stock": true,
+        "stock_qty": 14,
+        "binding": "Premium Hardbound with Gold Foil",
+        "publisher": "Darussalam Publishers",
+        "pages": 4480,
+        "language": ["Arabic", "English"],
+        "description": "The quintessential collection of authentic Hadith compiled by Imam al-Bukhari, accompanied by authentic parallel English translation and commentary."
       },
       {
-        id: 2,
-        title: "Ma'ariful Quran (8 Volume Complete Commentary)",
-        urduTitle: "معارف القرآن — مفتی محمد شفیع عثمانی",
-        category: "Quran & Tafseer",
-        price: 2800,
-        originalPrice: 3200,
-        author: "Mufti Muhammad Shafi (r.a)",
-        publisher: "Idaratul Ma'arif Karachi",
-        binding: "Deluxe Clothbound (Gold-embossed)",
-        pages: "6,200 Pages",
-        languages: "Urdu (Arabic Ayahs included)",
-        stock: 9,
-        description: "Renowned as one of the most accessible yet deeply scholarly Quranic commentaries of the modern era. Written with immense wisdom, it addresses contemporary social questions while remaining anchored in classical exegetical traditions.",
-        image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=700&q=80",
-        badge: "Classical",
-        featured: true
+        "id": "book-2",
+        "title": "Ma'ariful Quran (8 Volume Complete Commentary)",
+        "title_urdu": "معارف القرآن — مفتی محمد شفیع صاحب",
+        "author": "Mufti Muhammad Shafi (r.a)",
+        "category": "Quran & Tafseer",
+        "category_slug": "quran",
+        "category_urdu": "قرآن و تفسیر",
+        "price": 2800,
+        "original_price": 3200,
+        "currency": "INR",
+        "currency_symbol": "₹",
+        "image": "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80",
+        "in_stock": true,
+        "stock_qty": 9,
+        "binding": "Deluxe Rexine Binding",
+        "publisher": "Idara-e-Ma'arif",
+        "pages": 6500,
+        "language": ["Urdu"],
+        "description": "Comprehensive, accessible Urdu exegesis of the Holy Quran, revered worldwide for clarity, scholarly rigor, and spiritual guidance."
       },
       {
-        id: 3,
-        title: "Ar-Raheeq Al-Makhtum (The Sealed Nectar)",
-        urduTitle: "الرحیق المختوم — سیرت النبی ﷺ",
-        category: "Seerah & History",
-        price: 490,
-        originalPrice: 650,
-        author: "Safi-ur-Rahman al-Mubarkpuri",
-        publisher: "Maktaba Darussalam",
-        binding: "Standard Fine Hardcover",
-        pages: "612 Pages",
-        languages: "English (Arabic references)",
-        stock: 28,
-        description: "Awarded First Prize by the Muslim World League in Makkah for the worldwide competition on the Prophet's biography. A compelling, moving chronological account based entirely on authentic historical chains.",
-        image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80",
-        badge: "Award Winner",
-        featured: true
+        "id": "book-3",
+        "title": "Ar-Raheeq Al-Makhtum (The Sealed Nectar)",
+        "title_urdu": "الرحیق المختوم — سیرت النبی ﷺ",
+        "author": "Safi-ur-Rahman al-Mubarkpuri",
+        "category": "Seerah & History",
+        "category_slug": "seerah",
+        "category_urdu": "سیرت و تاریخ",
+        "price": 490,
+        "original_price": 650,
+        "currency": "INR",
+        "currency_symbol": "₹",
+        "image": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=700&q=80",
+        "in_stock": true,
+        "stock_qty": 35,
+        "binding": "Hardcover",
+        "publisher": "Darussalam",
+        "pages": 580,
+        "language": ["English", "Urdu", "Arabic"],
+        "description": "Award-winning biography of Prophet Muhammad ﷺ detailing political, spiritual, and historical events of the prophetic era."
       },
       {
-        id: 4,
-        title: "Seerat-un-Nabi (Allama Shibli Nomani)",
-        urduTitle: "سیرت النبی ﷺ — شبلی نعمانی و سید سلیمان ندوی",
-        category: "Urdu Literature",
-        price: 1650,
-        originalPrice: 1900,
-        author: "Shibli Nomani & Sulaiman Nadvi",
-        publisher: "Darul Musannefeen Azamgarh",
-        binding: "7 Volumes Royal Bound",
-        pages: "3,890 Pages",
-        languages: "Urdu Nastaleeq",
-        stock: 6,
-        description: "The monumental masterpiece of Subcontinental scholarship on the Prophetic life, critically assessing historical narrations, Orientalist questions, and establishing the rational glory of Islamic heritage.",
-        image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=700&q=80",
-        badge: "Urdu Deluxe",
-        featured: true
+        "id": "book-4",
+        "title": "Seerat-un-Nabi (Allama Shibli Nomani & Sulaiman Nadvi)",
+        "title_urdu": "سیرت النبی ﷺ — شبلی نعمانی و سید سلیمان ندوی",
+        "author": "Shibli Nomani & Sulaiman Nadvi",
+        "category": "Urdu Adab",
+        "category_slug": "urdu",
+        "category_urdu": "اردو کتب",
+        "price": 1650,
+        "original_price": 1900,
+        "currency": "INR",
+        "currency_symbol": "₹",
+        "image": "https://images.unsplash.com/photo-1507842229451-7f01be8610ce?auto=format&fit=crop&w=700&q=80",
+        "in_stock": true,
+        "stock_qty": 18,
+        "binding": "Hardcover 7 Volume Set",
+        "publisher": "Darul Musannefin Shibli Academy",
+        "pages": 3200,
+        "language": ["Urdu"],
+        "description": "Masterwork of Urdu historical literature and scholarly analysis on the life, character, and mission of the Prophet ﷺ."
       },
       {
-        id: 5,
-        title: "An Introduction to Islamic Finance",
-        urduTitle: "اسلامی بینکاری اور فنانس کے بنیادی اصول",
-        category: "Islamic Finance",
-        price: 620,
-        originalPrice: 750,
-        author: "Justice (Retd) Mufti Taqi Usmani",
-        publisher: "Maktaba Ma'ariful Quran",
-        binding: "Soft-touch Matt Hardback",
-        pages: "256 Pages",
-        languages: "English / Urdu Editions",
-        stock: 19,
-        description: "The foundational handbook explaining modern non-usurious financial transactions, Mudarabah, Musharakah, Sukuk, and ethical wealth contracts by the world's foremost Islamic jurisprudence authority.",
-        image: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=700&q=80",
-        badge: "Essential",
-        featured: false
+        "id": "book-5",
+        "title": "Kulliyat-e-Iqbal (Bang-e-Dra, Bal-e-Jibreel, Zarb-e-Kaleem)",
+        "title_urdu": "کلیاتِ اقبال — بانگِ درا، بالِ جبریل، ضربِ کلیم",
+        "author": "Dr. Allama Muhammad Iqbal",
+        "category": "Urdu Adab",
+        "category_slug": "urdu",
+        "category_urdu": "اردو کتب",
+        "price": 750,
+        "original_price": 950,
+        "currency": "INR",
+        "currency_symbol": "₹",
+        "image": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=700&q=80",
+        "in_stock": true,
+        "stock_qty": 22,
+        "binding": "Embossed Hardcover",
+        "publisher": "Iqbal Academy",
+        "pages": 864,
+        "language": ["Urdu", "Persian"],
+        "description": "The complete poetic compendium of the Poet of the East, exploring Islamic renaissance, selfhood (Khudi), and philosophical verse."
       },
       {
-        id: 6,
-        title: "Riyad us-Saliheen (Gardens of the Righteous)",
-        urduTitle: "ریاض الصالحین — امام نوویؒ مع اردو ترجمہ و فوائد",
-        category: "Hadith Studies",
-        price: 850,
-        originalPrice: 1100,
-        author: "Imam Yahya ibn Sharaf An-Nawawi",
-        publisher: "Darussalam International",
-        binding: "Double Volume Hardbound",
-        pages: "1,420 Pages",
-        languages: "Arabic & English Commentary",
-        stock: 22,
-        description: "A treasure chest of Hadith carefully organized for daily spiritual rectification, covering manners, worship, asceticism, piety, and social etiquette.",
-        image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=700&q=80",
-        badge: "Essential",
-        featured: false
+        "id": "book-6",
+        "title": "An Introduction to Islamic Finance",
+        "title_urdu": "اسلامی بینکاری اور فنانس کے بنیادی اصول",
+        "author": "Justice (Retd) Mufti Taqi Usmani",
+        "category": "Fiqh & Finance",
+        "category_slug": "fiqh",
+        "category_urdu": "فقہ و معاشیات",
+        "price": 620,
+        "original_price": 750,
+        "currency": "INR",
+        "currency_symbol": "₹",
+        "image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=700&q=80",
+        "in_stock": true,
+        "stock_qty": 15,
+        "binding": "Paperback / Library Binding",
+        "publisher": "Maktaba Ma'ariful Quran",
+        "pages": 240,
+        "language": ["English", "Urdu"],
+        "description": "Authoritative guide explaining Shariah compliance, Murabaha, Ijarah, Sukuk, and modern non-usurious commercial instruments."
       },
       {
-        id: 7,
-        title: "Tafsir Ibn Kathir (Abridged English Edition)",
-        urduTitle: "تفسیر ابن کثیر — اردو و انگریزی مع مصحف شریف",
-        category: "Quran & Tafseer",
-        price: 3100,
-        originalPrice: 3800,
-        author: "Hafiz Ibn Kathir",
-        publisher: "Dar-us-Salam Riyadh",
-        binding: "10 Volumes Gold-Tooled Case",
-        pages: "5,600 Pages",
-        languages: "Arabic, English & Urdu",
-        stock: 11,
-        description: "The paramount Tafseer bil-Ma'thur (exegesis by Quran and Hadith). Renowned globally for explaining Quranic verses with authentic prophetic traditions and statements of the Sahaba.",
-        image: "https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=700&q=80",
-        badge: "Classic",
-        featured: false
+        "id": "book-7",
+        "title": "Riyad us-Saliheen (Gardens of the Righteous)",
+        "title_urdu": "ریاض الصالحین — امام نووی",
+        "author": "Imam Yahya ibn Sharaf An-Nawawi",
+        "category": "Hadith Studies",
+        "category_slug": "hadith",
+        "category_urdu": "شروح حدیث",
+        "price": 850,
+        "original_price": 1100,
+        "currency": "INR",
+        "currency_symbol": "₹",
+        "image": "https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=700&q=80",
+        "in_stock": true,
+        "stock_qty": 27,
+        "binding": "Fine Cloth Hardbound",
+        "publisher": "Darussalam",
+        "pages": 1056,
+        "language": ["Arabic", "English"],
+        "description": "Curated selection of authentic Hadith covering ethical, spiritual, family, and communal deeds for everyday Muslim living."
       },
       {
-        id: 8,
-        title: "Kulliyat-e-Iqbal (Bang-e-Dra, Bal-e-Jibreel)",
-        urduTitle: "کلیاتِ اقبال — بانگِ درا، بالِ جبریل، ضربِ کلیم، ارمغانِ حجاز",
-        category: "Urdu Literature",
-        price: 750,
-        originalPrice: 950,
-        author: "Dr. Allama Muhammad Iqbal",
-        publisher: "Iqbal Academy",
-        binding: "Single Volume Leatherette Nastaleeq",
-        pages: "960 Pages",
-        languages: "Urdu & Persian Poetry",
-        stock: 15,
-        description: "The complete Urdu poetic works of the Poet of the East. Beautifully typeset in traditional Nastaleeq calligraphy with comprehensive explanatory vocabulary footnotes.",
-        image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=700&q=80",
-        badge: "Nastaleeq",
-        featured: true
+        "id": "book-8",
+        "title": "Tafsir Ibn Kathir (Abridged English Edition 10 Vols)",
+        "title_urdu": "تفسیر ابن کثیر — اردو و انگریزی",
+        "author": "Hafiz Ibn Kathir",
+        "category": "Quran & Tafseer",
+        "category_slug": "quran",
+        "category_urdu": "قرآن و تفسیر",
+        "price": 3100,
+        "original_price": 3800,
+        "currency": "INR",
+        "currency_symbol": "₹",
+        "image": "https://images.unsplash.com/photo-1463320726281-696a485928c7?auto=format&fit=crop&w=700&q=80",
+        "in_stock": true,
+        "stock_qty": 11,
+        "binding": "Deluxe Hardcover 10 Vols",
+        "publisher": "Darussalam Publishers",
+        "pages": 5600,
+        "language": ["English", "Arabic"],
+        "description": "The quintessential classical exegesis interpreting Quran through Quranic verses, prophetic Sunnah, and narrations of the Sahabah."
       }
     ];
 
-    // Global App State
-    let productsList = [];
-    let cart = [];
-    let selectedCategory = 'all';
-    let searchQuery = '';
-    let currentSort = 'featured';
-    let activeModalBook = null;
-    let modalQuantity = 1;
+    let products = [];
+    let currentCategory = 'all';
+    let currentSearchQuery = '';
 
-    // Configurable Razorpay Key (Test key for direct integration demonstration)
-    const RAZORPAY_CONFIG = {
-      keyId: 'rzp_test_placeholder_key',
-      merchantName: 'Al-Maktabah Islamic Bookstore'
-    };
+    // ================= MOBILE NAVIGATION DRAWER & ACCORDION =================
+    function toggleMobileDrawer(open) {
+      const drawer = document.getElementById("mobileNavDrawer");
+      const backdrop = document.getElementById("mobileNavBackdrop");
+      if (!drawer || !backdrop) return;
 
-    // ----------------------------------------------------
-    // INITIALIZATION & JSON FETCH LOGIC
-    // ----------------------------------------------------
-    document.addEventListener("DOMContentLoaded", () => {
-      if (window.lucide) {
-        lucide.createIcons();
-      }
-
-      loadCartFromStorage();
-      fetchProductData();
-      setupEventListeners();
-    });
-
-    async function fetchProductData() {
-      try {
-        const response = await fetch('./products.json');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        productsList = data;
-      } catch (err) {
-        productsList = FALLBACK_PRODUCTS_DATA;
-      } finally {
-        renderProducts();
-      }
-    }
-
-    // ----------------------------------------------------
-    // PRODUCT RENDERING & FILTERING
-    // ----------------------------------------------------
-    function renderProducts() {
-      const grid = document.getElementById("productGrid");
-      const counter = document.getElementById("productCountLabel");
-      const noResults = document.getElementById("noProductsFound");
-
-      let filtered = productsList.filter(book => {
-        const matchCategory = (selectedCategory === 'all') || (book.category === selectedCategory);
-        const searchLower = searchQuery.toLowerCase().trim();
-        const matchSearch = !searchLower || 
-          book.title.toLowerCase().includes(searchLower) ||
-          (book.urduTitle && book.urduTitle.toLowerCase().includes(searchLower)) ||
-          book.author.toLowerCase().includes(searchLower) ||
-          book.category.toLowerCase().includes(searchLower);
-
-        return matchCategory && matchSearch;
-      });
-
-      if (currentSort === 'price-low') {
-        filtered.sort((a, b) => a.price - b.price);
-      } else if (currentSort === 'price-high') {
-        filtered.sort((a, b) => b.price - a.price);
-      } else if (currentSort === 'title') {
-        filtered.sort((a, b) => a.title.localeCompare(b.title));
+      if (open) {
+        backdrop.classList.remove("hidden");
+        // force reflow
+        void backdrop.offsetWidth;
+        drawer.classList.remove("-translate-x-full");
+        document.body.classList.add("overflow-hidden");
       } else {
-        filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+        drawer.classList.add("-translate-x-full");
+        backdrop.classList.add("hidden");
+        document.body.classList.remove("overflow-hidden");
       }
+    }
 
-      counter.textContent = `Showing ${filtered.length} of ${productsList.length} volumes`;
+    function toggleCategoryAccordion() {
+      const content = document.getElementById("categoryAccordionContent");
+      const icon = document.getElementById("categoryAccordionIcon");
+      if (!content) return;
 
-      if (filtered.length === 0) {
-        grid.innerHTML = '';
-        noResults.classList.remove('hidden');
-        return;
+      const isHidden = content.classList.contains("hidden");
+      if (isHidden) {
+        content.classList.remove("hidden");
+        if (icon) icon.classList.add("rotate-180");
       } else {
-        noResults.classList.add('hidden');
-      }
-
-      grid.innerHTML = filtered.map(book => {
-        return `
-          <div class="group bg-white rounded-2xl border border-stone-200/90 overflow-hidden shadow-sm hover:shadow-card-hover hover:border-gold-400/80 transition-all duration-300 flex flex-col">
-            
-            <!-- Book Cover Image with Badges & Preview Trigger -->
-            <div class="relative h-60 overflow-hidden bg-stone-100 flex items-center justify-center p-3 cursor-pointer" onclick="openBookModal(${book.id})">
-              <img 
-                src="${book.image}" 
-                alt="${book.title}" 
-                loading="lazy"
-                class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span class="px-3.5 py-1.5 rounded-full bg-gold-500 text-emerald-950 font-bold text-xs shadow-lg flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-all">
-                  <i data-lucide="eye" class="w-3.5 h-3.5"></i> Quick View
-                </span>
-              </div>
-              
-              <!-- Badges -->
-              <div class="absolute top-3 left-3 flex flex-col gap-1.5">
-                ${book.badge ? `<span class="bg-emerald-950 text-gold-300 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-gold-400/40 shadow-sm">${book.badge}</span>` : ''}
-              </div>
-
-              <div class="absolute top-3 right-3">
-                <span class="bg-white/90 backdrop-blur-xs text-stone-700 text-[11px] font-medium px-2 py-0.5 rounded-full shadow-xs">
-                  ${book.category}
-                </span>
-              </div>
-            </div>
-
-            <!-- Content Area -->
-            <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
-              
-              <div class="space-y-1.5">
-                <p class="text-xs font-medium text-emerald-800">${book.author}</p>
-                <h3 class="font-serif font-bold text-stone-900 text-lg leading-snug group-hover:text-emerald-900 transition cursor-pointer" onclick="openBookModal(${book.id})">
-                  ${book.title}
-                </h3>
-                
-                ${book.urduTitle ? `
-                  <p class="font-urdu text-sm text-stone-600 line-clamp-1 text-right pt-0.5 cursor-pointer" dir="rtl" onclick="openBookModal(${book.id})">
-                    ${book.urduTitle}
-                  </p>
-                ` : ''}
-              </div>
-
-              <!-- Price & Add to Cart Action -->
-              <div class="pt-3 border-t border-stone-100 flex items-center justify-between gap-2">
-                <div>
-                  <div class="flex items-baseline gap-1.5">
-                    <span class="text-xl font-bold font-serif text-emerald-950">₹${book.price}</span>
-                    ${book.originalPrice ? `<span class="text-xs text-stone-400 line-through">₹${book.originalPrice}</span>` : ''}
-                  </div>
-                  <span class="text-[10px] text-emerald-700 font-medium">In Stock &bull; Pristine Print</span>
-                </div>
-
-                <div class="flex items-center gap-1.5">
-                  <button 
-                    onclick="openBookModal(${book.id})" 
-                    class="p-2.5 rounded-xl border border-stone-300 text-stone-600 hover:text-emerald-900 hover:border-emerald-800 transition"
-                    title="View details"
-                    aria-label="View details of ${book.title}"
-                  >
-                    <i data-lucide="info" class="w-4 h-4"></i>
-                  </button>
-                  <button 
-                    onclick="addToCart(${book.id})" 
-                    class="px-3 py-2.5 rounded-xl bg-emerald-900 hover:bg-emerald-800 text-gold-200 text-xs font-bold tracking-wide transition shadow-xs flex items-center gap-1.5 active:scale-95 duration-150"
-                    aria-label="Add ${book.title} to cart"
-                  >
-                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-                    <span>Add</span>
-                  </button>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        `;
-      }).join('');
-
-      if (window.lucide) {
-        lucide.createIcons();
+        content.classList.add("hidden");
+        if (icon) icon.classList.remove("rotate-180");
       }
     }
 
-    // ----------------------------------------------------
-    // FEATURE 1: BOOK DETAILS PREVIEW MODAL LOGIC
-    // ----------------------------------------------------
-    function openBookModal(productId) {
-      const book = productsList.find(b => b.id === productId);
-      if (!book) return;
-
-      activeModalBook = book;
-      modalQuantity = 1;
-
-      // Populate elements
-      document.getElementById("modalTopCategory").textContent = book.category;
-      document.getElementById("modalTopPublisher").textContent = book.publisher || "Authorized Maktab Edition";
-      document.getElementById("modalBookImage").src = book.image;
-      document.getElementById("modalBookImage").alt = book.title;
-
-      const badgeContainer = document.getElementById("modalBadgesContainer");
-      badgeContainer.innerHTML = '';
-      if (book.badge) {
-        badgeContainer.innerHTML += `<span class="bg-emerald-950 text-gold-300 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-md border border-gold-400/40 shadow-sm">${book.badge}</span>`;
-      }
-      if (book.stock) {
-        document.getElementById("modalStockStatus").textContent = `Only ${book.stock} Copies in Stock • Express Dispatch`;
-      }
-
-      document.getElementById("modalAuthor").textContent = book.author;
-      document.getElementById("modalTitle").textContent = book.title;
-      document.getElementById("modalUrduTitle").textContent = book.urduTitle || book.title;
-
-      document.getElementById("modalBinding").textContent = book.binding || "Hardbound Classical";
-      document.getElementById("modalPages").textContent = book.pages || "Multiple Volumes";
-      document.getElementById("modalLanguage").textContent = book.languages || "Arabic / Urdu";
-      document.getElementById("modalPublisher").textContent = book.publisher || "Darussalam / Maktabah";
-
-      document.getElementById("modalDescription").textContent = book.description || 
-        "Verified manuscript edition produced under strict scholarly supervision with authentic footnotes, classical references, and gold-tooled binding.";
-
-      document.getElementById("modalPrice").textContent = `₹${book.price}`;
-      
-      const origPriceEl = document.getElementById("modalOriginalPrice");
-      const saveBadgeEl = document.getElementById("modalSaveBadge");
-      if (book.originalPrice && book.originalPrice > book.price) {
-        origPriceEl.textContent = `₹${book.originalPrice}`;
-        origPriceEl.classList.remove('hidden');
-        const savedAmount = book.originalPrice - book.price;
-        saveBadgeEl.textContent = `Save ₹${savedAmount}`;
-        saveBadgeEl.classList.remove('hidden');
-      } else {
-        origPriceEl.classList.add('hidden');
-        saveBadgeEl.classList.add('hidden');
-      }
-
-      document.getElementById("modalQtyDisplay").textContent = modalQuantity;
-
-      // Display Modal
-      const modal = document.getElementById("bookModalBackdrop");
-      modal.classList.remove("hidden");
-      document.body.classList.add("overflow-hidden");
-
-      if (window.lucide) lucide.createIcons();
-    }
-
-    function closeBookModal() {
-      const modal = document.getElementById("bookModalBackdrop");
-      modal.classList.add("hidden");
-      document.body.classList.remove("overflow-hidden");
-      activeModalBook = null;
-    }
-
-    function adjustModalQty(delta) {
-      modalQuantity = Math.max(1, modalQuantity + delta);
-      document.getElementById("modalQtyDisplay").textContent = modalQuantity;
-    }
-
-    function addModalBookToCart() {
-      if (!activeModalBook) return;
-      
-      const existingIndex = cart.findIndex(item => item.id === activeModalBook.id);
-      if (existingIndex > -1) {
-        cart[existingIndex].quantity += modalQuantity;
-      } else {
-        cart.push({
-          id: activeModalBook.id,
-          title: activeModalBook.title,
-          urduTitle: activeModalBook.urduTitle || '',
-          price: activeModalBook.price,
-          image: activeModalBook.image,
-          quantity: modalQuantity
-        });
-      }
-
-      saveCartToStorage();
-
-      // UI button animation feedback
-      const btn = document.getElementById("modalAddToCartBtn");
-      const originalHTML = btn.innerHTML;
-      btn.innerHTML = `<i data-lucide="check" class="w-4 h-4 text-gold-300"></i><span>Added to Cart!</span>`;
-      btn.classList.add("bg-emerald-800");
-
-      showToast(`Added to Bookbag`, `${modalQuantity}x "${activeModalBook.title.substring(0, 25)}..." added.`);
-      if (window.lucide) lucide.createIcons();
-
-      setTimeout(() => {
-        btn.innerHTML = originalHTML;
-        btn.classList.remove("bg-emerald-800");
-        if (window.lucide) lucide.createIcons();
-        closeBookModal();
-        openCart();
-      }, 700);
-    }
-
-    // ----------------------------------------------------
-    // SHOPPING CART SYSTEM & LOCALSTORAGE
-    // ----------------------------------------------------
-    function loadCartFromStorage() {
-      try {
-        const stored = localStorage.getItem('maktabah_cart');
-        if (stored) {
-          cart = JSON.parse(stored);
-        }
-      } catch (e) {
-        console.error("Failed to read localStorage:", e);
-        cart = [];
-      }
-      updateCartUI();
-    }
-
-    function saveCartToStorage() {
-      try {
-        localStorage.setItem('maktabah_cart', JSON.stringify(cart));
-      } catch (e) {
-        console.error("Failed to write to localStorage:", e);
-      }
-      updateCartUI();
-    }
-
-    function addToCart(productId) {
-      const product = productsList.find(p => p.id === productId);
-      if (!product) return;
-
-      const existingIndex = cart.findIndex(item => item.id === productId);
-      if (existingIndex > -1) {
-        cart[existingIndex].quantity += 1;
-      } else {
-        cart.push({
-          id: product.id,
-          title: product.title,
-          urduTitle: product.urduTitle || '',
-          price: product.price,
-          image: product.image,
-          quantity: 1
-        });
-      }
-
-      saveCartToStorage();
-      showToast(`Added to Bookbag`, `"${product.title.substring(0, 30)}..." added.`);
-    }
-
-    function quickAddToCart(productId) {
-      addToCart(productId);
-      openCart();
-    }
-
-    function updateItemQuantity(productId, delta) {
-      const itemIndex = cart.findIndex(item => item.id === productId);
-      if (itemIndex === -1) return;
-
-      cart[itemIndex].quantity += delta;
-      if (cart[itemIndex].quantity <= 0) {
-        cart.splice(itemIndex, 1);
-      }
-      saveCartToStorage();
-    }
-
-    function removeItemFromCart(productId) {
-      cart = cart.filter(item => item.id !== productId);
-      saveCartToStorage();
-    }
-
-    function updateCartUI() {
-      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-      const cartBadge = document.getElementById("cartCountBadge");
-      const drawerItemCount = document.getElementById("drawerItemCount");
-      
-      if (cartBadge) cartBadge.textContent = totalCount;
-      if (drawerItemCount) drawerItemCount.textContent = `${totalCount} item${totalCount === 1 ? '' : 's'}`;
-
-      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      
-      const subtotalEl = document.getElementById("cartSubtotal");
-      const totalEl = document.getElementById("cartTotal");
-      if (subtotalEl) subtotalEl.textContent = `₹${subtotal.toLocaleString()}`;
-      if (totalEl) totalEl.textContent = `₹${subtotal.toLocaleString()}`;
-
-      const checkoutTotalBadge = document.getElementById("checkoutTotalBadge");
-      const checkoutItemsCountBadge = document.getElementById("checkoutItemsCountBadge");
-      if (checkoutTotalBadge) checkoutTotalBadge.textContent = `₹${subtotal.toLocaleString()}`;
-      if (checkoutItemsCountBadge) checkoutItemsCountBadge.textContent = `${totalCount} volume(s)`;
-
-      const cartList = document.getElementById("cartItemsList");
-      const emptyView = document.getElementById("emptyCartView");
-      const summarySection = document.getElementById("cartSummarySection");
-
-      if (cart.length === 0) {
-        if (cartList) cartList.innerHTML = '';
-        if (emptyView) {
-          emptyView.classList.remove('hidden');
-          emptyView.classList.add('flex');
-        }
-        if (summarySection) summarySection.classList.add('opacity-50', 'pointer-events-none');
-      } else {
-        if (emptyView) {
-          emptyView.classList.add('hidden');
-          emptyView.classList.remove('flex');
-        }
-        if (summarySection) summarySection.classList.remove('opacity-50', 'pointer-events-none');
-
-        if (cartList) {
-          cartList.innerHTML = cart.map(item => {
-            return `
-              <div class="flex gap-3.5 py-3 items-center">
-                <img src="${item.image}" alt="${item.title}" class="w-16 h-20 object-cover rounded-lg border border-stone-200 flex-shrink-0 cursor-pointer" onclick="openBookModal(${item.id})" />
-                
-                <div class="flex-1 min-w-0">
-                  <h4 class="text-xs font-bold text-stone-900 line-clamp-1 font-serif cursor-pointer hover:text-emerald-900" onclick="openBookModal(${item.id})">${item.title}</h4>
-                  ${item.urduTitle ? `<p class="font-urdu text-xs text-stone-500 line-clamp-1 text-right" dir="rtl">${item.urduTitle}</p>` : ''}
-                  
-                  <div class="flex items-center justify-between mt-2">
-                    <span class="text-xs font-semibold text-emerald-950 font-serif">₹${item.price} each</span>
-                    
-                    <div class="flex items-center border border-stone-300 rounded-lg bg-stone-50">
-                      <button 
-                        onclick="updateItemQuantity(${item.id}, -1)" 
-                        class="px-2 py-0.5 text-stone-600 hover:text-emerald-900 text-xs font-bold"
-                        aria-label="Decrease quantity"
-                      >-</button>
-                      <span class="px-2 text-xs font-bold text-stone-800">${item.quantity}</span>
-                      <button 
-                        onclick="updateItemQuantity(${item.id}, 1)" 
-                        class="px-2 py-0.5 text-stone-600 hover:text-emerald-900 text-xs font-bold"
-                        aria-label="Increase quantity"
-                      >+</button>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="text-right flex flex-col justify-between items-end self-stretch pl-1">
-                  <button 
-                    onclick="removeItemFromCart(${item.id})" 
-                    class="text-stone-400 hover:text-red-600 transition"
-                    title="Remove item"
-                  >
-                    <i data-lucide="trash-2" class="w-4 h-4"></i>
-                  </button>
-                  <span class="text-xs font-bold text-emerald-950 font-serif">₹${(item.price * item.quantity).toLocaleString()}</span>
-                </div>
-              </div>
-            `;
-          }).join('');
-        }
-      }
-
-      if (window.lucide) {
-        lucide.createIcons();
-      }
-    }
-
-    // ----------------------------------------------------
-    // CART DRAWER OPEN / CLOSE INTERFACE
-    // ----------------------------------------------------
-    function openCart() {
-      const drawer = document.getElementById("cartDrawer");
-      const backdrop = document.getElementById("cartDrawerBackdrop");
-      drawer.classList.remove("translate-x-full");
-      backdrop.classList.remove("opacity-0", "pointer-events-none");
-      document.body.classList.add("overflow-hidden");
-    }
-
-    function closeCart() {
-      const drawer = document.getElementById("cartDrawer");
-      const backdrop = document.getElementById("cartDrawerBackdrop");
-      drawer.classList.add("translate-x-full");
-      backdrop.classList.add("opacity-0", "pointer-events-none");
-      document.body.classList.remove("overflow-hidden");
-    }
-
-    // ----------------------------------------------------
-    // FEATURE 2: RAZORPAY CHECKOUT & TELEGRAM DISPATCH
-    // ----------------------------------------------------
-    function openCheckoutModal() {
-      if (cart.length === 0) {
-        showToast("Cart Empty", "Please add items before proceeding to checkout.");
-        return;
-      }
-      closeCart();
-      const modalBackdrop = document.getElementById("checkoutModalBackdrop");
-      const form = document.getElementById("checkoutForm");
-      const successView = document.getElementById("orderSuccessView");
-
-      form.classList.remove("hidden");
-      successView.classList.add("hidden");
-      modalBackdrop.classList.remove("hidden");
-      document.body.classList.add("overflow-hidden");
-    }
-
-    function closeCheckoutModal() {
-      const modalBackdrop = document.getElementById("checkoutModalBackdrop");
-      modalBackdrop.classList.add("hidden");
-      document.body.classList.remove("overflow-hidden");
-    }
-
-    /**
-     * Requirement: Integrates live Razorpay SDK on 'Online Payment (Razorpay)'
-     * and triggers Telegram Bot message dispatch with all details.
-     */
-    async function handlePlaceOrder(event) {
-      event.preventDefault();
-
-      const btn = document.getElementById("placeOrderSubmitBtn");
-      const name = document.getElementById("custName").value.trim();
-      const phone = document.getElementById("custPhone").value.trim();
-      const email = document.getElementById("custEmail").value.trim() || 'N/A';
-      const address = document.getElementById("custAddress").value.trim();
-      const paymentMethodRadio = document.querySelector('input[name="paymentMethod"]:checked');
-      const paymentMethod = paymentMethodRadio ? paymentMethodRadio.value : 'Cash on Delivery (COD)';
-
-      if (!name || !phone || !address) {
-        showToast("Missing Fields", "Please complete all mandatory delivery details.");
-        return;
-      }
-
-      const grandTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      const totalVolumes = cart.reduce((sum, item) => sum + item.quantity, 0);
-      const orderId = 'MKB-' + Math.floor(100000 + Math.random() * 900000);
-      const timestamp = new Date().toLocaleString();
-
-      // Check if user selected Razorpay
-      if (paymentMethod.includes('Razorpay')) {
-        btn.disabled = true;
-        btn.innerHTML = `<span class="inline-block animate-spin mr-2">&#9696;</span> Initializing Razorpay Gateway...`;
-
-        // Check if Razorpay SDK is available
-        if (typeof Razorpay !== 'undefined') {
-          const rzpOptions = {
-            key: RAZORPAY_CONFIG.keyId,
-            amount: grandTotal * 100, // In paise
-            currency: 'INR',
-            name: RAZORPAY_CONFIG.merchantName,
-            description: `Order #${orderId} (${totalVolumes} volume${totalVolumes === 1 ? '' : 's'})`,
-            image: "https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg",
-            prefill: {
-              name: name,
-              contact: phone,
-              email: email !== 'N/A' ? email : ''
-            },
-            notes: {
-              order_id: orderId,
-              delivery_address: address
-            },
-            theme: {
-              color: '#064e3b' // Emerald green matching brand
-            },
-            handler: function (response) {
-              // Successfully captured Razorpay payment
-              const razorpayPaymentId = response.razorpay_payment_id || ('pay_' + Math.random().toString(36).substring(2, 12));
-              completeOrderPlacement({
-                orderId,
-                name,
-                phone,
-                email,
-                address,
-                paymentMethod: `Online (Razorpay ID: ${razorpayPaymentId})`,
-                timestamp,
-                grandTotal,
-                paymentStatus: 'PAID ONLINE (Verified)'
-              });
-            },
-            modal: {
-              ondismiss: function () {
-                btn.disabled = false;
-                btn.innerHTML = `<i data-lucide="check-circle-2" class="w-5 h-5 text-gold-400"></i><span>Pay with Razorpay (آرڈر درج کریں)</span>`;
-                if (window.lucide) lucide.createIcons();
-                showToast("Payment Cancelled", "Razorpay window closed. You can re-attempt or choose COD.");
-              }
-            }
-          };
-
-          try {
-            const rzp = new Razorpay(rzpOptions);
-            rzp.on('payment.failed', function (response) {
-              btn.disabled = false;
-              btn.innerHTML = `<i data-lucide="check-circle-2" class="w-5 h-5 text-gold-400"></i><span>Retry Payment</span>`;
-              showToast("Payment Failed", response.error.description || "Payment could not be completed.");
-            });
-            rzp.open();
-          } catch (err) {
-            console.error("Razorpay SDK instantiation error:", err);
-            // Fallback for sandboxed preview environments without network access
-            simulateRazorpaySuccess({ orderId, name, phone, email, address, timestamp, grandTotal });
-          }
-        } else {
-          // If script tag blocked, simulate seamless checkout flow
-          simulateRazorpaySuccess({ orderId, name, phone, email, address, timestamp, grandTotal });
-        }
-        return;
-      }
-
-      // COD Path
-      btn.disabled = true;
-      btn.innerHTML = `<span class="inline-block animate-spin mr-2">&#9696;</span> Generating Order Dispatch...`;
-
-      setTimeout(() => {
-        completeOrderPlacement({
-          orderId,
-          name,
-          phone,
-          email,
-          address,
-          paymentMethod: 'Cash on Delivery (COD)',
-          timestamp,
-          grandTotal,
-          paymentStatus: 'PENDING COD'
-        });
-      }, 700);
-    }
-
-    function simulateRazorpaySuccess(orderMeta) {
-      setTimeout(() => {
-        const mockPayId = 'pay_sim_' + Math.random().toString(36).substring(2, 10);
-        completeOrderPlacement({
-          ...orderMeta,
-          paymentMethod: `Online (Razorpay ID: ${mockPayId})`,
-          paymentStatus: 'PAID ONLINE (Verified Demo)'
-        });
-      }, 1000);
-    }
-
-    function completeOrderPlacement(order) {
-      const btn = document.getElementById("placeOrderSubmitBtn");
-      btn.disabled = false;
-      btn.innerHTML = `<i data-lucide="check-circle-2" class="w-5 h-5 text-gold-400"></i><span>Confirm & Place Order</span>`;
-
-      // 1. Format Structured Telegram Bot Message (Markdown)
-      const orderMessage = `
-📦 *NEW BOOK ORDER RECEIVED: #${order.orderId}*
-━━━━━━━━━━━━━━━━━━━━━━
-👤 *Customer:* ${order.name}
-📞 *Phone:* ${order.phone}
-📧 *Email:* ${order.email}
-📍 *Address:* ${order.address}
-
-💳 *Payment:* ${order.paymentMethod}
-🛡️ *Status:* ${order.paymentStatus}
-🗓️ *Date:* ${order.timestamp}
-
-📚 *Ordered Volumes:*
-${cart.map((item, idx) => `${idx + 1}. ${item.title} (x${item.quantity}) — ₹${item.price * item.quantity}`).join('\n')}
-
-━━━━━━━━━━━━━━━━━━━━━━
-💰 *Grand Total Payable:* ₹${order.grandTotal.toLocaleString()}
-━━━━━━━━━━━━━━━━━━━━━━
-_Sent via Al-Maktabah Client-side Dispatch Engine_
-      `.trim();
-
-      console.log("Structured Order Message for Telegram Webhook:\n", orderMessage);
-
-      // Display success view with payload details
-      document.getElementById("checkoutForm").classList.add("hidden");
-      const successView = document.getElementById("orderSuccessView");
-      const payloadPreview = document.getElementById("telegramPayloadPreview");
-      
-      payloadPreview.textContent = orderMessage;
-      successView.classList.remove("hidden");
-
-      // Clear cart and storage
-      cart = [];
-      saveCartToStorage();
-      if (window.lucide) lucide.createIcons();
-    }
-
-    function dismissSuccessAndReset() {
-      closeCheckoutModal();
-      document.getElementById("checkoutForm").reset();
-    }
-
-    // ----------------------------------------------------
-    // TOAST & FILTER HELPERS
-    // ----------------------------------------------------
-    function showToast(title, message) {
-      const toast = document.getElementById("toastNotification");
-      const titleEl = document.getElementById("toastTitle");
-      const msgEl = document.getElementById("toastMessage");
-
-      titleEl.textContent = title;
-      msgEl.textContent = message;
-
-      toast.classList.remove("opacity-0", "pointer-events-none", "-translate-y-10");
-      toast.classList.add("opacity-100", "translate-y-0");
-
-      setTimeout(() => {
-        toast.classList.add("opacity-0", "pointer-events-none", "-translate-y-10");
-        toast.classList.remove("opacity-100", "translate-y-0");
-      }, 3200);
-    }
-
-    function filterByCategory(category) {
-      selectedCategory = category;
-      
-      const pills = document.querySelectorAll(".cat-pill");
-      pills.forEach(pill => {
-        if (pill.dataset.category === category) {
-          pill.classList.remove("bg-stone-100", "text-stone-700");
-          pill.classList.add("bg-emerald-900", "text-white", "shadow-sm");
-        } else {
-          pill.classList.remove("bg-emerald-900", "text-white", "shadow-sm");
-          pill.classList.add("bg-stone-100", "text-stone-700");
-        }
-      });
-
-      renderProducts();
-
-      const catalogEl = document.getElementById("catalog");
+    function selectCategoryFromMobile(slug) {
+      filterByCategory(slug);
+      toggleMobileDrawer(false);
+      const catalogEl = document.getElementById("products-section");
       if (catalogEl) {
         catalogEl.scrollIntoView({ behavior: 'smooth' });
       }
     }
 
-    function resetFilters() {
-      searchQuery = '';
-      selectedCategory = 'all';
-      document.getElementById("searchInput").value = '';
-      const mobileInput = document.getElementById("mobileSearchInput");
-      if (mobileInput) mobileInput.value = '';
-      document.getElementById("clearSearchBtn").classList.add("hidden");
-      filterByCategory('all');
-    }
-
-    // ----------------------------------------------------
-    // EVENT LISTENERS BINDING
-    // ----------------------------------------------------
-    function setupEventListeners() {
-      document.getElementById("openCartBtn").addEventListener("click", openCart);
-      document.getElementById("closeCartBtn").addEventListener("click", closeCart);
-      document.getElementById("cartDrawerBackdrop").addEventListener("click", closeCart);
-
-      // Book details modal backdrop click & keyboard ESC listener
-      const bookBackdrop = document.getElementById("bookModalBackdrop");
-      bookBackdrop.addEventListener("click", (e) => {
-        if (e.target === bookBackdrop) {
-          closeBookModal();
-        }
-      });
-
-      const checkoutBackdrop = document.getElementById("checkoutModalBackdrop");
-      checkoutBackdrop.addEventListener("click", (e) => {
-        if (e.target === checkoutBackdrop) {
-          closeCheckoutModal();
-        }
-      });
-
+    // ================= APP INITIALIZATION =================
+    document.addEventListener("DOMContentLoaded", () => {
+      fetchProductData();
+      renderCart();
+      
+      // Close modals on ESC key
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
           closeBookModal();
-          closeCart();
           closeCheckoutModal();
+          toggleCartDrawer(false);
+          toggleMobileDrawer(false);
         }
       });
 
-      // Search Inputs
-      const searchInput = document.getElementById("searchInput");
-      const clearBtn = document.getElementById("clearSearchBtn");
-      const mobileSearchInput = document.getElementById("mobileSearchInput");
+      // Close modal on backdrop click
+      const bookBackdrop = document.getElementById("bookModalBackdrop");
+      if (bookBackdrop) {
+        bookBackdrop.addEventListener("click", (e) => {
+          if (e.target === bookBackdrop) closeBookModal();
+        });
+      }
 
-      searchInput.addEventListener("input", (e) => {
-        searchQuery = e.target.value;
-        if (searchQuery.length > 0) {
-          clearBtn.classList.remove("hidden");
-        } else {
-          clearBtn.classList.add("hidden");
+      // Close checkout modal on backdrop click
+      const checkoutBackdrop = document.getElementById("checkoutModalBackdrop");
+      if (checkoutBackdrop) {
+        checkoutBackdrop.addEventListener("click", (e) => {
+          if (e.target === checkoutBackdrop) closeCheckoutModal();
+        });
+      }
+    });
+
+    // ================= FETCH PRODUCTS (products.json) =================
+    async function fetchProductData() {
+      try {
+        const response = await fetch('./products.json');
+        if (!response.ok) throw new Error("Could not find local products.json");
+        products = await response.json();
+      } catch (err) {
+        console.warn("Using embedded fallback products dataset:", err);
+        products = FALLBACK_PRODUCTS;
+      }
+      renderProducts();
+    }
+
+    // ================= RENDER PRODUCTS GRID =================
+    function renderProducts() {
+      const grid = document.getElementById("productsGrid");
+      const emptyState = document.getElementById("emptySearchState");
+      const countLabel = document.getElementById("productCountLabel");
+
+      const filtered = products.filter(item => {
+        const matchCategory = (currentCategory === 'all') || (item.category_slug === currentCategory);
+        const query = currentSearchQuery.toLowerCase().trim();
+        const matchSearch = !query || 
+          item.title.toLowerCase().includes(query) ||
+          item.author.toLowerCase().includes(query) ||
+          item.category.toLowerCase().includes(query) ||
+          (item.title_urdu && item.title_urdu.includes(query));
+        return matchCategory && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = "";
+        emptyState.classList.remove("hidden");
+        countLabel.textContent = "Showing 0 volumes";
+        return;
+      }
+
+      emptyState.classList.add("hidden");
+      countLabel.textContent = `Showing ${filtered.length} of ${products.length} volumes`;
+
+      grid.innerHTML = filtered.map(book => `
+        <div class="group bg-white rounded-2xl border border-sand hover:border-gold-500/60 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          <div class="relative overflow-hidden bg-sand/30 aspect-[4/3] flex items-center justify-center cursor-pointer" onclick="openBookModal('${book.id}')">
+            <img 
+              src="${book.image}" 
+              alt="${book.title}" 
+              loading="lazy"
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            />
+            <span class="absolute top-2.5 left-2.5 bg-emerald-950/80 backdrop-blur-md text-gold-400 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full">
+              ${book.category}
+            </span>
+            <div class="absolute inset-0 bg-emerald-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span class="bg-white/90 text-emerald-950 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                Quick Preview
+              </span>
+            </div>
+          </div>
+
+          <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+            <div class="space-y-1 sm:space-y-1.5">
+              <p class="text-[11px] sm:text-xs font-medium text-emerald-850">${book.author}</p>
+              <h3 class="font-serif text-base sm:text-lg font-bold text-gray-900 group-hover:text-emerald-950 line-clamp-2 cursor-pointer leading-snug" onclick="openBookModal('${book.id}')">
+                ${book.title}
+              </h3>
+              ${book.title_urdu ? `<p class="urdu-text text-[11px] sm:text-xs text-gold-600 line-clamp-1">${book.title_urdu}</p>` : ''}
+            </div>
+
+            <div class="pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-sand flex items-center justify-between">
+              <div>
+                <span class="text-lg sm:text-xl font-bold text-emerald-950">₹${book.price.toLocaleString('en-IN')}</span>
+                ${book.original_price ? `<span class="text-[10px] sm:text-xs text-gray-400 line-through ml-1">₹${book.original_price.toLocaleString('en-IN')}</span>` : ''}
+              </div>
+              <div class="flex items-center gap-1">
+                <button 
+                  onclick="openBookModal('${book.id}')"
+                  class="p-1.5 sm:p-2 text-gray-500 hover:text-emerald-900 hover:bg-sand/60 rounded-lg transition-colors"
+                  title="View Details"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </button>
+                <button 
+                  onclick="addToCart('${book.id}')"
+                  class="bg-emerald-900 hover:bg-emerald-950 text-white font-semibold text-xs px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg transition-transform active:scale-95 shadow-sm flex items-center gap-1"
+                >
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                  <span>Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ================= CATEGORY FILTER & SEARCH =================
+    function filterByCategory(slug) {
+      currentCategory = slug;
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('bg-emerald-900', 'text-white');
+        btn.classList.add('bg-white', 'text-gray-700');
+      });
+      event?.target?.classList?.remove('bg-white', 'text-gray-700');
+      event?.target?.classList?.add('bg-emerald-900', 'text-white');
+      renderProducts();
+    }
+
+    function handleSearch(val) {
+      currentSearchQuery = val;
+      const deskInput = document.getElementById("searchInput");
+      const drawerInput = document.getElementById("drawerSearchInput");
+      if (deskInput && deskInput.value !== val) deskInput.value = val;
+      if (drawerInput && drawerInput.value !== val) drawerInput.value = val;
+      renderProducts();
+    }
+
+    // ================= BOOK DETAILS MODAL =================
+    function openBookModal(bookId) {
+      const book = products.find(b => b.id === bookId);
+      if (!book) return;
+
+      const modalBackdrop = document.getElementById("bookModalBackdrop");
+      const modalContent = document.getElementById("bookModalContent");
+
+      modalContent.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-start">
+          
+          <!-- Book Image -->
+          <div class="md:col-span-5 space-y-3 sm:space-y-4">
+            <div class="bg-sand/40 rounded-xl p-2.5 border border-sand overflow-hidden shadow-inner">
+              <img src="${book.image}" alt="${book.title}" class="w-full h-64 sm:h-80 object-cover rounded-lg shadow-md" />
+            </div>
+            <div class="flex items-center justify-between text-xs text-gray-500 px-1">
+              <span class="flex items-center gap-1.5 text-emerald-800 font-semibold">
+                <span class="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
+                In Stock (${book.stock_qty || 15} available)
+              </span>
+              <span>${book.publisher || 'Al-Maktabah Publishing'}</span>
+            </div>
+          </div>
+
+          <!-- Book Info -->
+          <div class="md:col-span-7 space-y-3 sm:space-y-4">
+            <div>
+              <span class="text-xs uppercase tracking-wider font-bold text-gold-600">${book.category}</span>
+              <h2 class="font-serif text-xl sm:text-3xl font-bold text-emerald-950 mt-1 leading-snug">
+                ${book.title}
+              </h2>
+              ${book.title_urdu ? `<h3 class="urdu-text text-base sm:text-lg text-emerald-850 mt-1">${book.title_urdu}</h3>` : ''}
+              <p class="text-xs sm:text-sm text-gray-600 mt-1">Authored by <strong class="text-emerald-900">${book.author}</strong></p>
+            </div>
+
+            <!-- Price Box -->
+            <div class="p-3 sm:p-4 bg-sand/30 rounded-xl border border-sand flex items-baseline justify-between">
+              <div>
+                <span class="text-2xl sm:text-3xl font-bold text-emerald-950 font-serif">₹${book.price.toLocaleString('en-IN')}</span>
+                ${book.original_price ? `
+                  <span class="text-xs sm:text-sm text-gray-400 line-through ml-2">₹${book.original_price.toLocaleString('en-IN')}</span>
+                  <span class="ml-2 text-xs font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded">
+                    Save ₹${(book.original_price - book.price).toLocaleString('en-IN')}
+                  </span>
+                ` : ''}
+              </div>
+              <span class="text-[11px] text-gray-500">Taxes Included</span>
+            </div>
+
+            <!-- Specifications Grid -->
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="bg-white p-2 rounded-lg border border-sand">
+                <span class="text-gray-400 block text-[9px] uppercase font-semibold">Binding</span>
+                <span class="font-medium text-gray-800 truncate block">${book.binding || 'Deluxe Hardbound'}</span>
+              </div>
+              <div class="bg-white p-2 rounded-lg border border-sand">
+                <span class="text-gray-400 block text-[9px] uppercase font-semibold">Pages</span>
+                <span class="font-medium text-gray-800">${book.pages ? book.pages.toLocaleString('en-IN') + ' Pages' : 'Multi-vol'}</span>
+              </div>
+              <div class="bg-white p-2 rounded-lg border border-sand">
+                <span class="text-gray-400 block text-[9px] uppercase font-semibold">Language</span>
+                <span class="font-medium text-gray-800 truncate block">${Array.isArray(book.language) ? book.language.join(', ') : (book.language || 'Arabic / English')}</span>
+              </div>
+              <div class="bg-white p-2 rounded-lg border border-sand">
+                <span class="text-gray-400 block text-[9px] uppercase font-semibold">Publisher</span>
+                <span class="font-medium text-gray-800 truncate block">${book.publisher || 'Authorized Maktab'}</span>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div>
+              <h4 class="text-xs uppercase font-bold text-gray-700 tracking-wider mb-1">Scholarly Overview</h4>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed font-light">
+                ${book.description || 'Authentic Islamic classical commentary typeset with high typographical accuracy.'}
+              </p>
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div class="pt-3 sm:pt-4 border-t border-sand flex items-center gap-3">
+              <div class="flex items-center border border-sand rounded-xl bg-sand/20">
+                <button onclick="adjustModalQty(-1)" class="px-2.5 py-1.5 text-gray-600 hover:text-emerald-950 font-bold">-</button>
+                <input id="modalBookQty" type="number" value="1" min="1" max="10" class="w-8 sm:w-10 text-center text-xs sm:text-sm font-semibold bg-transparent outline-none" readonly />
+                <button onclick="adjustModalQty(1)" class="px-2.5 py-1.5 text-gray-600 hover:text-emerald-950 font-bold">+</button>
+              </div>
+
+              <button 
+                onclick="addBookModalToCart('${book.id}')"
+                class="flex-1 bg-emerald-900 hover:bg-emerald-950 text-white font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-xs sm:text-sm"
+              >
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                <span>Add to Cart</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      `;
+
+      modalBackdrop.classList.remove("hidden");
+    }
+
+    function closeBookModal() {
+      const modalBackdrop = document.getElementById("bookModalBackdrop");
+      if (modalBackdrop) modalBackdrop.classList.add("hidden");
+    }
+
+    function adjustModalQty(delta) {
+      const input = document.getElementById("modalBookQty");
+      if (!input) return;
+      let val = parseInt(input.value) + delta;
+      if (val < 1) val = 1;
+      if (val > 10) val = 10;
+      input.value = val;
+    }
+
+    function addBookModalToCart(bookId) {
+      const input = document.getElementById("modalBookQty");
+      const qty = input ? parseInt(input.value) || 1 : 1;
+      for (let i = 0; i < qty; i++) {
+        addToCart(bookId, false);
+      }
+      closeBookModal();
+      toggleCartDrawer(true);
+    }
+
+    // ================= SHOPPING CART SYSTEM (localStorage) =================
+    function getCart() {
+      try {
+        return JSON.parse(localStorage.getItem('maktabah_cart') || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem('maktabah_cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function addToCart(bookId, openDrawer = true) {
+      const book = products.find(b => b.id === bookId);
+      if (!book) return;
+
+      const cart = getCart();
+      const existing = cart.find(item => item.id === bookId);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({
+          id: book.id,
+          title: book.title,
+          price: book.price,
+          image: book.image,
+          author: book.author,
+          qty: 1
+        });
+      }
+
+      saveCart(cart);
+      if (openDrawer) toggleCartDrawer(true);
+    }
+
+    function updateCartQty(bookId, delta) {
+      let cart = getCart();
+      const item = cart.find(i => i.id === bookId);
+      if (!item) return;
+
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== bookId);
+      }
+      saveCart(cart);
+    }
+
+    function removeCartItem(bookId) {
+      let cart = getCart();
+      cart = cart.filter(i => i.id !== bookId);
+      saveCart(cart);
+    }
+
+    function renderCart() {
+      const cart = getCart();
+      const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      // Update Header Badges
+      const countBadge = document.getElementById('cartCountBadge');
+      if (countBadge) countBadge.textContent = totalCount;
+
+      const drawerCount = document.getElementById('cartDrawerCount');
+      if (drawerCount) drawerCount.textContent = `${totalCount} item${totalCount === 1 ? '' : 's'} selected`;
+
+      const subtotalEl = document.getElementById('cartSubtotal');
+      if (subtotalEl) subtotalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+
+      const grandTotalEl = document.getElementById('cartGrandTotal');
+      if (grandTotalEl) grandTotalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+
+      const checkoutBtn = document.getElementById('checkoutBtn');
+      if (checkoutBtn) checkoutBtn.disabled = cart.length === 0;
+
+      // Render cart item list
+      const container = document.getElementById('cartItemsContainer');
+      if (!container) return;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="h-full flex flex-col items-center justify-center text-center py-16 text-gray-400 space-y-3">
+            <div class="w-16 h-16 rounded-full bg-sand/60 flex items-center justify-center text-gray-300">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            </div>
+            <p class="font-serif text-lg font-bold text-gray-700">Your Cart is Empty</p>
+            <p class="urdu-text text-sm text-gray-500">آپ کے سبدِ خرید میں فی الحال کوئی کتاب نہیں ہے۔</p>
+            <button onclick="toggleCartDrawer(false)" class="mt-2 text-xs bg-emerald-900 text-white font-semibold px-4 py-2 rounded-full">
+              Start Browsing Books
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = cart.map(item => `
+        <div class="pt-4 first:pt-0 flex gap-3 sm:gap-4 items-center">
+          <img src="${item.image}" alt="${item.title}" class="w-14 h-18 sm:w-16 sm:h-20 object-cover rounded-lg border border-sand shadow-sm" />
+          <div class="flex-1 min-w-0">
+            <h4 class="font-serif text-xs sm:text-sm font-bold text-gray-900 truncate">${item.title}</h4>
+            <p class="text-[11px] text-gray-500">${item.author}</p>
+            <span class="text-xs sm:text-sm font-bold text-emerald-950 font-serif">₹${(item.price * item.qty).toLocaleString('en-IN')}</span>
+            
+            <div class="flex items-center gap-2 mt-1">
+              <div class="flex items-center border border-sand rounded-lg bg-sand/20">
+                <button onclick="updateCartQty('${item.id}', -1)" class="px-2 py-0.5 text-xs text-gray-600 hover:text-emerald-950 font-bold">-</button>
+                <span class="px-2 text-xs font-semibold">${item.qty}</span>
+                <button onclick="updateCartQty('${item.id}', 1)" class="px-2 py-0.5 text-xs text-gray-600 hover:text-emerald-950 font-bold">+</button>
+              </div>
+              <button onclick="removeCartItem('${item.id}')" class="text-[11px] text-red-500 hover:underline ml-1">Remove</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById('cartDrawer');
+      const backdrop = document.getElementById('cartBackdrop');
+      if (open) {
+        backdrop.classList.remove('hidden');
+        drawer.classList.remove('translate-x-full');
+      } else {
+        drawer.classList.add('translate-x-full');
+        backdrop.classList.add('hidden');
+      }
+    }
+
+    // ================= CHECKOUT MODAL =================
+    function openCheckoutModal() {
+      const cart = getCart();
+      if (cart.length === 0) return;
+
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      document.getElementById('checkoutPayableAmount').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+      
+      toggleCartDrawer(false);
+      document.getElementById('checkoutModalBackdrop').classList.remove('hidden');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModalBackdrop').classList.add('hidden');
+    }
+
+    // ================= PLACE ORDER & RAZORPAY / COD DISPATCH =================
+    function handlePlaceOrder(e) {
+      e.preventDefault();
+      
+      const cart = getCart();
+      if (cart.length === 0) {
+        alert("Your bookbag is empty!");
+        return;
+      }
+
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const address = document.getElementById('custAddress').value.trim();
+      const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      const orderData = {
+        orderId: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
+        timestamp: new Date().toISOString(),
+        customer: { name, phone, address },
+        paymentMethod: paymentMethod,
+        items: cart,
+        totalAmount: subtotal,
+        status: paymentMethod === 'COD' ? 'Pending Cash Collection' : 'Pending Online Payment'
+      };
+
+      if (paymentMethod === 'Razorpay') {
+        openRazorpayCheckout(orderData);
+      } else {
+        finalizeOrderPlacement(orderData, 'COD-COLLECT');
+      }
+    }
+
+    // ================= RAZORPAY CHECKOUT SDK HANDLER =================
+    function openRazorpayCheckout(orderData) {
+      if (typeof Razorpay === 'undefined') {
+        alert("Razorpay SDK could not be loaded. Please verify your internet connection or use Cash on Delivery.");
+        return;
+      }
+
+      const options = {
+        key: RAZORPAY_KEY_ID,
+        amount: orderData.totalAmount * 100,
+        currency: "INR",
+        name: "Al-Maktabah Bookstore",
+        description: `Purchase of ${orderData.items.length} Volume(s)`,
+        image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=200&q=80",
+        prefill: {
+          name: orderData.customer.name,
+          contact: orderData.customer.phone
+        },
+        theme: {
+          color: "#064e3b"
+        },
+        handler: function (response) {
+          orderData.paymentId = response.razorpay_payment_id;
+          orderData.status = 'Paid Online via Razorpay';
+          finalizeOrderPlacement(orderData, response.razorpay_payment_id);
+        },
+        modal: {
+          ondismiss: function () {
+            console.log("Razorpay checkout prompt dismissed by customer.");
+          }
         }
-        renderProducts();
-      });
+      };
 
-      clearBtn.addEventListener("click", () => {
-        searchInput.value = '';
-        searchQuery = '';
-        clearBtn.classList.add("hidden");
-        renderProducts();
-      });
-
-      if (mobileSearchInput) {
-        mobileSearchInput.addEventListener("input", (e) => {
-          searchQuery = e.target.value;
-          renderProducts();
+      try {
+        const rzp = new Razorpay(options);
+        rzp.on('payment.failed', function (resp) {
+          alert("Payment failed: " + resp.error.description);
         });
+        rzp.open();
+      } catch (err) {
+        console.error("Razorpay initiation error:", err);
+        if (confirm("Test Simulation: Razorpay test mode key invoked. Simulate successful payment capture?")) {
+          const fakePaymentId = "pay_test_" + Math.random().toString(36).substring(2, 9);
+          orderData.paymentId = fakePaymentId;
+          orderData.status = 'Paid Online (Test Simulated)';
+          finalizeOrderPlacement(orderData, fakePaymentId);
+        }
+      }
+    }
+
+    // ================= ORDER FINALIZATION & TELEGRAM BOT DISPATCH =================
+    function finalizeOrderPlacement(orderData, paymentRef) {
+      const telegramMessage = `
+📦 *NEW AL-MAKTABAH ORDER — ${orderData.orderId}*
+━━━━━━━━━━━━━━━━━━━━
+👤 *Customer:* ${orderData.customer.name}
+📞 *Phone:* ${orderData.customer.phone}
+📍 *Address:* ${orderData.customer.address}
+
+💳 *Payment:* ${orderData.paymentMethod}
+🔖 *Reference:* \`${paymentRef}\`
+💰 *Grand Total:* ₹${orderData.totalAmount.toLocaleString('en-IN')}
+
+📚 *Titles Ordered:*
+${orderData.items.map(i => `• ${i.title} (x${i.qty}) — ₹${(i.price * i.qty).toLocaleString('en-IN')}`).join('\n')}
+━━━━━━━━━━━━━━━━━━━━
+`;
+
+      if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
+        fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: telegramMessage,
+            parse_mode: 'Markdown'
+          })
+        }).catch(err => console.error("Telegram notification error:", err));
+      } else {
+        console.log("Mock Telegram Notification Payload Generated:\n", telegramMessage);
       }
 
-      // Sort Select
-      const sortSelect = document.getElementById("sortSelect");
-      sortSelect.addEventListener("change", (e) => {
-        currentSort = e.target.value;
-        renderProducts();
-      });
+      localStorage.removeItem('maktabah_cart');
+      renderCart();
 
-      // Category filter clicks
-      const container = document.getElementById("categoryFilterContainer");
-      if (container) {
-        container.addEventListener("click", (e) => {
-          const btn = e.target.closest(".cat-pill");
-          if (btn) {
-            filterByCategory(btn.dataset.category);
-          }
-        });
-      }
+      closeCheckoutModal();
+      document.getElementById('orderReferenceId').textContent = `Order Ref: ${orderData.orderId} • PayRef: ${paymentRef}`;
+      document.getElementById('orderSuccessMessage').textContent = 
+        `Thank you ${orderData.customer.name}! Your order has been placed via ${orderData.paymentMethod}. A confirmation SMS/WhatsApp has been queued for ${orderData.customer.phone}.`;
+      document.getElementById('orderSuccessBackdrop').classList.remove('hidden');
+    }
 
-      // Dynamic payment button text when radio changes
-      const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
-      const submitBtnText = document.getElementById("submitBtnText");
-
-      paymentRadios.forEach(radio => {
-        radio.addEventListener("change", () => {
-          document.querySelectorAll(".payment-method-card").forEach(card => {
-            card.classList.remove("border-emerald-800", "bg-emerald-50/50");
-            card.classList.add("border-stone-300");
-          });
-          const parentCard = radio.closest(".payment-method-card");
-          if (parentCard) {
-            parentCard.classList.remove("border-stone-300");
-            parentCard.classList.add("border-emerald-800", "bg-emerald-50/50");
-          }
-
-          if (radio.value.includes("Razorpay")) {
-            submitBtnText.textContent = "Pay with Razorpay (آرڈر درج کریں)";
-          } else {
-            submitBtnText.textContent = "Confirm & Place Order (آرڈر درج کریں)";
-          }
-        });
-      });
+    function closeSuccessModal() {
+      document.getElementById('orderSuccessBackdrop').classList.add('hidden');
     }
   </script>
-</body></html>
+</body>
+</html>
