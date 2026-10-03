@@ -73,29 +73,6 @@
     "description": "Award-winning biography of Prophet Muhammad ﷺ detailing political, spiritual, and historical events of the prophetic era."
   },
   {
-    "id": "book-4",
-    "title": "Seerat-un-Nabi (Allama Shibli Nomani & Sulaiman Nadvi)",
-    "title_urdu": "سیرت النبی ﷺ — شبلی نعمانی و سید سلیمان ندوی",
-    "author": "Shibli Nomani & Sulaiman Nadvi",
-    "category": "Urdu Adab",
-    "category_slug": "urdu",
-    "category_urdu": "اردو کتب",
-    "price": 1650,
-    "original_price": 1900,
-    "currency": "INR",
-    "currency_symbol": "₹",
-    "image": "https://images.unsplash.com/photo-1507842229451-7f01be8610ce?auto=format&fit=crop&w=700&q=80",
-    "in_stock": true,
-    "stock_qty": 18,
-    "binding": "Hardcover 7 Volume Set",
-    "publisher": "Darul Musannefin Shibli Academy",
-    "pages": 3200,
-    "language": [
-      "Urdu"
-    ],
-    "description": "Masterwork of Urdu historical literature and scholarly analysis on the life, character, and mission of the Prophet ﷺ."
-  },
-  {
     "id": "book-5",
     "title": "Kulliyat-e-Iqbal (Bang-e-Dra, Bal-e-Jibreel, Zarb-e-Kaleem)",
     "title_urdu": "کلیاتِ اقبال — بانگِ درا، بالِ جبریل، ضربِ کلیم",
