@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="scroll-smooth" lang="en"><head>
+<html class="scroll-smooth overflow-x-hidden w-full" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>المكتبة الإسلامية — Al-Maktabah Islamic Bookstore</title>
@@ -84,85 +84,15 @@
     }
   </style>
 </head>
-<body class="bg-parchment text-stone-800 font-sans antialiased selection:bg-gold-400 selection:text-emerald-950 flex flex-col min-h-screen">
+<body class="bg-parchment text-stone-800 font-sans antialiased selection:bg-gold-400 selection:text-emerald-950 flex flex-col min-h-screen overflow-x-hidden w-full">
 <!-- ================= TOP ANNOUNCEMENT BAR ================= -->
-<div class="bg-emerald-950 text-gold-200 border-b border-gold-600/30 text-xs py-1.5 px-4 text-center tracking-wide flex justify-between items-center max-w-7xl mx-auto w-full">
-<div class="flex items-center gap-2">
-<span class="inline-block w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
-<span>Worldwide Delivery • Authentic Verified Classical &amp; Modern Islamic Literature</span>
-</div>
-<div class="hidden md:flex items-center gap-4 text-stone-300">
-<span class="font-urdu text-sm text-gold-400">خوش آمدید — علم و حکمت کا گہوارہ</span>
-<span class="text-stone-500">|</span>
-<span>Helpdesk: support@maktabah.org</span>
-</div>
-</div>
+<div class="bg-emerald-950 text-gold-200 border-b border-gold-600/30 text-xs py-1.5 px-3 sm:px-4 text-center tracking-wide flex justify-between items-center max-w-7xl mx-auto w-full overflow-hidden"><div class="flex items-center gap-1.5 sm:gap-2 truncate"><span class="inline-block w-2 h-2 rounded-full bg-gold-400 animate-pulse flex-shrink-0"></span><span class="truncate">Worldwide Delivery • Authentic Verified Classical &amp; Modern Islamic Literature</span></div><div class="hidden md:flex items-center gap-4 text-stone-300 flex-shrink-0"><span class="font-urdu text-sm text-gold-400">خوش آمدید — علم و حکمت کا گہوارہ</span><span class="text-stone-500">|</span><span>Helpdesk: support@maktabah.org</span></div></div>
 <!-- ================= 1. HEADER & NAVIGATION ================= -->
-<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gold-500/20 shadow-sm transition-all duration-200" id="mainHeader">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between h-20 gap-4">
-<!-- Maktab Arabic Calligraphy Logo & Brand -->
-<a class="flex items-center gap-3.5 group flex-shrink-0" href="#">
-<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-900 to-emerald-950 border border-gold-400/60 p-1 flex items-center justify-center shadow-md shadow-emerald-950/20 group-hover:border-gold-400 transition">
-<svg class="w-9 h-9 text-gold-400" fill="currentColor" viewbox="0 0 100 100">
-<path d="M50 8C26.8 8 8 26.8 8 50s18.8 42 42 42 42-18.8 42-42S73.2 8 50 8zm-4.2 24.3c2.4-.8 4.7 1.2 4.3 3.6-.8 4.2-2.1 10.3-1.6 14.8 1.9-2.8 4.8-4.9 8.2-5.4 6.8-.9 11.8 4.1 11.2 11-.4 4.5-3.3 9.4-8.8 12.8-5.3 3.3-11.8 4.5-17.7 3.4-3.5-.7-6.2-2.7-7.9-5.7-1.7-3.1-1.6-6.7.2-9.7 2.1-3.6 5.8-6.1 10.1-6.8-1.1-2.9-2-6.5-1.9-9.5.1-4.2 1.9-7.2 4-8.7zm7.5 25.5c-4.1.3-7.5 2.8-8.9 6.4 1.7 1.4 3.9 2.2 6.3 2.1 4.5-.2 7.7-3 8.1-6.6.3-1.5-.7-2-5.5-1.9z" opacity="0.95"></path>
-<circle cx="34" cy="30" fill="#f6eed8" r="3.5"></circle>
-<circle cx="68" cy="32" fill="#f6eed8" r="3.5"></circle>
-</svg>
-</div>
-<div>
-<div class="flex items-center gap-2">
-<span class="font-serif text-2xl font-bold tracking-tight text-emerald-950 group-hover:text-emerald-800 transition">Al-Maktabah</span>
-<span class="text-xs px-2 py-0.5 rounded-full bg-gold-100 text-gold-700 font-semibold border border-gold-300">مَكْتَبَة</span>
-</div>
-<p class="font-urdu text-xs text-stone-500 -mt-0.5" dir="rtl">جامع کتب خانہ و مرکزِ علوم</p>
-</div>
-</a>
-<!-- Desktop Navigation Links -->
-<nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-stone-700">
-<a class="text-emerald-900 font-semibold border-b-2 border-emerald-900 pb-0.5" href="#hero">Home</a>
-<a class="hover:text-emerald-800 transition" href="#catalog">Catalogue</a>
-<a class="hover:text-emerald-800 transition" href="#categories">Categories</a>
-<a class="hover:text-emerald-800 transition font-urdu text-base text-emerald-900" href="#urdu-section">اردو کتب</a>
-<a class="hover:text-emerald-800 transition" href="#about">About Us</a>
-</nav>
-<!-- Search Bar with Live Filter -->
-<div class="relative flex-1 max-w-md hidden sm:block">
-<div class="relative">
-<input class="w-full pl-10 pr-10 py-2.5 bg-stone-50 border border-stone-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-emerald-800 focus:border-transparent transition placeholder:text-stone-400 placeholder:italic" id="searchInput" placeholder="Search by title, author, or category (e.g. Tafseer, Hadith, سیرت)..." type="text"/>
-<i class="w-4 h-4 text-stone-400 absolute left-3.5 top-3.5" data-lucide="search"></i>
-<button class="hidden absolute right-3.5 top-3 text-stone-400 hover:text-stone-700" id="clearSearchBtn">
-<i class="w-4 h-4" data-lucide="x"></i>
-</button>
-</div>
-</div>
-<!-- Action Items (Cart & Mobile Menu Trigger) -->
-<div class="flex items-center gap-3">
-<!-- Cart Button with Dynamic Badge -->
-<button aria-label="View shopping cart" class="relative flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-emerald-900 text-gold-100 hover:bg-emerald-950 transition shadow-sm hover:shadow active:scale-95 duration-150" id="openCartBtn">
-<i class="w-5 h-5 text-gold-400" data-lucide="shopping-bag"></i>
-<span class="font-semibold text-sm hidden md:inline">Cart</span>
-<span class="bg-gold-500 text-emerald-950 text-xs font-bold rounded-full h-5 min-w-[20px] px-1.5 flex items-center justify-center border-2 border-emerald-900" id="cartCountBadge">
-              0
-            </span>
-</button>
-<!-- Mobile Hamburger -->
-<button class="p-2 rounded-lg text-stone-700 hover:bg-stone-100 lg:hidden" id="mobileMenuBtn">
-<i class="w-6 h-6" data-lucide="menu"></i>
-</button>
-</div>
-</div>
-<!-- Mobile Search Field -->
-<div class="pb-3 sm:hidden">
-<div class="relative">
-<input class="w-full pl-9 pr-3 py-2 bg-stone-100 border border-stone-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-700" id="mobileSearchInput" placeholder="Search books, Hadith, Tafseer..." type="text"/>
-<i class="w-4 h-4 text-stone-400 absolute left-3 top-2.5" data-lucide="search"></i>
-</div>
-</div>
-</div>
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gold-500/20 shadow-sm transition-all duration-200 w-full" id="mainHeader">
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-3"><div class="flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-4 w-full"><a class="flex items-center gap-2 sm:gap-3.5 group flex-shrink-0" href="#"><div class="w-9 h-9 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-emerald-900 to-emerald-950 border border-gold-400/60 p-1 flex items-center justify-center shadow-md shadow-emerald-950/20 group-hover:border-gold-400 transition flex-shrink-0"><svg class="w-6 h-6 sm:w-9 sm:h-9 text-gold-400" fill="currentColor" viewbox="0 0 100 100"><path d="M50 8C26.8 8 8 26.8 8 50s18.8 42 42 42 42-18.8 42-42S73.2 8 50 8zm-4.2 24.3c2.4-.8 4.7 1.2 4.3 3.6-.8 4.2-2.1 10.3-1.6 14.8 1.9-2.8 4.8-4.9 8.2-5.4 6.8-.9 11.8 4.1 11.2 11-.4 4.5-3.3 9.4-8.8 12.8-5.3 3.3-11.8 4.5-17.7 3.4-3.5-.7-6.2-2.7-7.9-5.7-1.7-3.1-1.6-6.7.2-9.7 2.1-3.6 5.8-6.1 10.1-6.8-1.1-2.9-2-6.5-1.9-9.5.1-4.2 1.9-7.2 4-8.7zm7.5 25.5c-4.1.3-7.5 2.8-8.9 6.4 1.7 1.4 3.9 2.2 6.3 2.1 4.5-.2 7.7-3 8.1-6.6.3-1.5-.7-2-5.5-1.9z" opacity="0.95"></path><circle cx="34" cy="30" fill="#f6eed8" r="3.5"></circle><circle cx="68" cy="32" fill="#f6eed8" r="3.5"></circle></svg></div><div><div class="flex items-center gap-1.5 sm:gap-2"><span class="font-serif text-lg sm:text-2xl font-bold tracking-tight text-emerald-950 group-hover:text-emerald-800 transition">Al-Maktabah</span><span class="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-gold-100 text-gold-700 font-semibold border border-gold-300">مَكْتَبَة</span></div><p class="font-urdu text-[11px] sm:text-xs text-stone-500 -mt-0.5 hidden sm:block" dir="rtl">جامع کتب خانہ و مرکزِ علوم</p></div></a><nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-stone-700"><a class="text-emerald-900 font-semibold border-b-2 border-emerald-900 pb-0.5" href="#hero">Home</a><a class="hover:text-emerald-800 transition" href="#catalog">Catalogue</a><a class="hover:text-emerald-800 transition" href="#categories">Categories</a><a class="hover:text-emerald-800 transition font-urdu text-base text-emerald-900" href="#urdu-section">اردو کتب</a><a class="hover:text-emerald-800 transition" href="#about">About Us</a></nav><div class="relative flex-1 max-w-md hidden sm:block"><div class="relative"><input class="w-full pl-10 pr-10 py-2.5 bg-stone-50 border border-stone-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-emerald-800 focus:border-transparent transition placeholder:text-stone-400 placeholder:italic" id="searchInput" placeholder="Search by title, author, or category (e.g. Tafseer, Hadith, سیرت)..." type="text"/><i class="w-4 h-4 text-stone-400 absolute left-3.5 top-3.5" data-lucide="search"></i><button class="hidden absolute right-3.5 top-3 text-stone-400 hover:text-stone-700" id="clearSearchBtn"><i class="w-4 h-4" data-lucide="x"></i></button></div></div><div class="flex items-center gap-2 sm:gap-3 flex-shrink-0"><button aria-label="View shopping cart" class="relative flex items-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-4 py-1.5 sm:py-2.5 rounded-full bg-emerald-900 text-gold-100 hover:bg-emerald-950 transition shadow-sm hover:shadow active:scale-95 duration-150 flex-shrink-0" id="openCartBtn"><i class="w-4 h-4 sm:w-5 sm:h-5 text-gold-400" data-lucide="shopping-bag"></i><span class="font-semibold text-xs sm:text-sm hidden sm:inline">Cart</span><span class="bg-gold-500 text-emerald-950 text-xs font-bold rounded-full h-5 min-w-[20px] px-1.5 flex items-center justify-center border-2 border-emerald-900" id="cartCountBadge">0</span></button><button aria-label="Toggle Mobile Menu" class="p-1.5 sm:p-2 rounded-lg text-stone-700 hover:bg-stone-100 lg:hidden flex-shrink-0" id="mobileMenuBtn"><i class="w-5 h-5 sm:w-6 sm:h-6" data-lucide="menu"></i></button></div></div><div class="pb-2 sm:hidden"><div class="relative"><input class="w-full pl-9 pr-3 py-1.5 bg-stone-100 border border-stone-200 rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-700" id="mobileSearchInput" placeholder="Search books, Hadith, Tafseer..." type="text"/><i class="w-3.5 h-3.5 text-stone-400 absolute left-3 top-2" data-lucide="search"></i></div></div></div>
 </header>
 <!-- ================= 2. HERO SECTION ================= -->
-<section class="relative overflow-hidden bg-emerald-950 text-white border-b border-gold-500/30" id="hero">
+<section class="relative overflow-hidden bg-emerald-950 text-white border-b border-gold-500/30 w-full" id="hero">
 <!-- Ambient Pattern Background -->
 <div class="absolute inset-0 opacity-15 islamic-pattern pointer-events-none"></div>
 <div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-gold-500/10 blur-3xl pointer-events-none"></div>
@@ -262,7 +192,7 @@
 </div>
 </section>
 <!-- ================= CATEGORY QUICK FILTER BAR ================= -->
-<section class="bg-white border-b border-stone-200 py-6 sticky top-20 z-30 shadow-xs" id="categories">
+<section class="bg-white border-b border-stone-200 py-6 sticky top-20 z-30 shadow-xs w-full" id="categories">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex items-center justify-between gap-4 overflow-x-auto pb-2 sm:pb-0 no-scrollbar" id="categoryFilterContainer">
 <button class="cat-pill active px-4 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition bg-emerald-900 text-white shadow-sm" data-category="all">
@@ -287,7 +217,7 @@
 </div>
 </section>
 <!-- ================= 3. DYNAMIC PRODUCTS GRID ================= -->
-<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full" id="catalog">
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full overflow-x-hidden" id="catalog">
 <!-- Section Title & Results Info -->
 <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-stone-200 gap-4">
 <div>
@@ -644,7 +574,7 @@
 </a>
 </div>
 <!-- ================= 7. FOOTER ================= -->
-<footer class="bg-emerald-950 text-stone-300 border-t-2 border-gold-500/40 pt-16 pb-8" id="about">
+<footer class="bg-emerald-950 text-stone-300 border-t-2 border-gold-500/40 pt-16 pb-8 w-full overflow-x-hidden" id="about">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-emerald-900">
 <!-- Brand / Identity Column -->
@@ -728,15 +658,7 @@
 </div>
 </footer>
 <!-- ================= NOTIFICATION TOAST ================= -->
-<div class="fixed bottom-6 left-6 z-50 transform -translate-y-10 opacity-0 pointer-events-none transition-all duration-300 bg-emerald-950 border border-gold-400 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3" id="toastNotification">
-<div class="p-1 rounded-full bg-gold-500 text-emerald-950">
-<i class="w-3.5 h-3.5" data-lucide="check"></i>
-</div>
-<div>
-<h5 class="text-xs font-bold text-gold-200" id="toastTitle">Added to Cart!</h5>
-<p class="text-[11px] text-stone-300" id="toastMessage">Selected book has been placed in your bookbag.</p>
-</div>
-</div>
+<div class="bg-emerald-950 text-gold-200 border-b border-gold-600/30 text-xs py-1.5 px-3 sm:px-4 text-center tracking-wide flex justify-between items-center max-w-7xl mx-auto w-full overflow-hidden"><div class="flex items-center gap-1.5 sm:gap-2 truncate"><span class="inline-block w-2 h-2 rounded-full bg-gold-400 animate-pulse flex-shrink-0"></span><span class="truncate">Worldwide Delivery • Authentic Verified Classical &amp; Modern Islamic Literature</span></div><div class="hidden md:flex items-center gap-4 text-stone-300 flex-shrink-0"><span class="font-urdu text-sm text-gold-400">خوش آمدید — علم و حکمت کا گہوارہ</span><span class="text-stone-500">|</span><span>Helpdesk: support@maktabah.org</span></div></div>
 <!-- ================= VANILLA JAVASCRIPT LOGIC ================= -->
 <script>
     /**
