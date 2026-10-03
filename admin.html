@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-slate-50">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Al-Maktabah | Admin Catalog Management (GitHub REST API)</title>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
+
+<html class="h-full bg-slate-50" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Al-Maktabah | Admin Headless CMS (GitHub REST API)</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
     tailwind.config = {
       theme: {
         extend: {
@@ -34,16 +33,13 @@
       }
     }
   </script>
-
-  <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans, Noto Nastaliq Urdu -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Noto+Nastaliq+Urdu:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <style>
+<!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans, Noto Nastaliq Urdu -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&amp;family=Noto+Nastaliq+Urdu:wght@500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
     .urdu-font {
       font-family: 'Noto Nastaliq Urdu', serif;
       line-height: 1.8;
@@ -55,656 +51,730 @@
   </style>
 </head>
 <body class="h-full flex flex-col font-sans text-slate-800 antialiased bg-slate-50 selection:bg-emerald-900 selection:text-white">
-
-  <!-- TOP HEADER / NAV -->
-  <header class="bg-emerald-950 text-white border-b border-emerald-900 sticky top-0 z-30 shadow-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-      
-      <!-- Brand & Title -->
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-850 to-emerald-900 border border-gold-500/40 flex items-center justify-center text-gold-400 shadow-inner flex-shrink-0">
-          <i data-lucide="book-marked" class="w-5 h-5"></i>
-        </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <h1 class="font-serif text-xl font-bold tracking-tight text-white leading-none">Al-Maktabah</h1>
-            <span class="bg-gold-500/20 text-gold-400 border border-gold-500/30 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full">Admin Suite</span>
-          </div>
-          <p class="text-xs text-emerald-300/80 font-mono mt-0.5">products.json • GitHub REST API v3 Sync</p>
-        </div>
-      </div>
-
-      <!-- Header Actions -->
-      <div class="flex items-center gap-2.5">
-        <!-- Live Connection Status Pill -->
-        <div id="connectionPill" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-900/60 border border-emerald-800 text-slate-300">
-          <span id="connectionDot" class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-          <span id="connectionText" class="font-mono text-[11px]">Not Configured</span>
-        </div>
-
-        <!-- Sync / Refresh Button -->
-        <button 
-          id="refreshBtn" 
-          onclick="loadProductsFromGitHub(true)" 
-          class="flex items-center gap-1.5 px-3 py-2 bg-emerald-900/80 hover:bg-emerald-800 text-slate-200 text-xs font-semibold rounded-lg border border-emerald-800 transition active:scale-95" 
-          title="Fetch latest from GitHub"
-        >
-          <i data-lucide="refresh-cw" id="refreshIcon" class="w-3.5 h-3.5"></i>
-          <span class="hidden sm:inline">Sync Remote</span>
-        </button>
-
-        <!-- GitHub Config Modal Trigger -->
-        <button 
-          onclick="openCredentialsModal()" 
-          class="flex items-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-gold-400 hover:text-gold-300 text-xs font-semibold rounded-lg border border-slate-700 shadow-sm transition active:scale-95"
-        >
-          <i data-lucide="key" class="w-3.5 h-3.5"></i>
-          <span class="hidden sm:inline">API Settings</span>
-        </button>
-
-        <!-- View Live Storefront Link -->
-        <a 
-          href="./index.html" 
-          target="_blank" 
-          class="flex items-center gap-1.5 px-3 py-2 bg-gold-500 hover:bg-gold-600 text-emerald-950 text-xs font-bold rounded-lg shadow transition active:scale-95"
-        >
-          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-          <span class="hidden md:inline">Open Store</span>
-        </a>
-      </div>
-
-    </div>
-  </header>
-
-  <!-- REPO BANNER / SETUP NOTICE IF NOT CONFIGURED -->
-  <div id="unconfiguredBanner" class="bg-amber-50 border-b border-amber-200 px-4 py-3 text-amber-900 text-xs sm:text-sm">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-      <div class="flex items-center gap-2">
-        <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600 flex-shrink-0"></i>
-        <span><strong>GitHub PAT Required:</strong> To read and commit direct updates to <code class="bg-amber-100 px-1.5 py-0.5 rounded font-mono text-amber-950 font-semibold">products.json</code>, connect your GitHub Personal Access Token.</span>
-      </div>
-      <button onclick="openCredentialsModal()" class="bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs px-3 py-1.5 rounded-md shadow-sm transition whitespace-nowrap">
+<!-- TOP HEADER / NAV -->
+<header class="bg-emerald-950 text-white border-b border-emerald-900 sticky top-0 z-30 shadow-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+<!-- Brand & Title -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-850 to-emerald-900 border border-gold-500/40 flex items-center justify-center text-gold-400 shadow-inner flex-shrink-0">
+<i class="w-5 h-5" data-lucide="book-marked"></i>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h1 class="font-serif text-xl font-bold tracking-tight text-white leading-none">Al-Maktabah</h1>
+<span class="bg-gold-500/20 text-gold-400 border border-gold-500/30 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full">Headless CMS</span>
+</div>
+<p class="text-xs text-emerald-300/80 font-mono mt-0.5">products.json &amp; settings.json • GitHub REST API v3 Sync</p>
+</div>
+</div>
+<!-- Header Actions -->
+<div class="flex items-center gap-2.5">
+<!-- Live Connection Status Pill -->
+<div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-900/60 border border-emerald-800 text-slate-300" id="connectionPill">
+<span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse" id="connectionDot"></span>
+<span class="font-mono text-[11px]" id="connectionText">Not Configured</span>
+</div>
+<!-- Sync / Refresh Button -->
+<button class="flex items-center gap-1.5 px-3 py-2 bg-emerald-900/80 hover:bg-emerald-800 text-slate-200 text-xs font-semibold rounded-lg border border-emerald-800 transition active:scale-95" id="refreshBtn" onclick="handleRefreshAction()" title="Fetch latest from GitHub">
+<i class="w-3.5 h-3.5" data-lucide="refresh-cw" id="refreshIcon"></i>
+<span class="hidden sm:inline">Sync Remote</span>
+</button>
+<!-- GitHub Config Modal Trigger -->
+<button class="flex items-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-gold-400 hover:text-gold-300 text-xs font-semibold rounded-lg border border-slate-700 shadow-sm transition active:scale-95" onclick="openCredentialsModal()">
+<i class="w-3.5 h-3.5" data-lucide="key"></i>
+<span class="hidden sm:inline">API Settings</span>
+</button>
+<!-- View Live Storefront Link -->
+<a class="flex items-center gap-1.5 px-3 py-2 bg-gold-500 hover:bg-gold-600 text-emerald-950 text-xs font-bold rounded-lg shadow transition active:scale-95" href="./index.html" target="_blank">
+<i class="w-3.5 h-3.5" data-lucide="external-link"></i>
+<span class="hidden md:inline">Open Store</span>
+</a>
+</div>
+</div>
+</header>
+<!-- REPO BANNER / SETUP NOTICE IF NOT CONFIGURED -->
+<div class="bg-amber-50 border-b border-amber-200 px-4 py-3 text-amber-900 text-xs sm:text-sm" id="unconfiguredBanner">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+<div class="flex items-center gap-2">
+<i class="w-4 h-4 text-amber-600 flex-shrink-0" data-lucide="alert-triangle"></i>
+<span><strong>GitHub PAT Required:</strong> To read and commit direct updates to <code class="bg-amber-100 px-1.5 py-0.5 rounded font-mono text-amber-950 font-semibold">products.json</code> and <code class="bg-amber-100 px-1.5 py-0.5 rounded font-mono text-amber-950 font-semibold">settings.json</code>, connect your GitHub Personal Access Token.</span>
+</div>
+<button class="bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs px-3 py-1.5 rounded-md shadow-sm transition whitespace-nowrap" onclick="openCredentialsModal()">
         Setup Credentials
       </button>
-    </div>
-  </div>
-
-  <!-- MAIN DASHBOARD CONTENT -->
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-
-    <!-- METRICS & TOOLBAR -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
-        <div>
-          <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Total Titles</span>
-          <span id="metricTotalBooks" class="text-2xl font-bold text-slate-900 font-serif">0</span>
-        </div>
-        <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center">
-          <i data-lucide="library" class="w-5 h-5"></i>
-        </div>
-      </div>
-
-      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
-        <div>
-          <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Active Stock</span>
-          <span id="metricInStock" class="text-2xl font-bold text-emerald-700 font-serif">0</span>
-        </div>
-        <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center">
-          <i data-lucide="check-circle-2" class="w-5 h-5"></i>
-        </div>
-      </div>
-
-      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
-        <div>
-          <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Featured</span>
-          <span id="metricFeatured" class="text-2xl font-bold text-gold-600 font-serif">0</span>
-        </div>
-        <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center">
-          <i data-lucide="star" class="w-5 h-5"></i>
-        </div>
-      </div>
-
-      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
-        <div>
-          <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">File SHA Hash</span>
-          <span id="metricFileSha" class="text-xs font-mono font-bold text-slate-600 block truncate max-w-[110px]" title="Current GitHub Content SHA">none</span>
-        </div>
-        <div class="w-10 h-10 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center">
-          <i data-lucide="git-commit" class="w-5 h-5"></i>
-        </div>
-      </div>
-    </div>
-
-    <!-- MAIN PRODUCT MANAGEMENT SECTION -->
-    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
-      
-      <!-- Table Header & Controls -->
-      <div class="p-4 sm:p-5 border-b border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-50/50">
-        
-        <!-- Search and Filter -->
-        <div class="flex flex-1 items-center gap-2.5 max-w-lg">
-          <div class="relative flex-1">
-            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
-            <input 
-              id="adminSearchInput" 
-              type="text" 
-              placeholder="Search by title, author, or category..." 
-              oninput="handleAdminSearch(this.value)"
-              class="w-full pl-9 pr-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-900 focus:border-transparent transition"
-            />
+</div>
+</div>
+<!-- NAVIGATION TAB SWITCHER -->
+<nav aria-label="CMS Views" class="bg-white border-b border-slate-200 shadow-sm sticky top-16 z-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between gap-4">
+<!-- Tab Buttons -->
+<div class="flex items-center space-x-1 sm:space-x-2 py-2">
+<button class="flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-950 text-white shadow-sm transition" id="tabBtnProducts" onclick="switchAdminTab('products')">
+<i class="w-4 h-4 text-gold-400" data-lucide="book-open"></i>
+<span>Products Manager</span>
+<span class="bg-emerald-800 text-emerald-200 text-[10px] font-mono px-2 py-0.5 rounded-full ml-1" id="tabProductCountBadge">0</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:text-emerald-950 hover:bg-slate-100 transition" id="tabBtnSettings" onclick="switchAdminTab('settings')">
+<i class="w-4 h-4 text-slate-400" data-lucide="sliders"></i>
+<span>Site Settings</span>
+<span class="bg-gold-500/20 text-gold-600 text-[10px] font-mono px-2 py-0.5 rounded-full ml-0.5 font-bold">settings.json</span>
+</button>
+</div>
+<!-- Current Target Indicators -->
+<div class="hidden md:flex items-center gap-3 text-xs text-slate-500">
+<div class="flex items-center gap-1.5 font-mono">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-slate-700 font-semibold" id="activeTabFileIndicator">Editing: products.json</span>
+</div>
+<span class="text-slate-300">|</span>
+<span class="text-slate-400">Direct Git Commits</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- MAIN DASHBOARD CONTENT -->
+<main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+<!-- METRICS & TOOLBAR (SHARED TOP OVERVIEW) -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+<div>
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Total Titles</span>
+<span class="text-2xl font-bold text-slate-900 font-serif" id="metricTotalBooks">0</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center">
+<i class="w-5 h-5" data-lucide="library"></i>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+<div>
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Active Stock</span>
+<span class="text-2xl font-bold text-emerald-700 font-serif" id="metricInStock">0</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center">
+<i class="w-5 h-5" data-lucide="check-circle-2"></i>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+<div>
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Featured</span>
+<span class="text-2xl font-bold text-gold-600 font-serif" id="metricFeatured">0</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center">
+<i class="w-5 h-5" data-lucide="star"></i>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+<div>
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">File SHA Hash</span>
+<span class="text-xs font-mono font-bold text-slate-600 block truncate max-w-[110px]" id="metricFileSha" title="Current GitHub Content SHA">none</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center">
+<i class="w-5 h-5" data-lucide="git-commit"></i>
+</div>
+</div>
+</div>
+<!-- ================= TAB 1: PRODUCTS MANAGER ================= -->
+<div class="space-y-6" id="tabContainerProducts">
+<!-- MAIN PRODUCT MANAGEMENT SECTION -->
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+<!-- Table Header & Controls -->
+<div class="p-4 sm:p-5 border-b border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-50/50">
+<!-- Search and Filter -->
+<div class="flex flex-1 items-center gap-2.5 max-w-lg">
+<div class="relative flex-1">
+<i class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" data-lucide="search"></i>
+<input class="w-full pl-9 pr-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-900 focus:border-transparent transition" id="adminSearchInput" oninput="handleAdminSearch(this.value)" placeholder="Search by title, author, or category..." type="text"/>
+</div>
+<select class="bg-white border border-slate-300 rounded-lg text-xs sm:text-sm py-1.5 px-2.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-900" id="adminCategoryFilter" onchange="handleCategoryFilter(this.value)">
+<option value="all">All Categories</option>
+<option value="quran">Quran &amp; Tafseer</option>
+<option value="hadith">Hadith Studies</option>
+<option value="seerah">Seerah &amp; History</option>
+<option value="urdu">Urdu Adab</option>
+<option value="fiqh">Fiqh &amp; Finance</option>
+</select>
+</div>
+<!-- Add New Book CTA -->
+<div class="flex items-center gap-2 justify-end">
+<button class="flex items-center gap-2 bg-emerald-900 hover:bg-emerald-950 text-white font-semibold text-xs sm:text-sm px-4 py-2 rounded-lg shadow-sm transition active:scale-95" onclick="openBookEditor()">
+<i class="w-4 h-4 text-gold-400" data-lucide="plus-circle"></i>
+<span>Add New Title</span>
+</button>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="overflow-x-auto min-h-[300px] relative">
+<!-- Loading Overlay -->
+<div class="hidden absolute inset-0 bg-white/80 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center gap-2" id="tableLoadingOverlay">
+<div class="w-8 h-8 border-3 border-emerald-900 border-t-transparent rounded-full animate-spin"></div>
+<span class="text-xs font-semibold text-emerald-950" id="loadingOverlayMsg">Communicating with GitHub API...</span>
+</div>
+<table class="w-full text-left text-sm text-slate-600 border-collapse">
+<thead class="bg-slate-100/75 text-[11px] uppercase tracking-wider text-slate-600 font-semibold border-b border-slate-200">
+<tr>
+<th class="py-3 px-4 w-14 text-center">Cover</th>
+<th class="py-3 px-4">Title &amp; Details</th>
+<th class="py-3 px-4">Category</th>
+<th class="py-3 px-4">Price</th>
+<th class="py-3 px-4 text-center">Stock</th>
+<th class="py-3 px-4 text-center">Featured</th>
+<th class="py-3 px-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200" id="productsTableBody">
+<!-- Populated dynamically via JS -->
+</tbody>
+</table>
+<!-- Empty State -->
+<div class="hidden py-16 text-center" id="emptyCatalogState">
+<div class="w-12 h-12 rounded-full bg-slate-100 text-slate-400 mx-auto flex items-center justify-center mb-3">
+<i class="w-6 h-6" data-lucide="package-open"></i>
+</div>
+<h4 class="font-semibold text-slate-800 text-base">No books found in catalogue</h4>
+<p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">No titles matched your search query or your GitHub products.json file is empty.</p>
+<button class="mt-4 bg-emerald-900 hover:bg-emerald-950 text-white text-xs font-semibold px-4 py-2 rounded-lg" onclick="openBookEditor()">
+              Create First Title
+            </button>
+</div>
+</div>
+<!-- Table Footer / Summary -->
+<div class="p-3 bg-slate-50 border-t border-slate-200 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span id="footerCountLabel">Showing 0 titles</span>
+<span>•</span>
+<span class="text-slate-400">Any save automatically executes a Git commit directly onto the specified branch.</span>
+</div>
+<div class="text-[11px] font-mono text-slate-400" id="repoPathLabel">
+            Path: products.json
           </div>
-          <select 
-            id="adminCategoryFilter" 
-            onchange="handleCategoryFilter(this.value)"
-            class="bg-white border border-slate-300 rounded-lg text-xs sm:text-sm py-1.5 px-2.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-900"
-          >
-            <option value="all">All Categories</option>
-            <option value="quran">Quran & Tafseer</option>
-            <option value="hadith">Hadith Studies</option>
-            <option value="seerah">Seerah & History</option>
-            <option value="urdu">Urdu Adab</option>
-            <option value="fiqh">Fiqh & Finance</option>
-          </select>
-        </div>
-
-        <!-- Add New Book CTA -->
-        <div class="flex items-center gap-2 justify-end">
-          <button 
-            onclick="openBookEditor()" 
-            class="flex items-center gap-2 bg-emerald-900 hover:bg-emerald-950 text-white font-semibold text-xs sm:text-sm px-4 py-2 rounded-lg shadow-sm transition active:scale-95"
-          >
-            <i data-lucide="plus-circle" class="w-4 h-4 text-gold-400"></i>
-            <span>Add New Title</span>
-          </button>
-        </div>
-
-      </div>
-
-      <!-- Data Table Container -->
-      <div class="overflow-x-auto min-h-[300px] relative">
-        
-        <!-- Loading Overlay -->
-        <div id="tableLoadingOverlay" class="hidden absolute inset-0 bg-white/80 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center gap-2">
-          <div class="w-8 h-8 border-3 border-emerald-900 border-t-transparent rounded-full animate-spin"></div>
-          <span class="text-xs font-semibold text-emerald-950" id="loadingOverlayMsg">Communicating with GitHub API...</span>
-        </div>
-
-        <table class="w-full text-left text-sm text-slate-600 border-collapse">
-          <thead class="bg-slate-100/75 text-[11px] uppercase tracking-wider text-slate-600 font-semibold border-b border-slate-200">
-            <tr>
-              <th class="py-3 px-4 w-14 text-center">Cover</th>
-              <th class="py-3 px-4">Title & Details</th>
-              <th class="py-3 px-4">Category</th>
-              <th class="py-3 px-4">Price</th>
-              <th class="py-3 px-4 text-center">Stock</th>
-              <th class="py-3 px-4 text-center">Featured</th>
-              <th class="py-3 px-4 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody id="productsTableBody" class="divide-y divide-slate-200">
-            <!-- Populated dynamically via JS -->
-          </tbody>
-        </table>
-
-        <!-- Empty State -->
-        <div id="emptyCatalogState" class="hidden py-16 text-center">
-          <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-400 mx-auto flex items-center justify-center mb-3">
-            <i data-lucide="package-open" class="w-6 h-6"></i>
-          </div>
-          <h4 class="font-semibold text-slate-800 text-base">No books found in catalogue</h4>
-          <p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">No titles matched your search query or your GitHub products.json file is empty.</p>
-          <button onclick="openBookEditor()" class="mt-4 bg-emerald-900 hover:bg-emerald-950 text-white text-xs font-semibold px-4 py-2 rounded-lg">
-            Create First Title
-          </button>
-        </div>
-
-      </div>
-
-      <!-- Table Footer / Summary -->
-      <div class="p-3 bg-slate-50 border-t border-slate-200 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <div class="flex items-center gap-2">
-          <span id="footerCountLabel">Showing 0 titles</span>
-          <span>•</span>
-          <span class="text-slate-400">Any save automatically executes a Git commit directly onto the specified branch.</span>
-        </div>
-        <div class="text-[11px] font-mono text-slate-400" id="repoPathLabel">
-          Path: products.json
-        </div>
-      </div>
-
-    </div>
-
-  </main>
-
-  <!-- ================= EDIT / ADD BOOK MODAL ================= -->
-  <div id="bookEditorModalBackdrop" class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden flex items-start sm:items-center justify-center p-3 sm:p-4 overflow-y-auto">
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200 p-5 sm:p-7 relative flex flex-col my-auto">
-      
-      <!-- Close Button -->
-      <button onclick="closeBookEditor()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1 rounded-lg hover:bg-slate-100 transition">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-
-      <!-- Modal Header -->
-      <div class="mb-5 pr-8">
-        <span id="modalModeBadge" class="text-[11px] font-bold uppercase tracking-wider text-gold-600 block">Catalog Editor</span>
-        <h3 id="modalTitle" class="font-serif text-2xl font-bold text-emerald-950">Add New Book Title</h3>
-        <p class="text-xs text-slate-500 mt-0.5">Fill in scholarly metadata. Submitting will commit and update <code class="font-mono text-emerald-900 bg-emerald-50 px-1 py-0.5 rounded">products.json</code>.</p>
-      </div>
-
-      <!-- Editor Form -->
-      <form id="bookForm" onsubmit="handleSaveBook(event)" class="space-y-4 text-xs sm:text-sm">
-        
-        <input type="hidden" id="editOriginalId" />
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <!-- Book ID -->
-          <div>
-            <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+</div>
+</div>
+</div>
+<!-- ================= TAB 2: SITE SETTINGS (NEW HEADLESS CMS VIEW) ================= -->
+<div class="hidden space-y-6" id="tabContainerSettings">
+<!-- Settings Header Card & Action Bar -->
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-600 flex-shrink-0 mt-0.5">
+<i class="w-6 h-6" data-lucide="sliders-horizontal"></i>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-serif text-2xl font-bold text-slate-900">Global Site Settings &amp; Metadata</h2>
+<span class="bg-emerald-100 text-emerald-800 font-mono text-[11px] px-2.5 py-0.5 rounded-full font-semibold">settings.json</span>
+</div>
+<p class="text-xs text-slate-500 mt-1 max-w-2xl">
+              Configure Maktab social media channels, contact addresses, footer text, hero announcement line, and dynamic taxonomy categories committed directly to your repository.
+            </p>
+</div>
+</div>
+<!-- Save CTA & Sync Status -->
+<div class="flex items-center gap-3 w-full md:w-auto justify-end">
+<button class="px-3.5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl border border-slate-200 transition active:scale-95 flex items-center gap-1.5" onclick="fetchSettingsData(true)" title="Reload settings from GitHub" type="button">
+<i class="w-4 h-4 text-slate-500" data-lucide="download-cloud"></i>
+<span>Reload</span>
+</button>
+<button class="flex-1 md:flex-initial flex items-center justify-center gap-2 bg-emerald-900 hover:bg-emerald-950 text-white font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-xl shadow-md transition active:scale-95" id="saveSettingsBtn" onclick="saveSettingsData()" type="button">
+<i class="w-4 h-4 text-gold-400" data-lucide="git-commit"></i>
+<span id="saveSettingsBtnText">Save &amp; Commit Settings</span>
+</button>
+</div>
+</div>
+<!-- SECTION 1: DYNAMIC CATEGORIES MANAGER -->
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+<div class="p-5 border-b border-slate-200 bg-slate-50/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+<div>
+<span class="text-[11px] uppercase tracking-wider text-gold-600 font-bold block">Taxonomy Structure</span>
+<h3 class="font-serif text-lg font-bold text-slate-900">Dynamic Disciplines &amp; Categories</h3>
+<p class="text-xs text-slate-500">Manage categories displayed on the storefront navigation filter and book classification.</p>
+</div>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-900 hover:bg-emerald-950 text-white text-xs font-semibold rounded-lg shadow-sm transition active:scale-95" onclick="openAddCategoryModal()" type="button">
+<i class="w-4 h-4 text-gold-400" data-lucide="plus"></i>
+<span>Add Category</span>
+</button>
+</div>
+<!-- Categories Table / List -->
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm text-slate-600 border-collapse">
+<thead class="bg-slate-100/60 text-[11px] uppercase tracking-wider text-slate-500 font-semibold border-b border-slate-200">
+<tr>
+<th class="py-3 px-5 w-12 text-center">#</th>
+<th class="py-3 px-5">English Name</th>
+<th class="py-3 px-5">Urdu Title (خطِ نستعلیق)</th>
+<th class="py-3 px-5 font-mono text-[10px]">Slug Identifier</th>
+<th class="py-3 px-5 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200" id="settingsCategoriesTbody">
+<!-- Dynamically populated via renderSettingsCategories() -->
+</tbody>
+</table>
+</div>
+</div>
+<!-- SECTION 2 & 3: FORM DETAILS -->
+<form class="space-y-6" id="siteSettingsForm" onsubmit="event.preventDefault(); saveSettingsData();">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- SECTION 2: SOCIAL MEDIA & CHANNELS -->
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 space-y-4">
+<div class="border-b border-slate-100 pb-3 flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center">
+<i class="w-4 h-4" data-lucide="share-2"></i>
+</div>
+<div>
+<h3 class="font-serif text-lg font-bold text-slate-900 leading-tight">Social Media &amp; Communication</h3>
+<p class="text-xs text-slate-500">Live contact channels and social broadcast links</p>
+</div>
+</div>
+<!-- WhatsApp Support -->
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1 flex items-center justify-between">
+<span>WhatsApp Support Link / Number</span>
+<span class="text-[10px] text-slate-400 font-mono">wa.me URL</span>
+</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-emerald-700">
+<i class="w-4 h-4" data-lucide="message-circle"></i>
+</div>
+<input class="w-full pl-9 pr-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setWhatsApp" placeholder="https://wa.me/919876543210" type="text"/>
+</div>
+<p class="text-[10px] text-slate-400 mt-1">Used for 1-click WhatsApp order inquiries on book pages.</p>
+</div>
+<!-- Instagram -->
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Instagram Profile URL</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-rose-600">
+<i class="w-4 h-4" data-lucide="instagram"></i>
+</div>
+<input class="w-full pl-9 pr-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setInstagram" placeholder="https://instagram.com/almaktabah.books" type="url"/>
+</div>
+</div>
+<!-- Facebook -->
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Facebook Page URL</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-blue-600">
+<i class="w-4 h-4" data-lucide="facebook"></i>
+</div>
+<input class="w-full pl-9 pr-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setFacebook" placeholder="https://facebook.com/almaktabah.books" type="url"/>
+</div>
+</div>
+<!-- Twitter / X -->
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Twitter / X URL</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-800">
+<i class="w-4 h-4" data-lucide="twitter"></i>
+</div>
+<input class="w-full pl-9 pr-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setTwitter" placeholder="https://x.com/almaktabah" type="url"/>
+</div>
+</div>
+<!-- Telegram / Channel -->
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Telegram Channel / Order Alert Webhook</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-sky-600">
+<i class="w-4 h-4" data-lucide="send"></i>
+</div>
+<input class="w-full pl-9 pr-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setTelegram" placeholder="https://t.me/almaktabah_updates" type="text"/>
+</div>
+</div>
+</div>
+<!-- SECTION 3: CONTACT & FOOTER METADATA -->
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 space-y-4">
+<div class="border-b border-slate-100 pb-3 flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-gold-50 text-gold-700 flex items-center justify-center">
+<i class="w-4 h-4" data-lucide="map-pin"></i>
+</div>
+<div>
+<h3 class="font-serif text-lg font-bold text-slate-900 leading-tight">Maktab Contact &amp; Storefront Details</h3>
+<p class="text-xs text-slate-500">Contact information displayed across storefront footer and headers</p>
+</div>
+</div>
+<!-- Store / Maktab Name -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Store / Maktab Title</label>
+<input class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setStoreName" placeholder="Al-Maktabah Islamic Bookhouse" type="text"/>
+</div>
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Currency Code / Symbol</label>
+<input class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setCurrency" placeholder="INR (₹)" type="text"/>
+</div>
+</div>
+<!-- Email & Phone -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Official Email Address</label>
+<input class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setEmail" placeholder="orders@almaktabah.com" type="email"/>
+</div>
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Support Contact Phone</label>
+<input class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setPhone" placeholder="+91 98765 43210" type="text"/>
+</div>
+</div>
+<!-- Physical Maktab Location -->
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Physical Address / Maktab Location</label>
+<textarea class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setAddress" placeholder="Shop No. 4, Islamic Scholarly Market, Near Grand Mosque, New Delhi - 110006" rows="2"></textarea>
+</div>
+<!-- Dispatch Working Hours -->
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Dispatch / Working Hours Note</label>
+<input class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setHours" placeholder="Mon – Sat: 10:00 AM – 8:30 PM IST (Friday closed for Jumu'ah)" type="text"/>
+</div>
+<!-- Announcement Banner Text (English & Urdu) -->
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Hero Announcement Banner Text</label>
+<input class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setAnnouncement" placeholder="Free pan-India courier dispatch on all classical Hadith sets above ₹2,000" type="text"/>
+</div>
+<!-- Urdu Welcome Banner Line -->
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Urdu Welcome Tagline (خطِ نستعلیق)</label>
+<input class="urdu-font w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" dir="rtl" id="setUrduBanner" placeholder="علمِ دین کی خدمت میں معتبر دینی و علمی کتب کا مرکز" type="text"/>
+</div>
+<!-- Copyright Line -->
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Copyright Footer Text</label>
+<input class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900 font-mono text-xs" id="setCopyright" placeholder="© 1446 AH / 2025 CE Al-Maktabah Publications. All rights reserved." type="text"/>
+</div>
+</div>
+</div>
+</form>
+<!-- SECTION 4: LIVE RAW JSON PREVIEW & REMOTE SHA STATUS INSPECTOR -->
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 space-y-3">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-lg bg-slate-800 text-gold-400 flex items-center justify-center">
+<i class="w-3.5 h-3.5" data-lucide="code"></i>
+</div>
+<div>
+<h4 class="font-serif text-base font-bold text-slate-900">Live settings.json Content Inspector</h4>
+<p class="text-[11px] text-slate-500 font-mono">Target: <span id="settingsPathIndicator">repos/{owner}/{repo}/contents/settings.json</span></p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-slate-400 font-mono">Current SHA:</span>
+<span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded text-xs font-mono font-bold" id="settingsShaBadge">none</span>
+<button class="px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded text-xs transition" onclick="updateSettingsPreview()" title="Refresh JSON preview from form" type="button">
+              Recompute Preview
+            </button>
+</div>
+</div>
+<div class="relative">
+<pre class="bg-slate-950 text-emerald-400 p-4 rounded-xl text-xs font-mono overflow-x-auto max-h-72 border border-slate-800 leading-relaxed" id="settingsJsonPreview">{
+  "status": "ready"
+}</pre>
+</div>
+</div>
+</div>
+</main>
+<!-- ================= EDIT / ADD BOOK MODAL ================= -->
+<div class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden flex items-start sm:items-center justify-center p-3 sm:p-4 overflow-y-auto" id="bookEditorModalBackdrop">
+<div class="bg-white rounded-2xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200 p-5 sm:p-7 relative flex flex-col my-auto">
+<!-- Close Button -->
+<button class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1 rounded-lg hover:bg-slate-100 transition" onclick="closeBookEditor()">
+<i class="w-5 h-5" data-lucide="x"></i>
+</button>
+<!-- Modal Header -->
+<div class="mb-5 pr-8">
+<span class="text-[11px] font-bold uppercase tracking-wider text-gold-600 block" id="modalModeBadge">Catalog Editor</span>
+<h3 class="font-serif text-2xl font-bold text-emerald-950" id="modalTitle">Add New Book Title</h3>
+<p class="text-xs text-slate-500 mt-0.5">Fill in scholarly metadata. Submitting will commit and update <code class="font-mono text-emerald-900 bg-emerald-50 px-1 py-0.5 rounded">products.json</code>.</p>
+</div>
+<!-- Editor Form -->
+<form class="space-y-4 text-xs sm:text-sm" id="bookForm" onsubmit="handleSaveBook(event)">
+<input id="editOriginalId" type="hidden"/>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Book ID -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
               Book ID (Unique Slug) *
             </label>
-            <input 
-              type="text" 
-              id="fieldId" 
-              required 
-              placeholder="e.g. book-9 or sahih-muslim" 
-              class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900"
-            />
-            <span class="text-[10px] text-slate-400">Alphanumeric unique identifier (e.g. book-1).</span>
-          </div>
-
-          <!-- Category Dropdown -->
-          <div>
-            <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="fieldId" placeholder="e.g. book-9 or sahih-muslim" required="" type="text"/>
+<span class="text-[10px] text-slate-400">Alphanumeric unique identifier (e.g. book-1).</span>
+</div>
+<!-- Category Dropdown -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
               Category (Discipline) *
             </label>
-            <select 
-              id="fieldCategory" 
-              required 
-              onchange="syncUrduCategory(this.value)"
-              class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900"
-            >
-              <option value="quran">Quran & Tafseer (قرآن و تفسیر)</option>
-              <option value="hadith">Hadith Studies (شروح حدیث)</option>
-              <option value="seerah">Seerah & History (سیرت و تاریخ)</option>
-              <option value="urdu">Urdu Adab (اردو کتب)</option>
-              <option value="fiqh">Fiqh & Finance (فقہ و معاشیات)</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- English Title -->
-        <div>
-          <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<select class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="fieldCategory" onchange="syncUrduCategory(this.value)" required="">
+<option value="quran">Quran &amp; Tafseer (قرآن و تفسیر)</option>
+<option value="hadith">Hadith Studies (شروح حدیث)</option>
+<option value="seerah">Seerah &amp; History (سیرت و تاریخ)</option>
+<option value="urdu">Urdu Adab (اردو کتب)</option>
+<option value="fiqh">Fiqh &amp; Finance (فقہ و معاشیات)</option>
+</select>
+</div>
+</div>
+<!-- English Title -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
             Book Title (English / Transliteration) *
           </label>
-          <input 
-            type="text" 
-            id="fieldTitle" 
-            required 
-            placeholder="e.g. Sahih Al-Bukhari (Arabic & English 9 Vols)" 
-            class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900"
-          />
-        </div>
-
-        <!-- Urdu Title -->
-        <div>
-          <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="fieldTitle" placeholder="e.g. Sahih Al-Bukhari (Arabic &amp; English 9 Vols)" required="" type="text"/>
+</div>
+<!-- Urdu Title -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
             Urdu Title (خطِ نستعلیق)
           </label>
-          <input 
-            type="text" 
-            id="fieldTitleUrdu" 
-            placeholder="e.g. صحیح البخاری — مکمل ۹ جلدیں" 
-            dir="rtl"
-            class="urdu-font w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900 text-sm"
-          />
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <!-- Author -->
-          <div>
-            <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<input class="urdu-font w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900 text-sm" dir="rtl" id="fieldTitleUrdu" placeholder="e.g. صحیح البخاری — مکمل ۹ جلدیں" type="text"/>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Author -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
               Author / Scholar *
             </label>
-            <input 
-              type="text" 
-              id="fieldAuthor" 
-              required 
-              placeholder="e.g. Imam Muhammad al-Bukhari" 
-              class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900"
-            />
-          </div>
-
-          <!-- Publisher -->
-          <div>
-            <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="fieldAuthor" placeholder="e.g. Imam Muhammad al-Bukhari" required="" type="text"/>
+</div>
+<!-- Publisher -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
               Publisher
             </label>
-            <input 
-              type="text" 
-              id="fieldPublisher" 
-              placeholder="e.g. Darussalam Publishers" 
-              class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900"
-            />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <!-- Price -->
-          <div>
-            <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="fieldPublisher" placeholder="e.g. Darussalam Publishers" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<!-- Price -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
               Selling Price (₹ INR) *
             </label>
-            <div class="relative">
-              <span class="absolute left-3 top-2 text-slate-400 font-semibold">₹</span>
-              <input 
-                type="number" 
-                id="fieldPrice" 
-                required 
-                min="0"
-                step="1"
-                placeholder="3450" 
-                class="w-full pl-7 pr-3 py-2 border border-slate-300 rounded-lg text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900"
-              />
-            </div>
-          </div>
-
-          <!-- Original Price -->
-          <div>
-            <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<div class="relative">
+<span class="absolute left-3 top-2 text-slate-400 font-semibold">₹</span>
+<input class="w-full pl-7 pr-3 py-2 border border-slate-300 rounded-lg text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="fieldPrice" min="0" placeholder="3450" required="" step="1" type="number"/>
+</div>
+</div>
+<!-- Original Price -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
               Original Price (Strikethrough)
             </label>
-            <div class="relative">
-              <span class="absolute left-3 top-2 text-slate-400 font-semibold">₹</span>
-              <input 
-                type="number" 
-                id="fieldOriginalPrice" 
-                min="0"
-                step="1"
-                placeholder="4200" 
-                class="w-full pl-7 pr-3 py-2 border border-slate-300 rounded-lg text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900"
-              />
-            </div>
-          </div>
-
-          <!-- Stock Qty -->
-          <div>
-            <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<div class="relative">
+<span class="absolute left-3 top-2 text-slate-400 font-semibold">₹</span>
+<input class="w-full pl-7 pr-3 py-2 border border-slate-300 rounded-lg text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="fieldOriginalPrice" min="0" placeholder="4200" step="1" type="number"/>
+</div>
+</div>
+<!-- Stock Qty -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
               Stock Quantity
             </label>
-            <input 
-              type="number" 
-              id="fieldStockQty" 
-              min="0"
-              value="15" 
-              class="w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900"
-            />
-          </div>
-        </div>
-
-        <!-- Cover Image URL -->
-        <div>
-          <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<input class="w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="fieldStockQty" min="0" type="number" value="15"/>
+</div>
+</div>
+<!-- Cover Image URL -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
             Cover Image URL *
           </label>
-          <div class="flex items-center gap-2">
-            <input 
-              type="url" 
-              id="fieldImage" 
-              required 
-              placeholder="https://images.unsplash.com/..." 
-              oninput="previewCoverImage(this.value)"
-              class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900"
-            />
-            <div id="imagePreviewContainer" class="w-10 h-10 rounded-lg border border-slate-300 bg-slate-100 flex-shrink-0 overflow-hidden flex items-center justify-center">
-              <i data-lucide="image" class="w-5 h-5 text-slate-400"></i>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <!-- Badge / Binding Style -->
-          <div>
-            <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<div class="flex items-center gap-2">
+<input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="fieldImage" oninput="previewCoverImage(this.value)" placeholder="https://images.unsplash.com/..." required="" type="url"/>
+<div class="w-10 h-10 rounded-lg border border-slate-300 bg-slate-100 flex-shrink-0 overflow-hidden flex items-center justify-center" id="imagePreviewContainer">
+<i class="w-5 h-5 text-slate-400" data-lucide="image"></i>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Badge / Binding Style -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
               Binding Style / Badge
             </label>
-            <input 
-              type="text" 
-              id="fieldBinding" 
-              placeholder="e.g. Premium Hardbound with Gold Foil" 
-              class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900"
-            />
-          </div>
-
-          <!-- Page Count -->
-          <div>
-            <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="fieldBinding" placeholder="e.g. Premium Hardbound with Gold Foil" type="text"/>
+</div>
+<!-- Page Count -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
               Page Count
             </label>
-            <input 
-              type="number" 
-              id="fieldPages" 
-              placeholder="e.g. 4480" 
-              class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900"
-            />
-          </div>
-        </div>
-
-        <!-- Description -->
-        <div>
-          <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="fieldPages" placeholder="e.g. 4480" type="number"/>
+</div>
+</div>
+<!-- Description -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
             Scholarly Description / Overview
           </label>
-          <textarea 
-            id="fieldDescription" 
-            rows="3" 
-            placeholder="Detailed synopsis of the commentary or translation..." 
-            class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900"
-          ></textarea>
-        </div>
-
-        <!-- Flags: In-Stock and Featured Checkboxes -->
-        <div class="pt-2 border-t border-slate-200 flex flex-wrap items-center gap-6">
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" id="fieldInStock" checked class="w-4 h-4 rounded text-emerald-900 focus:ring-emerald-900" />
-            <span class="font-medium text-slate-700">In Stock (Available for Purchase)</span>
-          </label>
-
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input type="checkbox" id="fieldFeatured" class="w-4 h-4 rounded text-emerald-900 focus:ring-emerald-900" />
-            <span class="font-medium text-slate-700 flex items-center gap-1">
-              <span>Mark as Featured Masterpiece</span>
-              <i data-lucide="star" class="w-3.5 h-3.5 text-gold-500 fill-gold-500"></i>
-            </span>
-          </label>
-        </div>
-
-        <!-- Modal Submit / Cancel Actions -->
-        <div class="pt-4 border-t border-slate-200 flex items-center justify-end gap-3">
-          <button 
-            type="button" 
-            onclick="closeBookEditor()" 
-            class="px-4 py-2 border border-slate-300 rounded-lg text-slate-700 hover:bg-slate-100 font-semibold transition"
-          >
+<textarea class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="fieldDescription" placeholder="Detailed synopsis of the commentary or translation..." rows="3"></textarea>
+</div>
+<!-- Flags: In-Stock and Featured Checkboxes -->
+<div class="pt-2 border-t border-slate-200 flex flex-wrap items-center gap-6">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="w-4 h-4 rounded text-emerald-900 focus:ring-emerald-900" id="fieldInStock" type="checkbox"/>
+<span class="font-medium text-slate-700">In Stock (Available for Purchase)</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 rounded text-emerald-900 focus:ring-emerald-900" id="fieldFeatured" type="checkbox"/>
+<span class="font-medium text-slate-700 flex items-center gap-1">
+<span>Mark as Featured Masterpiece</span>
+<i class="w-3.5 h-3.5 text-gold-500 fill-gold-500" data-lucide="star"></i>
+</span>
+</label>
+</div>
+<!-- Modal Submit / Cancel Actions -->
+<div class="pt-4 border-t border-slate-200 flex items-center justify-end gap-3">
+<button class="px-4 py-2 border border-slate-300 rounded-lg text-slate-700 hover:bg-slate-100 font-semibold transition" onclick="closeBookEditor()" type="button">
             Cancel
           </button>
-          <button 
-            type="submit" 
-            id="saveBookSubmitBtn"
-            class="flex items-center gap-2 bg-emerald-900 hover:bg-emerald-950 text-white font-semibold px-5 py-2 rounded-lg shadow-sm transition active:scale-95"
-          >
-            <i data-lucide="git-commit" class="w-4 h-4 text-gold-400"></i>
-            <span id="saveBookBtnText">Commit & Save to GitHub</span>
+<button class="flex items-center gap-2 bg-emerald-900 hover:bg-emerald-950 text-white font-semibold px-5 py-2 rounded-lg shadow-sm transition active:scale-95" id="saveBookSubmitBtn" type="submit">
+<i class="w-4 h-4 text-gold-400" data-lucide="git-commit"></i>
+<span id="saveBookBtnText">Commit &amp; Save to GitHub</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- ================= ADD / EDIT CATEGORY MODAL ================= -->
+<div class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4" id="categoryModalBackdrop">
+<div class="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 p-6 relative animate-in zoom-in-95">
+<button class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1 rounded-lg hover:bg-slate-100" onclick="closeCategoryModal()">
+<i class="w-5 h-5" data-lucide="x"></i>
+</button>
+<div class="mb-4">
+<span class="text-[11px] font-bold uppercase tracking-wider text-gold-600 block">Catalog Taxonomy</span>
+<h3 class="font-serif text-xl font-bold text-slate-900">Add New Category</h3>
+<p class="text-xs text-slate-500 mt-0.5">Will be saved to settings.json and available across filters.</p>
+</div>
+<form class="space-y-3.5 text-xs sm:text-sm" onsubmit="handleSaveNewCategory(event)">
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Category English Name *</label>
+<input class="w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-900" id="newCatName" oninput="autoGenerateCatSlug(this.value)" placeholder="e.g. Arabic Grammar &amp; Balaghah" required="" type="text"/>
+</div>
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Urdu Title (خطِ نستعلیق) *</label>
+<input class="urdu-font w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-900 text-sm" dir="rtl" id="newCatUrdu" placeholder="e.g. صرف و نحو و بلاغت" required="" type="text"/>
+</div>
+<div>
+<label class="block font-semibold text-slate-700 text-xs mb-1">Category Slug (URL safe) *</label>
+<input class="w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-800 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-emerald-900" id="newCatSlug" placeholder="e.g. balaghah" required="" type="text"/>
+<p class="text-[10px] text-slate-400 mt-1">Unique alphanumeric lowercase identifier.</p>
+</div>
+<div class="pt-3 border-t border-slate-200 flex items-center justify-end gap-2">
+<button class="px-4 py-2 border border-slate-300 rounded-lg text-slate-700 hover:bg-slate-100 text-xs font-semibold" onclick="closeCategoryModal()" type="button">
+            Cancel
           </button>
-        </div>
-
-      </form>
-
-    </div>
-  </div>
-
-  <!-- ================= GITHUB CREDENTIALS & SETTINGS MODAL ================= -->
-  <div id="credentialsModalBackdrop" class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-    <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 p-6 sm:p-7 relative my-auto animate-in zoom-in-95">
-      
-      <button onclick="closeCredentialsModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1 rounded-lg hover:bg-slate-100">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-
-      <div class="flex items-center gap-3 mb-5">
-        <div class="w-10 h-10 rounded-xl bg-slate-900 text-gold-400 flex items-center justify-center flex-shrink-0">
-          <i data-lucide="github" class="w-6 h-6"></i>
-        </div>
-        <div>
-          <h3 class="font-serif text-xl font-bold text-slate-900 leading-tight">GitHub API Settings</h3>
-          <p class="text-xs text-slate-500">Stored locally in your browser's <code class="font-mono text-emerald-900">localStorage</code>.</p>
-        </div>
-      </div>
-
-      <form id="credentialsForm" onsubmit="handleSaveCredentials(event)" class="space-y-4 text-xs sm:text-sm">
-        
-        <!-- GitHub PAT Token -->
-        <div>
-          <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<button class="px-4 py-2 bg-emerald-900 hover:bg-emerald-950 text-white rounded-lg text-xs font-semibold shadow" type="submit">
+            Add to Taxonomy
+          </button>
+</div>
+</form>
+</div>
+</div>
+<!-- ================= GITHUB CREDENTIALS & SETTINGS MODAL ================= -->
+<div class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto" id="credentialsModalBackdrop">
+<div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 p-6 sm:p-7 relative my-auto animate-in zoom-in-95">
+<button class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1 rounded-lg hover:bg-slate-100" onclick="closeCredentialsModal()">
+<i class="w-5 h-5" data-lucide="x"></i>
+</button>
+<div class="flex items-center gap-3 mb-5">
+<div class="w-10 h-10 rounded-xl bg-slate-900 text-gold-400 flex items-center justify-center flex-shrink-0">
+<i class="w-6 h-6" data-lucide="github"></i>
+</div>
+<div>
+<h3 class="font-serif text-xl font-bold text-slate-900 leading-tight">GitHub API Settings</h3>
+<p class="text-xs text-slate-500">Stored locally in your browser's <code class="font-mono text-emerald-900">localStorage</code>.</p>
+</div>
+</div>
+<form class="space-y-4 text-xs sm:text-sm" id="credentialsForm" onsubmit="handleSaveCredentials(event)">
+<!-- GitHub PAT Token -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
             GitHub Personal Access Token (classic or fine-grained) *
           </label>
-          <div class="relative">
-            <input 
-              type="password" 
-              id="cfgPat" 
-              required 
-              placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" 
-              class="w-full border border-slate-300 rounded-lg pl-3 pr-10 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900 font-mono text-xs"
-            />
-            <button 
-              type="button" 
-              onclick="togglePasswordVisibility('cfgPat')" 
-              class="absolute right-2.5 top-2 text-slate-400 hover:text-slate-600"
-              title="Toggle visibility"
-            >
-              <i data-lucide="eye" id="cfgPatEye" class="w-4 h-4"></i>
-            </button>
-          </div>
-          <p class="text-[11px] text-slate-500 mt-1">Requires the <code class="bg-slate-100 px-1 py-0.5 rounded font-mono text-slate-800">repo</code> (or contents read/write) scope to update files.</p>
-        </div>
-
-        <!-- Repository Name -->
-        <div>
-          <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<div class="relative">
+<input class="w-full border border-slate-300 rounded-lg pl-3 pr-10 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900 font-mono text-xs" id="cfgPat" placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" required="" type="password"/>
+<button class="absolute right-2.5 top-2 text-slate-400 hover:text-slate-600" onclick="togglePasswordVisibility('cfgPat')" title="Toggle visibility" type="button">
+<i class="w-4 h-4" data-lucide="eye" id="cfgPatEye"></i>
+</button>
+</div>
+<p class="text-[11px] text-slate-500 mt-1">Requires the <code class="bg-slate-100 px-1 py-0.5 rounded font-mono text-slate-800">repo</code> (or contents read/write) scope to update files.</p>
+</div>
+<!-- Repository Name -->
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
             Repository Owner / Name *
           </label>
-          <input 
-            type="text" 
-            id="cfgRepo" 
-            required 
-            placeholder="e.g. tousifraza9/maktabah" 
-            class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900 font-mono text-xs"
-          />
-          <p class="text-[10px] text-slate-400 mt-1">Format: <code>username/repository</code></p>
-        </div>
-
-        <!-- Branch & Path -->
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+<input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900 font-mono text-xs" id="cfgRepo" placeholder="e.g. tousifraza9/maktabah" required="" type="text"/>
+<p class="text-[10px] text-slate-400 mt-1">Format: <code>username/repository</code></p>
+</div>
+<!-- Branch & Path -->
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
               Branch Name *
             </label>
-            <input 
-              type="text" 
-              id="cfgBranch" 
-              required 
-              value="main" 
-              placeholder="main" 
-              class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900 font-mono text-xs"
-            />
-          </div>
-          <div>
-            <label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
-              File Path
+<input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900 font-mono text-xs" id="cfgBranch" placeholder="main" required="" type="text" value="main"/>
+</div>
+<div>
+<label class="block font-semibold text-slate-700 uppercase tracking-wider text-[11px] mb-1">
+              Products File Path
             </label>
-            <input 
-              type="text" 
-              id="cfgPath" 
-              required 
-              value="products.json" 
-              class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900 font-mono text-xs"
-            />
-          </div>
-        </div>
-
-        <!-- Privacy & Security Notice -->
-        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] text-slate-600 flex items-start gap-2">
-          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-800 flex-shrink-0 mt-0.5"></i>
-          <span>Credentials are kept exclusively on this machine inside your browser's private storage. They are sent directly to <code>api.github.com</code> via secure HTTPS.</span>
-        </div>
-
-        <div class="pt-3 border-t border-slate-200 flex items-center justify-between gap-3">
-          <button 
-            type="button" 
-            onclick="clearSavedCredentials()" 
-            class="text-xs text-rose-600 hover:text-rose-800 font-medium hover:underline"
-          >
+<input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900 font-mono text-xs" id="cfgPath" required="" type="text" value="products.json"/>
+</div>
+</div>
+<!-- Privacy & Security Notice -->
+<div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] text-slate-600 flex items-start gap-2">
+<i class="w-4 h-4 text-emerald-800 flex-shrink-0 mt-0.5" data-lucide="shield-check"></i>
+<span>Credentials are kept exclusively on this machine inside your browser's private storage. They are sent directly to <code>api.github.com</code> via secure HTTPS.</span>
+</div>
+<div class="pt-3 border-t border-slate-200 flex items-center justify-between gap-3">
+<button class="text-xs text-rose-600 hover:text-rose-800 font-medium hover:underline" onclick="clearSavedCredentials()" type="button">
             Clear Credentials
           </button>
-
-          <div class="flex items-center gap-2">
-            <button 
-              type="button" 
-              onclick="closeCredentialsModal()" 
-              class="px-4 py-2 border border-slate-300 rounded-lg text-slate-700 hover:bg-slate-100 font-semibold transition"
-            >
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 border border-slate-300 rounded-lg text-slate-700 hover:bg-slate-100 font-semibold transition" onclick="closeCredentialsModal()" type="button">
               Cancel
             </button>
-            <button 
-              type="submit" 
-              class="bg-emerald-900 hover:bg-emerald-950 text-white font-semibold px-4 py-2 rounded-lg shadow-sm transition active:scale-95"
-            >
-              Save & Test Connection
+<button class="bg-emerald-900 hover:bg-emerald-950 text-white font-semibold px-4 py-2 rounded-lg shadow-sm transition active:scale-95" type="submit">
+              Save &amp; Test Connection
             </button>
-          </div>
-        </div>
-
-      </form>
-
-    </div>
-  </div>
-
-  <!-- ================= DELETE CONFIRMATION MODAL ================= -->
-  <div id="deleteModalBackdrop" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl border border-slate-200 animate-in zoom-in-95">
-      <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-600 mx-auto flex items-center justify-center">
-        <i data-lucide="trash-2" class="w-6 h-6"></i>
-      </div>
-      <div>
-        <h4 class="font-serif text-lg font-bold text-slate-900">Delete Book Title?</h4>
-        <p id="deleteBookTitleLabel" class="text-xs text-slate-500 mt-1">Are you sure you want to remove this book from catalog? This will commit a deletion to GitHub.</p>
-      </div>
-      <div class="flex items-center justify-center gap-3 pt-2">
-        <button onclick="closeDeleteModal()" class="flex-1 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition">
+</div>
+</div>
+</form>
+</div>
+</div>
+<!-- ================= DELETE CONFIRMATION MODAL ================= -->
+<div class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4" id="deleteModalBackdrop">
+<div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl border border-slate-200 animate-in zoom-in-95">
+<div class="w-12 h-12 rounded-full bg-rose-100 text-rose-600 mx-auto flex items-center justify-center">
+<i class="w-6 h-6" data-lucide="trash-2"></i>
+</div>
+<div>
+<h4 class="font-serif text-lg font-bold text-slate-900">Delete Book Title?</h4>
+<p class="text-xs text-slate-500 mt-1" id="deleteBookTitleLabel">Are you sure you want to remove this book from catalog? This will commit a deletion to GitHub.</p>
+</div>
+<div class="flex items-center justify-center gap-3 pt-2">
+<button class="flex-1 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 transition" onclick="closeDeleteModal()">
           Cancel
         </button>
-        <button id="confirmDeleteBtn" onclick="executeDeleteBook()" class="flex-1 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-xs font-semibold shadow transition">
+<button class="flex-1 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-xs font-semibold shadow transition" id="confirmDeleteBtn" onclick="executeDeleteBook()">
           Confirm Delete
         </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- TOAST NOTIFICATION CONTAINER -->
-  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-md pointer-events-none"></div>
-
-  <!-- ================= CLIENT JAVASCRIPT LOGIC ================= -->
-  <script>
+</div>
+</div>
+</div>
+<!-- TOAST NOTIFICATION CONTAINER -->
+<div class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-md pointer-events-none" id="toastContainer"></div>
+<!-- ================= CLIENT JAVASCRIPT LOGIC ================= -->
+<script>
     // Global Storage Keys
     const STORAGE_KEY_CONFIG = 'maktabah_admin_github_cfg';
 
-    // Application State
+    // Application State for Products
+    let currentAdminTab = 'products'; // 'products' | 'settings'
+
     let githubConfig = {
       pat: '',
       repo: '',
       branch: 'main',
-      path: 'products.json'
+      path: 'products.json',
+      settingsPath: 'settings.json'
     };
 
     let products = [];
@@ -714,13 +784,85 @@
     let activeCategoryFilter = 'all';
 
     // Categories mapping helper
-    const CATEGORY_MAP = {
+    let CATEGORY_MAP = {
       quran: { name: 'Quran & Tafseer', urdu: 'قرآن و تفسیر' },
       hadith: { name: 'Hadith Studies', urdu: 'شروح حدیث' },
       seerah: { name: 'Seerah & History', urdu: 'سیرت و تاریخ' },
       urdu: { name: 'Urdu Adab', urdu: 'اردو کتب' },
       fiqh: { name: 'Fiqh & Finance', urdu: 'فقہ و معاشیات' }
     };
+
+    // Application State for Settings
+    let currentSettingsSha = null;
+    let siteSettings = {
+      site_name: "Al-Maktabah Classical Islamic Bookstore",
+      currency: "INR",
+      currency_symbol: "₹",
+      phone: "+91 98765 43210",
+      email: "orders@almaktabah.com",
+      address: "Shop No. 4, Islamic Scholarly Market, Near Grand Mosque, New Delhi - 110006",
+      hours: "Mon – Sat: 10:00 AM – 8:30 PM IST (Friday closed for Jumu'ah)",
+      announcement_bar: "Free courier dispatch on all classical Hadith & Tafseer sets above ₹2,000 across India",
+      urdu_welcome: "علمِ دین کی خدمت میں معتبر دینی و علمی کتب کا مرکز",
+      copyright: "© 1446 AH / 2025 CE Al-Maktabah Publications. All rights reserved.",
+      social: {
+        whatsapp: "https://wa.me/919876543210",
+        instagram: "https://instagram.com/almaktabah.books",
+        facebook: "https://facebook.com/almaktabah.books",
+        twitter: "https://x.com/almaktabah",
+        telegram: "https://t.me/almaktabah_updates"
+      },
+      categories: [
+        { slug: "quran", name: "Quran & Tafseer", urdu: "قرآن و تفسیر" },
+        { slug: "hadith", name: "Hadith Studies", urdu: "شروح حدیث" },
+        { slug: "seerah", name: "Seerah & History", urdu: "سیرت و تاریخ" },
+        { slug: "urdu", name: "Urdu Adab", urdu: "اردو کتب" },
+        { slug: "fiqh", name: "Fiqh & Finance", urdu: "فقہ و معاشیات" }
+      ]
+    };
+
+    // ================= TAB SWITCHER LOGIC =================
+    function switchAdminTab(tabName) {
+      currentAdminTab = tabName;
+      const tabProducts = document.getElementById('tabContainerProducts');
+      const tabSettings = document.getElementById('tabContainerSettings');
+      const btnProducts = document.getElementById('tabBtnProducts');
+      const btnSettings = document.getElementById('tabBtnSettings');
+      const fileIndicator = document.getElementById('activeTabFileIndicator');
+
+      if (tabName === 'products') {
+        tabProducts?.classList.remove('hidden');
+        tabSettings?.classList.add('hidden');
+
+        btnProducts.className = "flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-950 text-white shadow-sm transition";
+        btnSettings.className = "flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:text-emerald-950 hover:bg-slate-100 transition";
+
+        if (fileIndicator) fileIndicator.textContent = `Editing: ${githubConfig.path || 'products.json'}`;
+      } else {
+        tabProducts?.classList.add('hidden');
+        tabSettings?.classList.remove('hidden');
+
+        btnSettings.className = "flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-950 text-white shadow-sm transition";
+        btnProducts.className = "flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:text-emerald-950 hover:bg-slate-100 transition";
+
+        if (fileIndicator) fileIndicator.textContent = `Editing: settings.json`;
+
+        // Update settings inspector preview when switching
+        updateSettingsPreview();
+      }
+
+      if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+      }
+    }
+
+    function handleRefreshAction() {
+      if (currentAdminTab === 'settings') {
+        fetchSettingsData(true);
+      } else {
+        loadProductsFromGitHub(true);
+      }
+    }
 
     // ================= INITIALIZATION =================
     document.addEventListener("DOMContentLoaded", () => {
@@ -735,16 +877,19 @@
           closeBookEditor();
           closeCredentialsModal();
           closeDeleteModal();
+          closeCategoryModal();
         }
       });
 
       // Try initial fetch if configured
       if (githubConfig.pat && githubConfig.repo) {
         loadProductsFromGitHub();
+        fetchSettingsData(false);
       } else {
         updateConnectionState('unconfigured', 'Configure PAT');
         // Render fallback preview if present
         loadProductsFallback();
+        populateSettingsForm();
       }
     });
 
@@ -760,11 +905,21 @@
         console.warn("Failed reading saved config from localStorage:", err);
       }
 
+      // Ensure settings path exists
+      if (!githubConfig.settingsPath) {
+        githubConfig.settingsPath = 'settings.json';
+      }
+
       // Populate Settings inputs
       document.getElementById('cfgPat').value = githubConfig.pat || '';
       document.getElementById('cfgRepo').value = githubConfig.repo || '';
       document.getElementById('cfgBranch').value = githubConfig.branch || 'main';
       document.getElementById('cfgPath').value = githubConfig.path || 'products.json';
+
+      const settingsPathIndicator = document.getElementById('settingsPathIndicator');
+      if (settingsPathIndicator && githubConfig.repo) {
+        settingsPathIndicator.textContent = `${githubConfig.repo}/contents/settings.json?ref=${githubConfig.branch}`;
+      }
 
       // Toggle top notice banner
       const banner = document.getElementById('unconfiguredBanner');
@@ -783,6 +938,7 @@
       let repo = document.getElementById('cfgRepo').value.trim();
       const branch = document.getElementById('cfgBranch').value.trim() || 'main';
       const path = document.getElementById('cfgPath').value.trim() || 'products.json';
+      const settingsPath = 'settings.json';
 
       // Clean repo input (strips full URLs if user pasted full github.com/owner/repo)
       repo = repo.replace(/^https?:\/\/github\.com\//, '').replace(/\/$/, '');
@@ -792,21 +948,22 @@
         return;
       }
 
-      githubConfig = { pat, repo, branch, path };
+      githubConfig = { pat, repo, branch, path, settingsPath };
       localStorage.setItem(STORAGE_KEY_CONFIG, JSON.stringify(githubConfig));
       
       closeCredentialsModal();
       document.getElementById('unconfiguredBanner')?.classList.add('hidden');
       showToast("Credentials saved to localStorage", "success");
 
-      // Immediately test credentials by loading products
+      // Immediately test credentials by loading products & settings
       loadProductsFromGitHub(true);
+      fetchSettingsData(false);
     }
 
     function clearSavedCredentials() {
       if (!confirm("Are you sure you want to remove saved GitHub credentials from this browser?")) return;
       localStorage.removeItem(STORAGE_KEY_CONFIG);
-      githubConfig = { pat: '', repo: '', branch: 'main', path: 'products.json' };
+      githubConfig = { pat: '', repo: '', branch: 'main', path: 'products.json', settingsPath: 'settings.json' };
       loadSavedConfig();
       closeCredentialsModal();
       updateConnectionState('unconfigured', 'Not Configured');
@@ -873,7 +1030,6 @@
     }
 
     // ================= BASE64 UTF-8 HELPERS =================
-    // Handles multi-byte characters (Urdu Nastaleeq, emojis, Arabic diacritics) correctly
     function utf8ToBase64(str) {
       return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
         return String.fromCharCode('0x' + p1);
@@ -886,9 +1042,7 @@
       }).join(''));
     }
 
-    // ================= GITHUB REST API OPERATIONS =================
-
-    // 1. GET products.json from GitHub
+    // ================= GITHUB REST API: PRODUCTS =================
     async function loadProductsFromGitHub(showToastNotice = false) {
       if (!githubConfig.pat || !githubConfig.repo) {
         showToast("Please enter your GitHub PAT & Repository in API Settings", "warning");
@@ -923,7 +1077,6 @@
         const data = await response.json();
         currentFileSha = data.sha;
 
-        // Decode Base64 contents to UTF-8 JSON
         const rawJson = base64ToUtf8(data.content);
         const parsedProducts = JSON.parse(rawJson);
 
@@ -948,7 +1101,6 @@
       }
     }
 
-    // 2. PUT updated products.json to GitHub
     async function commitCatalogToGitHub(commitMessage = "Update products.json via Al-Maktabah Admin") {
       if (!githubConfig.pat || !githubConfig.repo) {
         showToast("GitHub credentials not configured", "error");
@@ -958,7 +1110,6 @@
       toggleLoading(true, "Encoding & committing updates to GitHub...");
 
       try {
-        // Step A: If SHA is missing, attempt quick fetch to acquire latest SHA
         if (!currentFileSha) {
           const fetchCheck = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/${githubConfig.path}?ref=${encodeURIComponent(githubConfig.branch)}`, {
             headers: {
@@ -972,7 +1123,6 @@
           }
         }
 
-        // Step B: Encode JSON array to Base64
         const jsonString = JSON.stringify(products, null, 2);
         const base64Content = utf8ToBase64(jsonString);
 
@@ -1005,7 +1155,6 @@
         }
 
         const resData = await response.json();
-        // Update stored SHA to the newly generated commit blob SHA
         currentFileSha = resData.content?.sha || null;
 
         updateMetrics();
@@ -1021,7 +1170,6 @@
       }
     }
 
-    // Fallback products preview when user opens page before entering credentials
     function loadProductsFallback() {
       products = [
         {
@@ -1068,7 +1216,10 @@
       const tbody = document.getElementById('productsTableBody');
       const emptyState = document.getElementById('emptyCatalogState');
       const countLabel = document.getElementById('footerCountLabel');
+      const badge = document.getElementById('tabProductCountBadge');
       if (!tbody) return;
+
+      if (badge) badge.textContent = products.length;
 
       const filtered = products.filter(item => {
         const matchCategory = (activeCategoryFilter === 'all') || (item.category_slug === activeCategoryFilter);
@@ -1094,15 +1245,11 @@
 
       tbody.innerHTML = filtered.map(book => `
         <tr class="hover:bg-slate-50/80 transition-colors group">
-          
-          <!-- Cover Thumbnail -->
           <td class="py-3 px-4 text-center">
             <div class="w-10 h-14 rounded bg-slate-100 border border-slate-200 overflow-hidden mx-auto shadow-xs">
               <img src="${book.image}" alt="${book.title}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x140?text=No+Cover'" />
             </div>
           </td>
-
-          <!-- Title & Author & Slug -->
           <td class="py-3 px-4 max-w-xs sm:max-w-md">
             <div class="space-y-0.5">
               <div class="flex items-center gap-1.5 flex-wrap">
@@ -1120,21 +1267,15 @@
               </div>
             </div>
           </td>
-
-          <!-- Category -->
           <td class="py-3 px-4 whitespace-nowrap">
             <span class="bg-emerald-50 text-emerald-900 text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-200/60 inline-flex items-center gap-1">
               ${book.category}
             </span>
           </td>
-
-          <!-- Price -->
           <td class="py-3 px-4 whitespace-nowrap">
             <div class="font-bold text-slate-900 font-serif text-sm">₹${(book.price || 0).toLocaleString('en-IN')}</div>
             ${book.original_price ? `<div class="text-[10px] text-slate-400 line-through">₹${(book.original_price).toLocaleString('en-IN')}</div>` : ''}
           </td>
-
-          <!-- Stock -->
           <td class="py-3 px-4 text-center whitespace-nowrap">
             ${book.in_stock ? `
               <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-100/70 px-2 py-0.5 rounded-full">
@@ -1148,8 +1289,6 @@
               </span>
             `}
           </td>
-
-          <!-- Featured Masterpiece -->
           <td class="py-3 px-4 text-center whitespace-nowrap">
             ${book.featured ? `
               <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-100 text-amber-600" title="Featured Hero Title">
@@ -1159,8 +1298,6 @@
               <span class="text-slate-300 text-xs">—</span>
             `}
           </td>
-
-          <!-- Actions -->
           <td class="py-3 px-4 text-right whitespace-nowrap">
             <div class="inline-flex items-center gap-1">
               <button 
@@ -1179,7 +1316,6 @@
               </button>
             </div>
           </td>
-
         </tr>
       `).join('');
 
@@ -1240,7 +1376,7 @@
         document.getElementById('editOriginalId').value = book.id;
 
         document.getElementById('fieldId').value = book.id;
-        document.getElementById('fieldId').readOnly = true; // Protect unique primary key
+        document.getElementById('fieldId').readOnly = true;
         document.getElementById('fieldTitle').value = book.title || '';
         document.getElementById('fieldTitleUrdu').value = book.title_urdu || '';
         document.getElementById('fieldAuthor').value = book.author || '';
@@ -1312,13 +1448,11 @@
 
       const categoryMeta = CATEGORY_MAP[categorySlug] || { name: 'Hadith Studies', urdu: 'شروح حدیث' };
 
-      // Duplicate ID validation for new additions
       if (!originalId && products.some(b => b.id.toLowerCase() === id.toLowerCase())) {
         showToast(`Book ID '${id}' already exists in catalogue. Please choose a unique ID.`, "error");
         return;
       }
 
-      // If marked featured, optionally unmark others if single featured book is preferred
       if (featured) {
         products.forEach(b => { if (b.id !== (originalId || id)) b.featured = false; });
       }
@@ -1346,7 +1480,6 @@
         featured: featured
       };
 
-      // Clean up undefined keys
       Object.keys(bookRecord).forEach(key => bookRecord[key] === undefined && delete bookRecord[key]);
 
       let commitMsg = "";
@@ -1359,11 +1492,10 @@
         }
         commitMsg = `admin: update title '${title}' (${id})`;
       } else {
-        products.unshift(bookRecord); // Add new book at top of catalog
+        products.unshift(bookRecord);
         commitMsg = `admin: add title '${title}' (${id})`;
       }
 
-      // Execute Commit to GitHub REST API
       const success = await commitCatalogToGitHub(commitMsg);
       if (success) {
         renderProductsTable();
@@ -1371,7 +1503,6 @@
       }
     }
 
-    // ================= DELETE BOOK HANDLER =================
     function promptDeleteBook(bookId) {
       const book = products.find(b => b.id === bookId);
       if (!book) return;
@@ -1399,6 +1530,325 @@
       if (success) {
         renderProductsTable();
         showToast(`Volume "${deletedTitle}" removed from catalog`, "info");
+      }
+    }
+
+    // ================= NEW MODULE: SETTINGS.JSON HEADLESS CMS =================
+
+    async function fetchSettingsData(showToastNotice = false) {
+      if (!githubConfig.pat || !githubConfig.repo) {
+        populateSettingsForm();
+        return;
+      }
+
+      toggleLoading(true, "Fetching settings.json from GitHub repository...");
+
+      const apiUrl = `https://api.github.com/repos/${githubConfig.repo}/contents/settings.json?ref=${encodeURIComponent(githubConfig.branch)}`;
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${githubConfig.pat}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'X-GitHub-Api-Version': '2022-11-28'
+          }
+        });
+
+        if (response.status === 404) {
+          console.warn("settings.json not found on GitHub repo. Will write on first save.");
+          currentSettingsSha = null;
+          populateSettingsForm();
+          if (showToastNotice) {
+            showToast("settings.json doesn't exist yet on remote repo. Initial default loaded.", "info");
+          }
+          return;
+        }
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.message || `Failed to fetch settings (HTTP ${response.status})`);
+        }
+
+        const data = await response.json();
+        currentSettingsSha = data.sha;
+        const rawJson = base64ToUtf8(data.content);
+        const parsed = JSON.parse(rawJson);
+
+        siteSettings = {
+          ...siteSettings,
+          ...parsed,
+          social: { ...siteSettings.social, ...(parsed.social || {}) },
+          categories: Array.isArray(parsed.categories) ? parsed.categories : siteSettings.categories
+        };
+
+        syncCategoryMapFromSettings();
+        populateSettingsForm();
+
+        if (showToastNotice) {
+          showToast("Global site settings loaded successfully from GitHub", "success");
+        }
+      } catch (err) {
+        console.error("fetchSettingsData error:", err);
+        showToast("Settings sync warning: " + err.message, "warning");
+        populateSettingsForm();
+      } finally {
+        toggleLoading(false);
+      }
+    }
+
+    function populateSettingsForm() {
+      // Social fields
+      document.getElementById('setWhatsApp').value = siteSettings.social?.whatsapp || '';
+      document.getElementById('setInstagram').value = siteSettings.social?.instagram || '';
+      document.getElementById('setFacebook').value = siteSettings.social?.facebook || '';
+      document.getElementById('setTwitter').value = siteSettings.social?.twitter || '';
+      document.getElementById('setTelegram').value = siteSettings.social?.telegram || '';
+
+      // Contact fields
+      document.getElementById('setStoreName').value = siteSettings.site_name || '';
+      document.getElementById('setCurrency').value = `${siteSettings.currency || 'INR'} (${siteSettings.currency_symbol || '₹'})`;
+      document.getElementById('setEmail').value = siteSettings.email || '';
+      document.getElementById('setPhone').value = siteSettings.phone || '';
+      document.getElementById('setAddress').value = siteSettings.address || '';
+      document.getElementById('setHours').value = siteSettings.hours || '';
+      document.getElementById('setAnnouncement').value = siteSettings.announcement_bar || '';
+      document.getElementById('setUrduBanner').value = siteSettings.urdu_welcome || '';
+      document.getElementById('setCopyright').value = siteSettings.copyright || '';
+
+      // Category Table Render
+      renderSettingsCategories();
+
+      // Inspector update
+      updateSettingsPreview();
+    }
+
+    function syncCategoryMapFromSettings() {
+      if (Array.isArray(siteSettings.categories)) {
+        CATEGORY_MAP = {};
+        siteSettings.categories.forEach(c => {
+          CATEGORY_MAP[c.slug] = { name: c.name, urdu: c.urdu };
+        });
+
+        // Also refresh the filter dropdown and book modal category select
+        refreshCategoryDropdowns();
+      }
+    }
+
+    function refreshCategoryDropdowns() {
+      const adminFilter = document.getElementById('adminCategoryFilter');
+      const bookSelect = document.getElementById('fieldCategory');
+
+      if (adminFilter) {
+        const curVal = adminFilter.value;
+        adminFilter.innerHTML = `<option value="all">All Categories</option>` +
+          siteSettings.categories.map(c => `<option value="${c.slug}">${c.name}</option>`).join('');
+        adminFilter.value = curVal || 'all';
+      }
+
+      if (bookSelect) {
+        const curVal = bookSelect.value;
+        bookSelect.innerHTML = siteSettings.categories.map(c => `<option value="${c.slug}">${c.name} (${c.urdu})</option>`).join('');
+        if (curVal) bookSelect.value = curVal;
+      }
+    }
+
+    function renderSettingsCategories() {
+      const tbody = document.getElementById('settingsCategoriesTbody');
+      if (!tbody) return;
+
+      if (!siteSettings.categories || siteSettings.categories.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="py-6 text-center text-xs text-slate-400">No categories defined. Click Add Category to create one.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = siteSettings.categories.map((cat, idx) => `
+        <tr class="hover:bg-slate-50/70 transition">
+          <td class="py-3 px-5 text-center font-mono text-xs text-slate-400">${idx + 1}</td>
+          <td class="py-3 px-5 font-semibold text-slate-900">${cat.name}</td>
+          <td class="py-3 px-5 urdu-font text-gold-600 text-sm">${cat.urdu || '—'}</td>
+          <td class="py-3 px-5 font-mono text-xs text-slate-500">
+            <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">${cat.slug}</span>
+          </td>
+          <td class="py-3 px-5 text-right">
+            <button 
+              type="button" 
+              onclick="removeSettingCategory(${idx})" 
+              class="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition" 
+              title="Delete Category"
+            >
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </td>
+        </tr>
+      `).join('');
+
+      if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+      }
+    }
+
+    // Dynamic Category Add / Remove
+    function openAddCategoryModal() {
+      document.getElementById('newCatName').value = '';
+      document.getElementById('newCatUrdu').value = '';
+      document.getElementById('newCatSlug').value = '';
+      document.getElementById('categoryModalBackdrop')?.classList.remove('hidden');
+    }
+
+    function closeCategoryModal() {
+      document.getElementById('categoryModalBackdrop')?.classList.add('hidden');
+    }
+
+    function autoGenerateCatSlug(val) {
+      const slugInput = document.getElementById('newCatSlug');
+      if (!slugInput) return;
+      slugInput.value = val.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+    }
+
+    function handleSaveNewCategory(e) {
+      e.preventDefault();
+      const name = document.getElementById('newCatName').value.trim();
+      const urdu = document.getElementById('newCatUrdu').value.trim();
+      let slug = document.getElementById('newCatSlug').value.trim().toLowerCase();
+
+      if (!name || !slug) {
+        showToast("Category name and slug are required", "warning");
+        return;
+      }
+
+      if (siteSettings.categories.some(c => c.slug === slug)) {
+        showToast(`Category slug '${slug}' already exists. Please choose a unique slug.`, "error");
+        return;
+      }
+
+      siteSettings.categories.push({ name, urdu, slug });
+      syncCategoryMapFromSettings();
+      renderSettingsCategories();
+      updateSettingsPreview();
+      closeCategoryModal();
+      showToast(`Category "${name}" added to list. Click "Save & Commit Settings" to push to GitHub.`, "info");
+    }
+
+    function removeSettingCategory(index) {
+      if (index < 0 || index >= siteSettings.categories.length) return;
+      const target = siteSettings.categories[index];
+      if (!confirm(`Are you sure you want to remove the category "${target.name}"?`)) return;
+
+      siteSettings.categories.splice(index, 1);
+      syncCategoryMapFromSettings();
+      renderSettingsCategories();
+      updateSettingsPreview();
+      showToast(`Category "${target.name}" removed from local draft`, "info");
+    }
+
+    // Collect settings from DOM into siteSettings object
+    function gatherSettingsFromForm() {
+      siteSettings.site_name = document.getElementById('setStoreName').value.trim();
+      siteSettings.email = document.getElementById('setEmail').value.trim();
+      siteSettings.phone = document.getElementById('setPhone').value.trim();
+      siteSettings.address = document.getElementById('setAddress').value.trim();
+      siteSettings.hours = document.getElementById('setHours').value.trim();
+      siteSettings.announcement_bar = document.getElementById('setAnnouncement').value.trim();
+      siteSettings.urdu_welcome = document.getElementById('setUrduBanner').value.trim();
+      siteSettings.copyright = document.getElementById('setCopyright').value.trim();
+
+      siteSettings.social = {
+        whatsapp: document.getElementById('setWhatsApp').value.trim(),
+        instagram: document.getElementById('setInstagram').value.trim(),
+        facebook: document.getElementById('setFacebook').value.trim(),
+        twitter: document.getElementById('setTwitter').value.trim(),
+        telegram: document.getElementById('setTelegram').value.trim()
+      };
+
+      return siteSettings;
+    }
+
+    function updateSettingsPreview() {
+      gatherSettingsFromForm();
+      const previewEl = document.getElementById('settingsJsonPreview');
+      const shaBadge = document.getElementById('settingsShaBadge');
+      if (previewEl) {
+        previewEl.textContent = JSON.stringify(siteSettings, null, 2);
+      }
+      if (shaBadge) {
+        shaBadge.textContent = currentSettingsSha ? currentSettingsSha.substring(0, 7) : 'new/none';
+        shaBadge.title = currentSettingsSha || 'No SHA committed yet';
+      }
+    }
+
+    // Save and Commit settings.json to GitHub
+    async function saveSettingsData() {
+      if (!githubConfig.pat || !githubConfig.repo) {
+        showToast("GitHub PAT & Repository must be configured in API Settings first", "error");
+        openCredentialsModal();
+        return;
+      }
+
+      gatherSettingsFromForm();
+
+      const saveBtnText = document.getElementById('saveSettingsBtnText');
+      if (saveBtnText) saveBtnText.textContent = "Committing to Git...";
+      toggleLoading(true, "Encoding and committing settings.json to GitHub...");
+
+      try {
+        // Step 1: Ensure we have the latest SHA if not known
+        if (!currentSettingsSha) {
+          const fetchCheck = await fetch(`https://api.github.com/repos/${githubConfig.repo}/contents/settings.json?ref=${encodeURIComponent(githubConfig.branch)}`, {
+            headers: {
+              'Authorization': `Bearer ${githubConfig.pat}`,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          });
+          if (fetchCheck.ok) {
+            const checkData = await fetchCheck.json();
+            currentSettingsSha = checkData.sha;
+          }
+        }
+
+        // Step 2: Encode to UTF-8 base64
+        const jsonContent = JSON.stringify(siteSettings, null, 2);
+        const base64Content = utf8ToBase64(jsonContent);
+
+        const putUrl = `https://api.github.com/repos/${githubConfig.repo}/contents/settings.json`;
+        const payload = {
+          message: "Update site settings via Al-Maktabah Admin CMS",
+          content: base64Content,
+          branch: githubConfig.branch
+        };
+
+        if (currentSettingsSha) {
+          payload.sha = currentSettingsSha;
+        }
+
+        const response = await fetch(putUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${githubConfig.pat}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.status === 409) {
+          throw new Error("Conflict error: settings.json was modified remotely. Please reload and retry.");
+        } else if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.message || `Failed to commit settings (HTTP ${response.status})`);
+        }
+
+        const resData = await response.json();
+        currentSettingsSha = resData.content?.sha || null;
+
+        updateSettingsPreview();
+        showToast("settings.json committed successfully to GitHub!", "success");
+      } catch (err) {
+        console.error("Save settings error:", err);
+        showToast("Settings commit failed: " + err.message, "error", 6000);
+      } finally {
+        if (saveBtnText) saveBtnText.textContent = "Save & Commit Settings";
+        toggleLoading(false);
       }
     }
 
@@ -1454,5 +1904,4 @@
       }, duration);
     }
   </script>
-</body>
-</html>
+</body></html>
