@@ -1,0 +1,48 @@
+{
+  "categories": [
+    {
+      "name": "Quran & Tafseer",
+      "urdu": "قرآن و تفسیر",
+      "slug": "quran"
+    },
+    {
+      "name": "Hadith Studies",
+      "urdu": "شروح حدیث",
+      "slug": "hadith"
+    },
+    {
+      "name": "Seerah & History",
+      "urdu": "سیرت و تاریخ",
+      "slug": "seerah"
+    },
+    {
+      "name": "Urdu Adab",
+      "urdu": "اردو کتب",
+      "slug": "urdu"
+    },
+    {
+      "name": "Fiqh & Finance",
+      "urdu": "فقہ و معاشیات",
+      "slug": "fiqh"
+    }
+  ],
+  "social": {
+    "whatsapp": "https://wa.me/919988776655",
+    "facebook": "https://facebook.com/almaktabah",
+    "instagram": "https://instagram.com/almaktabah_books",
+    "twitter": "https://x.com/almaktabah"
+  },
+  "contact": {
+    "phone": "+91 (0) 9988776655",
+    "email": "orders@maktabah.org",
+    "address": "Darul Kutub, Main Bazar, Hyderabad / New Delhi",
+    "dispatch_hours": "Dispatches active Mon — Sat (Except Islamic Holidays)"
+  },
+  "announcement": {
+    "text": "Worldwide Delivery • Authentic Classical Islamic Literature",
+    "urdu": "خوش آمدید — علم و حکمت کا گہوارہ"
+  },
+  "footer": {
+    "copyright": "© 1446 AH / 2025 CE Al-Maktabah Islamic Bookstore. All rights reserved."
+  }
+}
