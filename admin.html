@@ -82,27 +82,62 @@
 </div>
 </div>
 <!-- Header Actions -->
-<div class="flex items-center gap-2.5">
+<div class="flex items-center gap-2.5 relative">
+<!-- Desktop Actions (Hidden on mobile, visible md+) -->
+<div class="hidden md:flex items-center gap-2.5">
 <!-- Live Connection Status Pill -->
-<div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-900/60 border border-emerald-800 text-slate-300" id="connectionPill">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-900/60 border border-emerald-800 text-slate-300" id="connectionPill">
 <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse" id="connectionDot"></span>
 <span class="font-mono text-[11px]" id="connectionText">Not Configured</span>
 </div>
 <!-- Sync / Refresh Button -->
 <button class="flex items-center gap-1.5 px-3 py-2 bg-emerald-900/80 hover:bg-emerald-800 text-slate-200 text-xs font-semibold rounded-lg border border-emerald-800 transition active:scale-95" id="refreshBtn" onclick="handleRefreshAction()" title="Fetch latest from GitHub">
 <i class="w-3.5 h-3.5" data-lucide="refresh-cw" id="refreshIcon"></i>
-<span class="hidden sm:inline">Sync Remote</span>
+<span>Sync Remote</span>
 </button>
 <!-- GitHub Config Modal Trigger -->
 <button class="flex items-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-gold-400 hover:text-gold-300 text-xs font-semibold rounded-lg border border-slate-700 shadow-sm transition active:scale-95" onclick="openCredentialsModal()">
 <i class="w-3.5 h-3.5" data-lucide="key"></i>
-<span class="hidden sm:inline">API Settings</span>
+<span>API Settings</span>
 </button>
 <!-- View Live Storefront Link -->
 <a class="flex items-center gap-1.5 px-3 py-2 bg-gold-500 hover:bg-gold-600 text-emerald-950 text-xs font-bold rounded-lg shadow transition active:scale-95" href="./index.html" target="_blank">
 <i class="w-3.5 h-3.5" data-lucide="external-link"></i>
-<span class="hidden md:inline">Open Store</span>
+<span>Open Store</span>
 </a>
+</div>
+<!-- Mobile 3-dot Kebab Menu Trigger (flex on mobile, hidden on md+) -->
+<div class="flex md:hidden items-center">
+<button aria-label="Open Menu" class="p-2 rounded-lg bg-emerald-900/80 hover:bg-emerald-800 text-slate-200 border border-emerald-800 transition active:scale-95 focus:outline-none" id="mobileMenuBtn" onclick="toggleMobileHeaderMenu(event)">
+<i class="w-5 h-5" data-lucide="more-vertical"></i>
+</button>
+</div>
+<!-- Mobile Dropdown Menu -->
+<div class="hidden absolute right-0 top-12 z-50 w-64 bg-emerald-950 border border-emerald-800 rounded-xl shadow-2xl p-3 flex-col gap-2.5 animate-in zoom-in-95" id="mobileHeaderMenu">
+<!-- Connection Status -->
+<div class="flex items-center justify-between px-3 py-2 bg-emerald-900/60 border border-emerald-800 rounded-lg text-slate-300">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse" id="mobileConnectionDot"></span>
+<span class="text-xs font-mono font-medium" id="mobileConnectionText">Not Configured</span>
+</div>
+<span class="text-[10px] uppercase font-bold text-gold-400 tracking-wider font-mono">Status</span>
+</div>
+<!-- Sync Remote -->
+<button class="w-full flex items-center gap-2.5 px-3 py-2 text-left bg-emerald-900/80 hover:bg-emerald-800 text-slate-200 text-xs font-semibold rounded-lg border border-emerald-800 transition active:scale-95" onclick="handleRefreshAction(); closeMobileHeaderMenu();">
+<i class="w-4 h-4 text-emerald-300" data-lucide="refresh-cw"></i>
+<span>Sync Remote</span>
+</button>
+<!-- API Settings -->
+<button class="w-full flex items-center gap-2.5 px-3 py-2 text-left bg-slate-800 hover:bg-slate-700 text-gold-400 hover:text-gold-300 text-xs font-semibold rounded-lg border border-slate-700 shadow-sm transition active:scale-95" onclick="openCredentialsModal(); closeMobileHeaderMenu();">
+<i class="w-4 h-4" data-lucide="key"></i>
+<span>API Settings</span>
+</button>
+<!-- Open Store -->
+<a class="w-full flex items-center gap-2.5 px-3 py-2 bg-gold-500 hover:bg-gold-600 text-emerald-950 text-xs font-bold rounded-lg shadow transition active:scale-95" href="./index.html" onclick="closeMobileHeaderMenu()" target="_blank">
+<i class="w-4 h-4" data-lucide="external-link"></i>
+<span>Open Storefront</span>
+</a>
+</div>
 </div>
 </div>
 </header>
@@ -1947,4 +1982,69 @@
       }, duration);
     }
   </script>
-</body></html>
+<script>
+function toggleMobileHeaderMenu(e) {
+  if (e) e.stopPropagation();
+  const menu = document.getElementById('mobileHeaderMenu');
+  if (!menu) return;
+  const isHidden = menu.classList.contains('hidden');
+  if (isHidden) {
+    menu.classList.remove('hidden');
+    menu.classList.add('flex');
+  } else {
+    menu.classList.add('hidden');
+    menu.classList.remove('flex');
+  }
+  if (typeof lucide !== 'undefined' && lucide.createIcons) lucide.createIcons();
+}
+
+function closeMobileHeaderMenu() {
+  const menu = document.getElementById('mobileHeaderMenu');
+  if (menu) {
+    menu.classList.add('hidden');
+    menu.classList.remove('flex');
+  }
+}
+
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('mobileHeaderMenu');
+  const btn = document.getElementById('mobileMenuBtn');
+  if (menu && !menu.classList.contains('hidden')) {
+    if (!menu.contains(e.target) && !btn?.contains(e.target)) {
+      closeMobileHeaderMenu();
+    }
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeMobileHeaderMenu();
+  }
+});
+
+// Keep mobile status indicator synchronized with the desktop pill
+const originalUpdateConnectionState = window.updateConnectionState;
+window.updateConnectionState = function(status, message) {
+  if (typeof originalUpdateConnectionState === 'function') {
+    originalUpdateConnectionState(status, message);
+  }
+  const mobDot = document.getElementById('mobileConnectionDot');
+  const mobText = document.getElementById('mobileConnectionText');
+  if (mobDot && mobText) {
+    mobText.textContent = message;
+    if (status === 'connected') {
+      mobDot.className = 'w-2 h-2 rounded-full bg-emerald-400';
+    } else if (status === 'syncing') {
+      mobDot.className = 'w-2 h-2 rounded-full bg-amber-400 animate-ping';
+    } else if (status === 'error') {
+      mobDot.className = 'w-2 h-2 rounded-full bg-rose-500';
+    } else {
+      mobDot.className = 'w-2 h-2 rounded-full bg-slate-500';
+    }
+  }
+};
+
+if (typeof lucide !== 'undefined' && lucide.createIcons) {
+  lucide.createIcons();
+}
+</script></body></html>
