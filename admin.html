@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
-<html class="h-full bg-slate-50 overflow-x-hidden w-full" lang="en"><head>
+<html class="scroll-smooth w-full min-h-screen" lang="en"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Al-Maktabah | Admin Headless CMS (GitHub REST API)</title>
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -44,15 +44,29 @@
       font-family: 'Noto Nastaliq Urdu', serif;
       line-height: 1.8;
     }
+    html {
+      overflow-x: hidden;
+      overflow-y: auto;
+      width: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
+    body {
+      overflow-x: hidden;
+      overflow-y: visible;
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+      -webkit-overflow-scrolling: touch;
+    }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
   </style>
 </head>
-<body class="h-full flex flex-col font-sans text-slate-800 antialiased bg-slate-50 selection:bg-emerald-900 selection:text-white overflow-x-hidden w-full max-w-full relative">
+<body class="bg-parchment text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-emerald-900 selection:text-white w-full relative">
 <!-- TOP HEADER / NAV -->
-<header class="bg-emerald-950 text-white border-b border-emerald-900 sticky top-0 z-30 shadow-md w-full max-w-full overflow-hidden">
+<header class="bg-emerald-950 text-white border-b border-emerald-900 sticky top-0 z-30 shadow-md w-full max-w-full">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
 <!-- Brand & Title -->
 <div class="flex items-center gap-3">
@@ -93,19 +107,19 @@
 </div>
 </header>
 <!-- REPO BANNER / SETUP NOTICE IF NOT CONFIGURED -->
-<div class="bg-amber-50 border-b border-amber-200 px-4 py-3 text-amber-900 text-xs sm:text-sm w-full max-w-full overflow-hidden" id="unconfiguredBanner">
+<div class="bg-amber-50 border-b border-amber-200 px-4 py-3 text-amber-900 text-xs sm:text-sm w-full max-w-full" id="unconfiguredBanner">
 <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 w-full max-w-full">
 <div class="flex items-center gap-2">
 <i class="w-4 h-4 text-amber-600 flex-shrink-0" data-lucide="alert-triangle"></i>
 <span><strong>GitHub PAT Required:</strong> To read and commit direct updates to <code class="bg-amber-100 px-1.5 py-0.5 rounded font-mono text-amber-950 font-semibold">products.json</code> and <code class="bg-amber-100 px-1.5 py-0.5 rounded font-mono text-amber-950 font-semibold">settings.json</code>, connect your GitHub Personal Access Token.</span>
 </div>
-<button class="bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs px-3 py-1.5 rounded-md shadow-sm transition whitespace-nowrap" onclick="openCredentialsModal()">
+<button class="relative z-10 cursor-pointer pointer-events-auto bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs px-3 py-1.5 rounded-md shadow-sm transition whitespace-nowrap" onclick="openCredentialsModal()">
         Setup Credentials
       </button>
 </div>
 </div>
 <!-- NAVIGATION TAB SWITCHER -->
-<nav aria-label="CMS Views" class="bg-white border-b border-slate-200 shadow-sm sticky top-16 z-20 w-full max-w-full overflow-hidden">
+<nav aria-label="CMS Views" class="bg-white border-b border-slate-200 shadow-sm sticky top-16 z-20 w-full max-w-full">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex items-center justify-between gap-4">
 <!-- Tab Buttons -->
@@ -134,7 +148,7 @@
 </div>
 </nav>
 <!-- MAIN DASHBOARD CONTENT -->
-<main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 max-w-full overflow-hidden">
+<main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 max-w-full" id="mainContainer">
 <!-- METRICS & TOOLBAR (SHARED TOP OVERVIEW) -->
 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
@@ -177,7 +191,7 @@
 <!-- ================= TAB 1: PRODUCTS MANAGER ================= -->
 <div class="space-y-6" id="tabContainerProducts">
 <!-- MAIN PRODUCT MANAGEMENT SECTION -->
-<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col w-full max-w-full">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col w-full max-w-full">
 <!-- Table Header & Controls -->
 <div class="p-4 sm:p-5 border-b border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-50/50">
 <!-- Search and Filter -->
@@ -206,7 +220,7 @@
 <!-- Data Table Container -->
 <div class="overflow-x-auto min-h-[300px] relative w-full max-w-full">
 <!-- Loading Overlay -->
-<div class="hidden absolute inset-0 bg-white/80 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center gap-2" id="tableLoadingOverlay">
+<div class="hidden pointer-events-none absolute inset-0 bg-white/80 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center gap-2" id="tableLoadingOverlay">
 <div class="w-8 h-8 border-3 border-emerald-900 border-t-transparent rounded-full animate-spin"></div>
 <span class="text-xs font-semibold text-emerald-950" id="loadingOverlayMsg">Communicating with GitHub API...</span>
 </div>
@@ -282,7 +296,7 @@
 </div>
 </div>
 <!-- SECTION 1: DYNAMIC CATEGORIES MANAGER -->
-<div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm">
 <div class="p-5 border-b border-slate-200 bg-slate-50/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
 <div>
 <span class="text-[11px] uppercase tracking-wider text-gold-600 font-bold block">Taxonomy Structure</span>
@@ -400,7 +414,7 @@
 </div>
 <div>
 <label class="block font-semibold text-slate-700 text-xs mb-1">Currency Code / Symbol</label>
-<input class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setCurrency" placeholder="INR (₹)" type="text"/>
+<input class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-slate-800 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-900" id="setCurrency" placeholder="INR (₹)" type="text"/>
 </div>
 </div>
 <!-- Email & Phone -->
@@ -471,8 +485,8 @@
 </div>
 </main>
 <!-- ================= EDIT / ADD BOOK MODAL ================= -->
-<div class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden flex items-start sm:items-center justify-center p-3 sm:p-4 overflow-y-auto" id="bookEditorModalBackdrop">
-<div class="bg-white rounded-2xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200 p-5 sm:p-7 relative flex flex-col my-auto">
+<div class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden pointer-events-none flex items-start sm:items-center justify-center p-3 sm:p-4 overflow-y-auto" id="bookEditorModalBackdrop">
+<div class="bg-white rounded-2xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200 p-5 sm:p-7 relative flex flex-col my-auto pointer-events-auto">
 <!-- Close Button -->
 <button class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1 rounded-lg hover:bg-slate-100 transition" onclick="closeBookEditor()">
 <i class="w-5 h-5" data-lucide="x"></i>
@@ -631,8 +645,8 @@
 </div>
 </div>
 <!-- ================= ADD / EDIT CATEGORY MODAL ================= -->
-<div class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4" id="categoryModalBackdrop">
-<div class="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 p-6 relative animate-in zoom-in-95">
+<div class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden pointer-events-none flex items-center justify-center p-4" id="categoryModalBackdrop">
+<div class="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 p-6 relative animate-in zoom-in-95 pointer-events-auto">
 <button class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1 rounded-lg hover:bg-slate-100" onclick="closeCategoryModal()">
 <i class="w-5 h-5" data-lucide="x"></i>
 </button>
@@ -667,8 +681,8 @@
 </div>
 </div>
 <!-- ================= GITHUB CREDENTIALS & SETTINGS MODAL ================= -->
-<div class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto" id="credentialsModalBackdrop">
-<div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 p-6 sm:p-7 relative my-auto animate-in zoom-in-95">
+<div class="fixed inset-0 z-50 bg-emerald-950/70 backdrop-blur-sm hidden pointer-events-none flex items-center justify-center p-3 sm:p-4 overflow-y-auto" id="credentialsModalBackdrop">
+<div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 p-6 sm:p-7 relative my-auto animate-in zoom-in-95 pointer-events-auto">
 <button class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1 rounded-lg hover:bg-slate-100" onclick="closeCredentialsModal()">
 <i class="w-5 h-5" data-lucide="x"></i>
 </button>
@@ -740,8 +754,8 @@
 </div>
 </div>
 <!-- ================= DELETE CONFIRMATION MODAL ================= -->
-<div class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4" id="deleteModalBackdrop">
-<div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl border border-slate-200 animate-in zoom-in-95">
+<div class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden pointer-events-none flex items-center justify-center p-4" id="deleteModalBackdrop">
+<div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl border border-slate-200 animate-in zoom-in-95 pointer-events-auto">
 <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-600 mx-auto flex items-center justify-center">
 <i class="w-6 h-6" data-lucide="trash-2"></i>
 </div>
@@ -1017,10 +1031,10 @@
 
       if (overlay) {
         if (active) {
-          overlay.classList.remove('hidden');
+          overlay.classList.remove('hidden', 'pointer-events-none');
           if (msgEl) msgEl.textContent = message;
         } else {
-          overlay.classList.add('hidden');
+          overlay.classList.add('hidden', 'pointer-events-none');
         }
       }
 
@@ -1302,7 +1316,7 @@
             <div class="inline-flex items-center gap-1">
               <button 
                 onclick="openBookEditor('${book.id}')" 
-                class="p-1.5 rounded-lg text-slate-600 hover:text-emerald-900 hover:bg-slate-100 transition" 
+                class="p-1.5 rounded-lg text-slate-600 hover:text-emerald-950 hover:bg-slate-100 transition" 
                 title="Edit Title"
               >
                 <i data-lucide="pencil" class="w-4 h-4"></i>
@@ -1406,11 +1420,16 @@
         previewCoverImage('');
       }
 
-      modal.classList.remove('hidden');
+      modal.classList.remove('hidden', 'pointer-events-none');
+      modal.classList.add('pointer-events-auto');
     }
 
     function closeBookEditor() {
-      document.getElementById('bookEditorModalBackdrop')?.classList.add('hidden');
+      const modal = document.getElementById('bookEditorModalBackdrop');
+      if (modal) {
+        modal.classList.add('hidden', 'pointer-events-none');
+        modal.classList.remove('pointer-events-auto');
+      }
     }
 
     function previewCoverImage(url) {
@@ -1509,12 +1528,20 @@
 
       pendingDeleteBookId = bookId;
       document.getElementById('deleteBookTitleLabel').textContent = `Are you sure you want to permanently remove "${book.title}" (${book.id})?`;
-      document.getElementById('deleteModalBackdrop')?.classList.remove('hidden');
+      const modal = document.getElementById('deleteModalBackdrop');
+      if (modal) {
+        modal.classList.remove('hidden', 'pointer-events-none');
+        modal.classList.add('pointer-events-auto');
+      }
     }
 
     function closeDeleteModal() {
       pendingDeleteBookId = null;
-      document.getElementById('deleteModalBackdrop')?.classList.add('hidden');
+      const modal = document.getElementById('deleteModalBackdrop');
+      if (modal) {
+        modal.classList.add('hidden', 'pointer-events-none');
+        modal.classList.remove('pointer-events-auto');
+      }
     }
 
     async function executeDeleteBook() {
@@ -1693,11 +1720,19 @@
       document.getElementById('newCatName').value = '';
       document.getElementById('newCatUrdu').value = '';
       document.getElementById('newCatSlug').value = '';
-      document.getElementById('categoryModalBackdrop')?.classList.remove('hidden');
+      const modal = document.getElementById('categoryModalBackdrop');
+      if (modal) {
+        modal.classList.remove('hidden', 'pointer-events-none');
+        modal.classList.add('pointer-events-auto');
+      }
     }
 
     function closeCategoryModal() {
-      document.getElementById('categoryModalBackdrop')?.classList.add('hidden');
+      const modal = document.getElementById('categoryModalBackdrop');
+      if (modal) {
+        modal.classList.add('hidden', 'pointer-events-none');
+        modal.classList.remove('pointer-events-auto');
+      }
     }
 
     function autoGenerateCatSlug(val) {
@@ -1854,11 +1889,19 @@
 
     // ================= CREDENTIALS MODAL =================
     function openCredentialsModal() {
-      document.getElementById('credentialsModalBackdrop')?.classList.remove('hidden');
+      const modal = document.getElementById('credentialsModalBackdrop');
+      if (modal) {
+        modal.classList.remove('hidden', 'pointer-events-none');
+        modal.classList.add('pointer-events-auto');
+      }
     }
 
     function closeCredentialsModal() {
-      document.getElementById('credentialsModalBackdrop')?.classList.add('hidden');
+      const modal = document.getElementById('credentialsModalBackdrop');
+      if (modal) {
+        modal.classList.add('hidden', 'pointer-events-none');
+        modal.classList.remove('pointer-events-auto');
+      }
     }
 
     // ================= TOAST NOTIFICATION SYSTEM =================
