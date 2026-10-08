@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Al-Maktabah | Islamic Literature & Rare Prints</title>
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
+<html class="scroll-smooth overflow-x-hidden w-full" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Al-Maktabah | Islamic Literature &amp; Rare Prints</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
     tailwind.config = {
       theme: {
         extend: {
@@ -41,16 +41,13 @@
       }
     }
   </script>
-
-  <!-- Google Fonts: Cinzel + Plus Jakarta Sans + Noto Nastaliq Urdu -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Noto+Nastaliq+Urdu:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Razorpay Checkout v1 Script -->
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-  <style>
+<!-- Google Fonts: Cinzel + Plus Jakarta Sans + Noto Nastaliq Urdu -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&amp;family=Noto+Nastaliq+Urdu:wght@500;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Razorpay Checkout v1 Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<style>
     .urdu-font {
       font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
       line-height: 1.9;
@@ -63,551 +60,456 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="bg-white text-charcoal-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand selection:text-white relative">
-
-  <!-- 1. TOP ANNOUNCEMENT BAR (Light Blue) -->
-  <div class="bg-[#63C1E1] text-white py-2 px-4 text-center text-xs sm:text-sm font-medium tracking-wide shadow-xs flex items-center justify-center gap-2">
-    <svg class="w-4 h-4 opacity-90 hidden sm:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-    <span>Minimum Order ₹1000* Required • Complimentary Gift Bookmark With All Editions</span>
-  </div>
-
-  <!-- 2. STICKY WHITE LUXURY HEADER -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      
-      <!-- Left: Mobile Menu Hamburger & Desktop Categories Link -->
-      <div class="flex items-center gap-4">
-        <button id="mobileMenuOpenBtn" onclick="toggleMobileDrawer(true)" class="p-2 -ml-2 text-charcoal-800 hover:text-brand transition-colors focus:outline-none" aria-label="Open Navigation">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h10"/>
-          </svg>
-        </button>
-        <nav class="hidden lg:flex items-center gap-8 text-xs tracking-[0.16em] uppercase font-medium text-charcoal-600">
-          <a href="#collections" class="hover:text-brand transition-colors">Catalog</a>
-          <a href="#hero-banners" class="hover:text-brand transition-colors">Editions</a>
-          <a href="#why-choose-us" class="hover:text-brand transition-colors">Heritage</a>
-          <a href="#footer-contact" class="hover:text-brand transition-colors">Contact</a>
-        </nav>
-      </div>
-
-      <!-- Center: Clean Jewelry-Style Wordmark Logo -->
-      <div class="text-center cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-        <h1 class="font-serif text-2xl sm:text-3xl font-bold tracking-[0.2em] uppercase text-charcoal-900">
+<body class="bg-white text-charcoal-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand selection:text-white relative overflow-x-hidden w-full">
+<!-- 1. TOP ANNOUNCEMENT BAR (Light Blue) -->
+<div class="bg-[#63C1E1] text-white py-2 px-4 text-center text-xs sm:text-sm font-medium tracking-wide shadow-xs flex items-center justify-center gap-2 w-full overflow-hidden">
+<svg class="w-4 h-4 opacity-90 hidden sm:inline" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Minimum Order ₹1000* Required • Complimentary Gift Bookmark With All Editions</span>
+</div>
+<!-- 2. STICKY WHITE LUXURY HEADER -->
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300 shadow-[0_2px_12px_rgba(0,0,0,0.03)] w-full overflow-hidden">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+<!-- Left: Mobile Menu Hamburger & Desktop Categories Link -->
+<div class="flex items-center gap-4">
+<button aria-label="Open Navigation" class="p-2 -ml-2 text-charcoal-800 hover:text-brand transition-colors focus:outline-none" id="mobileMenuOpenBtn" onclick="toggleMobileDrawer(true)">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</button>
+<nav class="hidden lg:flex items-center gap-8 text-xs tracking-[0.16em] uppercase font-medium text-charcoal-600">
+<a class="hover:text-brand transition-colors" href="#collections">Catalog</a>
+<a class="hover:text-brand transition-colors" href="#hero-banners">Editions</a>
+<a class="hover:text-brand transition-colors" href="#why-choose-us">Heritage</a>
+<a class="hover:text-brand transition-colors" href="#footer-contact">Contact</a>
+</nav>
+</div>
+<!-- Center: Clean Jewelry-Style Wordmark Logo -->
+<div class="text-center cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+<h1 class="font-serif text-2xl sm:text-3xl font-bold tracking-[0.2em] uppercase text-charcoal-900">
           AL-MAKTABAH
         </h1>
-        <p class="text-[9px] tracking-[0.35em] uppercase text-brand font-semibold -mt-0.5">ISLAMIC LITERATURE & RARE EDITIONS</p>
-      </div>
-
-      <!-- Right: Action Icons (Search, Account, Cart) -->
-      <div class="flex items-center gap-3 sm:gap-5">
-        <!-- Search Quick Filter -->
-        <button onclick="document.getElementById('catalogSearchInput').focus(); document.getElementById('collections').scrollIntoView({behavior:'smooth'});" class="p-2 text-charcoal-800 hover:text-brand transition-colors" title="Search Books">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        </button>
-
-        <!-- Account Profile Icon -->
-        <button onclick="alert('Al-Maktabah VIP Scholar Account Portal: Member order tracking is active with mobile phone verification at checkout.')" class="hidden sm:block p-2 text-charcoal-800 hover:text-brand transition-colors" title="My Account">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-        </button>
-
-        <!-- Cart Icon with Dynamic Badge -->
-        <button onclick="toggleCartDrawer(true)" class="relative p-2 text-charcoal-800 hover:text-brand transition-colors flex items-center justify-center" aria-label="View Shopping Cart">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-          </svg>
-          <span id="cartCountBadge" class="absolute -top-1 -right-1 bg-[#63C1E1] text-white text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border-2 border-white shadow-xs">0</span>
-        </button>
-      </div>
-
-    </div>
-  </header>
-
-  <!-- 3. MOBILE NAVIGATION DRAWER (Slide-Out Sidebar) -->
-  <div id="mobileDrawerBackdrop" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs hidden transition-opacity duration-300 opacity-0" onclick="toggleMobileDrawer(false)">
-    <div id="mobileDrawerPanel" class="w-80 max-w-[85vw] h-full bg-white shadow-2xl p-6 flex flex-col justify-between transform -translate-x-full transition-transform duration-300 ease-out" onclick="event.stopPropagation()">
-      <div>
-        <div class="flex items-center justify-between pb-6 border-b border-gray-100">
-          <div class="font-serif text-lg font-bold tracking-[0.18em] text-charcoal-900">AL-MAKTABAH</div>
-          <button onclick="toggleMobileDrawer(false)" class="p-1.5 text-charcoal-400 hover:text-charcoal-800">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
-        </div>
-
-        <nav class="mt-6 space-y-4 text-sm font-medium">
-          <a href="#collections" onclick="toggleMobileDrawer(false)" class="block py-2 text-charcoal-800 hover:text-brand border-b border-gray-50 uppercase tracking-wider text-xs">All Classical Collections</a>
-          
-          <!-- Expandable Categories Accordion -->
-          <div class="border-b border-gray-50 pb-2">
-            <button onclick="toggleAccordion('catAccordion')" class="w-full flex items-center justify-between py-2 text-charcoal-800 hover:text-brand uppercase tracking-wider text-xs">
-              <span>Categories</span>
-              <svg id="catAccordionIcon" class="w-4 h-4 text-brand transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div id="catAccordion" class="hidden pl-3 pt-2 space-y-2 text-xs text-charcoal-600">
-              <button onclick="filterByCategory('all'); toggleMobileDrawer(false);" class="block py-1 hover:text-brand text-left w-full">All Books (تمام کتب)</button>
-              <button onclick="filterByCategory('hadith'); toggleMobileDrawer(false);" class="block py-1 hover:text-brand text-left w-full">Hadith Studies (شروح حدیث)</button>
-              <button onclick="filterByCategory('quran'); toggleMobileDrawer(false);" class="block py-1 hover:text-brand text-left w-full">Quran & Tafseer (قرآن و تفسیر)</button>
-              <button onclick="filterByCategory('seerah'); toggleMobileDrawer(false);" class="block py-1 hover:text-brand text-left w-full">Seerah & History (سیرت و تاریخ)</button>
-              <button onclick="filterByCategory('urdu'); toggleMobileDrawer(false);" class="block py-1 hover:text-brand text-left w-full">Urdu Adab (اردو کتب)</button>
-              <button onclick="filterByCategory('fiqh'); toggleMobileDrawer(false);" class="block py-1 hover:text-brand text-left w-full">Fiqh & Islamic Finance (فقہ)</button>
-            </div>
-          </div>
-
-          <a href="#hero-banners" onclick="toggleMobileDrawer(false)" class="block py-2 text-charcoal-800 hover:text-brand border-b border-gray-50 uppercase tracking-wider text-xs">Featured Editions</a>
-          <a href="#why-choose-us" onclick="toggleMobileDrawer(false)" class="block py-2 text-charcoal-800 hover:text-brand border-b border-gray-50 uppercase tracking-wider text-xs">Why Al-Maktabah</a>
-          <a href="#footer-contact" onclick="toggleMobileDrawer(false)" class="block py-2 text-charcoal-800 hover:text-brand border-b border-gray-50 uppercase tracking-wider text-xs">Contact & Inquiries</a>
-        </nav>
-      </div>
-
-      <div class="pt-6 border-t border-gray-100 space-y-3">
-        <div class="text-[11px] text-charcoal-400">Direct Maktab Helpline:</div>
-        <a href="https://wa.me/919988776655" target="_blank" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-brand-light text-brand font-semibold text-xs border border-brand/30 hover:bg-brand hover:text-white transition-colors">
-          <span>Chat on WhatsApp</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- 4. HERO SECTION: 3 JEWELRY-STYLE PROMOTIONAL BANNERS SIDE-BY-SIDE -->
-  <section id="hero-banners" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
-    <div class="text-center max-w-2xl mx-auto mb-8">
-      <span class="text-brand text-xs font-bold tracking-[0.25em] uppercase block">Timeless Knowledge</span>
-      <h2 class="font-serif text-2xl sm:text-3xl font-bold tracking-wider text-charcoal-900 mt-1 uppercase">Exquisite Islamic Volumes</h2>
-      <div class="w-12 h-0.5 bg-brand mx-auto mt-3"></div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      
-      <!-- Banner 1: Wholesale / Scholarly Editions -->
-      <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#F4FAFC] to-white border border-[#E2F2F8] p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-subtle hover:border-brand/40">
-        <div>
-          <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-white text-brand border border-brand/20 shadow-xs mb-4">Direct Publisher</span>
-          <h3 class="font-serif text-xl sm:text-2xl font-bold text-charcoal-900 leading-tight">Wholesale & Scholar Prices</h3>
-          <p class="text-xs text-charcoal-600 mt-2 leading-relaxed">Direct imports of multi-volume classical Arabic commentaries and authentic Urdu translations with bulk institutional discounts.</p>
-        </div>
-        <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-wider text-brand group-hover:underline">Explore Collections →</span>
-          <span class="font-serif text-sm font-semibold text-charcoal-400">Up to 25% Off</span>
-        </div>
-      </div>
-
-      <!-- Banner 2: Authentic Prints & Archival Binding -->
-      <div class="group relative overflow-hidden rounded-2xl bg-[#63C1E1] text-white p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-float">
-        <div>
-          <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-white/20 text-white backdrop-blur-xs mb-4">Master Craftsmanship</span>
-          <h3 class="font-serif text-xl sm:text-2xl font-bold text-white leading-tight">Authentic Prints & Gold Foil</h3>
-          <p class="text-xs text-white/90 mt-2 leading-relaxed">Hardbound leatherette volumes with Quranic grade paper, Syrian calligraphy, and gold foil embossed spine titles.</p>
-        </div>
-        <div class="mt-6 pt-4 border-t border-white/20 flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-wider text-white underline underline-offset-4">Handcrafted Volumes →</span>
-          <span class="text-xs font-medium text-white/80">Archival Quality</span>
-        </div>
-      </div>
-
-      <!-- Banner 3: Wide Curated Variety -->
-      <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#F4FAFC] to-white border border-[#E2F2F8] p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-subtle hover:border-brand/40">
-        <div>
-          <span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-white text-brand border border-brand/20 shadow-xs mb-4">Curated Repository</span>
-          <h3 class="font-serif text-xl sm:text-2xl font-bold text-charcoal-900 leading-tight">Rare Hadith & Tafseer Variety</h3>
-          <p class="text-xs text-charcoal-600 mt-2 leading-relaxed">From Sahih Bukhari 9-volume sets to complete Ma'ariful Quran and modern Islamic economics, curated for every household.</p>
-        </div>
-        <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
-          <span class="text-xs font-bold uppercase tracking-wider text-brand group-hover:underline">Browse Repository →</span>
-          <span class="font-serif text-sm font-semibold text-charcoal-400">500+ Volumes</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 5. PRODUCTS GRID SECTION (Jewelry Store Pure White Aesthetic) -->
-  <section id="collections" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-    
-    <!-- Section Header & Filter Pills -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-gray-100">
-      <div>
-        <span class="text-brand text-xs font-bold tracking-[0.2em] uppercase">Authenticated Catalog</span>
-        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal-900 mt-1 uppercase tracking-wide">Featured Volumes</h2>
-        <p class="text-xs text-charcoal-600 mt-1">Carefully packaged with silk ribbon markers and archival care.</p>
-      </div>
-
-      <!-- Category Filter Pills & Search Input -->
-      <div class="flex flex-wrap items-center gap-2">
-        <div class="relative w-full sm:w-auto">
-          <input 
-            type="text" 
-            id="catalogSearchInput" 
-            placeholder="Search title, author, urdu..." 
-            oninput="handleSearch(this.value)"
-            class="w-full sm:w-56 text-xs bg-gray-50 border border-gray-200 focus:border-brand rounded-full px-3.5 py-2 outline-none transition-all placeholder:text-gray-400"
-          />
-        </div>
-
-        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
-          <button onclick="filterByCategory('all')" class="cat-pill active px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-[#63C1E1] text-white shadow-xs transition-all">All</button>
-          <button onclick="filterByCategory('hadith')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-gray-100 text-charcoal-600 hover:bg-brand-light hover:text-brand transition-all">Hadith</button>
-          <button onclick="filterByCategory('quran')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-gray-100 text-charcoal-600 hover:bg-brand-light hover:text-brand transition-all">Tafseer</button>
-          <button onclick="filterByCategory('seerah')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-gray-100 text-charcoal-600 hover:bg-brand-light hover:text-brand transition-all">Seerah</button>
-          <button onclick="filterByCategory('urdu')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-gray-100 text-charcoal-600 hover:bg-brand-light hover:text-brand transition-all">Urdu</button>
-          <button onclick="filterByCategory('fiqh')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-gray-100 text-charcoal-600 hover:bg-brand-light hover:text-brand transition-all">Fiqh</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Product Grid: 2 columns on mobile, 4 on desktop -->
-    <div id="productGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mt-8">
-      <!-- Dynamically Rendered via JavaScript -->
-    </div>
-
-    <!-- Empty State -->
-    <div id="emptyCatalogState" class="hidden text-center py-16">
-      <div class="w-16 h-16 rounded-full bg-brand-light text-brand flex items-center justify-center mx-auto mb-4">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-      </div>
-      <h3 class="font-serif text-lg font-bold text-charcoal-900">No Volumes Found</h3>
-      <p class="text-xs text-charcoal-600 mt-1">Try resetting your category or search filter.</p>
-      <button onclick="filterByCategory('all'); document.getElementById('catalogSearchInput').value='';" class="mt-4 px-5 py-2 rounded-full text-xs bg-brand text-white font-semibold">View All Books</button>
-    </div>
-  </section>
-
-  <!-- 6. TESTIMONIAL BANNER (Stylish Full-Width Review) -->
-  <section class="bg-[#F4FAFC] border-y border-[#E2F2F8] py-14 sm:py-20 my-10">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-      <!-- 5 Gold/Turquoise Stars -->
-      <div class="flex items-center justify-center gap-1 text-[#63C1E1] mb-6">
-        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-      </div>
-
-      <blockquote class="font-serif text-lg sm:text-2xl text-charcoal-900 leading-relaxed italic">
+<p class="text-[9px] tracking-[0.35em] uppercase text-brand font-semibold -mt-0.5">ISLAMIC LITERATURE &amp; RARE EDITIONS</p>
+</div>
+<!-- Right: Action Icons (Search, Account, Cart) -->
+<div class="flex items-center gap-3 sm:gap-5">
+<!-- Search Quick Filter -->
+<button class="p-2 text-charcoal-800 hover:text-brand transition-colors" onclick="document.getElementById('catalogSearchInput').focus(); document.getElementById('collections').scrollIntoView({behavior:'smooth'});" title="Search Books">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+</button>
+<!-- Account Profile Icon -->
+<button class="hidden sm:block p-2 text-charcoal-800 hover:text-brand transition-colors" onclick="alert('Al-Maktabah VIP Scholar Account Portal: Member order tracking is active with mobile phone verification at checkout.')" title="My Account">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+</button>
+<!-- Cart Icon with Dynamic Badge -->
+<button aria-label="View Shopping Cart" class="relative p-2 text-charcoal-800 hover:text-brand transition-colors flex items-center justify-center" onclick="toggleCartDrawer(true)">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+<span class="absolute -top-1 -right-1 bg-[#63C1E1] text-white text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border-2 border-white shadow-xs" id="cartCountBadge">0</span>
+</button>
+</div>
+</div>
+</header>
+<!-- 3. MOBILE NAVIGATION DRAWER (Slide-Out Sidebar) -->
+<div class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs hidden transition-opacity duration-300 opacity-0" id="mobileDrawerBackdrop" onclick="toggleMobileDrawer(false)">
+<div class="w-80 max-w-[85vw] h-full bg-white shadow-2xl p-6 flex flex-col justify-between transform -translate-x-full transition-transform duration-300 ease-out" id="mobileDrawerPanel" onclick="event.stopPropagation()">
+<div>
+<div class="flex items-center justify-between pb-6 border-b border-gray-100">
+<div class="font-serif text-lg font-bold tracking-[0.18em] text-charcoal-900">AL-MAKTABAH</div>
+<button class="p-1.5 text-charcoal-400 hover:text-charcoal-800" onclick="toggleMobileDrawer(false)">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+</button>
+</div>
+<nav class="mt-6 space-y-4 text-sm font-medium">
+<a class="block py-2 text-charcoal-800 hover:text-brand border-b border-gray-50 uppercase tracking-wider text-xs" href="#collections" onclick="toggleMobileDrawer(false)">All Classical Collections</a>
+<!-- Expandable Categories Accordion -->
+<div class="border-b border-gray-50 pb-2">
+<button class="w-full flex items-center justify-between py-2 text-charcoal-800 hover:text-brand uppercase tracking-wider text-xs" onclick="toggleAccordion('catAccordion')">
+<span>Categories</span>
+<svg class="w-4 h-4 text-brand transform transition-transform" fill="none" id="catAccordionIcon" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div class="hidden pl-3 pt-2 space-y-2 text-xs text-charcoal-600" id="catAccordion">
+<button class="block py-1 hover:text-brand text-left w-full" onclick="filterByCategory('all'); toggleMobileDrawer(false);">All Books (تمام کتب)</button>
+<button class="block py-1 hover:text-brand text-left w-full" onclick="filterByCategory('hadith'); toggleMobileDrawer(false);">Hadith Studies (شروح حدیث)</button>
+<button class="block py-1 hover:text-brand text-left w-full" onclick="filterByCategory('quran'); toggleMobileDrawer(false);">Quran &amp; Tafseer (قرآن و تفسیر)</button>
+<button class="block py-1 hover:text-brand text-left w-full" onclick="filterByCategory('seerah'); toggleMobileDrawer(false);">Seerah &amp; History (سیرت و تاریخ)</button>
+<button class="block py-1 hover:text-brand text-left w-full" onclick="filterByCategory('urdu'); toggleMobileDrawer(false);">Urdu Adab (اردو کتب)</button>
+<button class="block py-1 hover:text-brand text-left w-full" onclick="filterByCategory('fiqh'); toggleMobileDrawer(false);">Fiqh &amp; Islamic Finance (فقہ)</button>
+</div>
+</div>
+<a class="block py-2 text-charcoal-800 hover:text-brand border-b border-gray-50 uppercase tracking-wider text-xs" href="#hero-banners" onclick="toggleMobileDrawer(false)">Featured Editions</a>
+<a class="block py-2 text-charcoal-800 hover:text-brand border-b border-gray-50 uppercase tracking-wider text-xs" href="#why-choose-us" onclick="toggleMobileDrawer(false)">Why Al-Maktabah</a>
+<a class="block py-2 text-charcoal-800 hover:text-brand border-b border-gray-50 uppercase tracking-wider text-xs" href="#footer-contact" onclick="toggleMobileDrawer(false)">Contact &amp; Inquiries</a>
+</nav>
+</div>
+<div class="pt-6 border-t border-gray-100 space-y-3">
+<div class="text-[11px] text-charcoal-400">Direct Maktab Helpline:</div>
+<a class="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-brand-light text-brand font-semibold text-xs border border-brand/30 hover:bg-brand hover:text-white transition-colors" href="https://wa.me/919988776655" target="_blank">
+<span>Chat on WhatsApp</span>
+</a>
+</div>
+</div>
+</div>
+<!-- 4. HERO SECTION: 3 JEWELRY-STYLE PROMOTIONAL BANNERS SIDE-BY-SIDE -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 w-full overflow-hidden" id="hero-banners">
+<div class="text-center max-w-2xl mx-auto mb-8">
+<span class="text-brand text-xs font-bold tracking-[0.25em] uppercase block">Timeless Knowledge</span>
+<h2 class="font-serif text-2xl sm:text-3xl font-bold tracking-wider text-charcoal-900 mt-1 uppercase">Exquisite Islamic Volumes</h2>
+<div class="w-12 h-0.5 bg-brand mx-auto mt-3"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Banner 1: Wholesale / Scholarly Editions -->
+<div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#F4FAFC] to-white border border-[#E2F2F8] p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-subtle hover:border-brand/40">
+<div>
+<span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-white text-brand border border-brand/20 shadow-xs mb-4">Direct Publisher</span>
+<h3 class="font-serif text-xl sm:text-2xl font-bold text-charcoal-900 leading-tight">Wholesale &amp; Scholar Prices</h3>
+<p class="text-xs text-charcoal-600 mt-2 leading-relaxed">Direct imports of multi-volume classical Arabic commentaries and authentic Urdu translations with bulk institutional discounts.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+<span class="text-xs font-bold uppercase tracking-wider text-brand group-hover:underline">Explore Collections →</span>
+<span class="font-serif text-sm font-semibold text-charcoal-400">Up to 25% Off</span>
+</div>
+</div>
+<!-- Banner 2: Authentic Prints & Archival Binding -->
+<div class="group relative overflow-hidden rounded-2xl bg-[#63C1E1] text-white p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-float">
+<div>
+<span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-white/20 text-white backdrop-blur-xs mb-4">Master Craftsmanship</span>
+<h3 class="font-serif text-xl sm:text-2xl font-bold text-white leading-tight">Authentic Prints &amp; Gold Foil</h3>
+<p class="text-xs text-white/90 mt-2 leading-relaxed">Hardbound leatherette volumes with Quranic grade paper, Syrian calligraphy, and gold foil embossed spine titles.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-white/20 flex items-center justify-between">
+<span class="text-xs font-bold uppercase tracking-wider text-white underline underline-offset-4">Handcrafted Volumes →</span>
+<span class="text-xs font-medium text-white/80">Archival Quality</span>
+</div>
+</div>
+<!-- Banner 3: Wide Curated Variety -->
+<div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#F4FAFC] to-white border border-[#E2F2F8] p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-subtle hover:border-brand/40">
+<div>
+<span class="inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-white text-brand border border-brand/20 shadow-xs mb-4">Curated Repository</span>
+<h3 class="font-serif text-xl sm:text-2xl font-bold text-charcoal-900 leading-tight">Rare Hadith &amp; Tafseer Variety</h3>
+<p class="text-xs text-charcoal-600 mt-2 leading-relaxed">From Sahih Bukhari 9-volume sets to complete Ma'ariful Quran and modern Islamic economics, curated for every household.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+<span class="text-xs font-bold uppercase tracking-wider text-brand group-hover:underline">Browse Repository →</span>
+<span class="font-serif text-sm font-semibold text-charcoal-400">500+ Volumes</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. PRODUCTS GRID SECTION (Jewelry Store Pure White Aesthetic) -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 w-full overflow-hidden" id="collections">
+<!-- Section Header & Filter Pills -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-gray-100">
+<div>
+<span class="text-brand text-xs font-bold tracking-[0.2em] uppercase">Authenticated Catalog</span>
+<h2 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal-900 mt-1 uppercase tracking-wide">Featured Volumes</h2>
+<p class="text-xs text-charcoal-600 mt-1">Carefully packaged with silk ribbon markers and archival care.</p>
+</div>
+<!-- Category Filter Pills & Search Input -->
+<div class="flex flex-wrap items-center gap-2">
+<div class="relative w-full sm:w-auto">
+<input class="w-full sm:w-56 text-xs bg-gray-50 border border-gray-200 focus:border-brand rounded-full px-3.5 py-2 outline-none transition-all placeholder:text-gray-400" id="catalogSearchInput" oninput="handleSearch(this.value)" placeholder="Search title, author, urdu..." type="text"/>
+</div>
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 w-full">
+<button class="cat-pill active px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-[#63C1E1] text-white shadow-xs transition-all" onclick="filterByCategory('all')">All</button>
+<button class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-gray-100 text-charcoal-600 hover:bg-brand-light hover:text-brand transition-all" onclick="filterByCategory('hadith')">Hadith</button>
+<button class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-gray-100 text-charcoal-600 hover:bg-brand-light hover:text-brand transition-all" onclick="filterByCategory('quran')">Tafseer</button>
+<button class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-gray-100 text-charcoal-600 hover:bg-brand-light hover:text-brand transition-all" onclick="filterByCategory('seerah')">Seerah</button>
+<button class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-gray-100 text-charcoal-600 hover:bg-brand-light hover:text-brand transition-all" onclick="filterByCategory('urdu')">Urdu</button>
+<button class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-gray-100 text-charcoal-600 hover:bg-brand-light hover:text-brand transition-all" onclick="filterByCategory('fiqh')">Fiqh</button>
+</div>
+</div>
+</div>
+<!-- Product Grid: 2 columns on mobile, 4 on desktop -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mt-8" id="productGrid">
+<!-- Dynamically Rendered via JavaScript -->
+</div>
+<!-- Empty State -->
+<div class="hidden text-center py-16" id="emptyCatalogState">
+<div class="w-16 h-16 rounded-full bg-brand-light text-brand flex items-center justify-center mx-auto mb-4">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
+<h3 class="font-serif text-lg font-bold text-charcoal-900">No Volumes Found</h3>
+<p class="text-xs text-charcoal-600 mt-1">Try resetting your category or search filter.</p>
+<button class="mt-4 px-5 py-2 rounded-full text-xs bg-brand text-white font-semibold" onclick="filterByCategory('all'); document.getElementById('catalogSearchInput').value='';">View All Books</button>
+</div>
+</section>
+<!-- 6. TESTIMONIAL BANNER (Stylish Full-Width Review) -->
+<section class="bg-[#F4FAFC] border-y border-[#E2F2F8] py-14 sm:py-20 my-10 w-full overflow-hidden">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+<!-- 5 Gold/Turquoise Stars -->
+<div class="flex items-center justify-center gap-1 text-[#63C1E1] mb-6">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5 fill-current" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5 fill-current" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5 fill-current" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+<svg class="w-5 h-5 fill-current" viewbox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+</div>
+<blockquote class="font-serif text-lg sm:text-2xl text-charcoal-900 leading-relaxed italic">
         "The gold-embossed edition of Sahih Al-Bukhari arrived in pristine luxury packaging. The typography, print quality, and weight of the paper reflect the true sanctity of Islamic scholarship. Without doubt the finest Islamic bookstore experience in the subcontinent."
       </blockquote>
-
-      <div class="mt-6">
-        <div class="font-sans font-bold text-sm tracking-widest uppercase text-charcoal-900">Dr. Tariq Al-Hashimi</div>
-        <div class="text-xs text-brand font-medium mt-0.5">Faculty of Usul al-Din • Hyderabad & London</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. "WHY CHOOSE US": 3 MINIMAL ICONS STACKED VERTICALLY -->
-  <section id="why-choose-us" class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-    <div class="text-center mb-10">
-      <span class="text-brand text-xs font-bold tracking-[0.25em] uppercase">The Al-Maktabah Standard</span>
-      <h2 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal-900 mt-1 uppercase">Why Choose Us</h2>
-      <div class="w-12 h-0.5 bg-brand mx-auto mt-3"></div>
-    </div>
-
-    <!-- 3 Minimal Icons Stacked Vertically -->
-    <div class="space-y-6">
-      
-      <!-- Feature 1 -->
-      <div class="flex items-start gap-5 p-6 rounded-2xl bg-white border border-gray-100 shadow-card hover:border-brand/40 transition-colors">
-        <div class="w-12 h-12 rounded-xl bg-brand-light text-brand flex items-center justify-center flex-shrink-0">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        </div>
-        <div>
-          <h4 class="font-serif text-base font-bold text-charcoal-900 uppercase tracking-wide">1. Authentic Scholarly Verification</h4>
-          <p class="text-xs text-charcoal-600 mt-1.5 leading-relaxed">Every manuscript and translation is cross-verified for authentic Sanad, authoritative consensus, and certified Islamic publishing houses (Darussalam, Idara-e-Ma'arif, Maktabah Shamela).</p>
-        </div>
-      </div>
-
-      <!-- Feature 2 -->
-      <div class="flex items-start gap-5 p-6 rounded-2xl bg-white border border-gray-100 shadow-card hover:border-brand/40 transition-colors">
-        <div class="w-12 h-12 rounded-xl bg-brand-light text-brand flex items-center justify-center flex-shrink-0">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-        </div>
-        <div>
-          <h4 class="font-serif text-base font-bold text-charcoal-900 uppercase tracking-wide">2. Jewel-Grade Protective Packaging</h4>
-          <p class="text-xs text-charcoal-600 mt-1.5 leading-relaxed">Our books are dispatched with corner edge guards, moisture-resistant protective wrap, and custom ribbon markers so your prized library arrives immaculate.</p>
-        </div>
-      </div>
-
-      <!-- Feature 3 -->
-      <div class="flex items-start gap-5 p-6 rounded-2xl bg-white border border-gray-100 shadow-card hover:border-brand/40 transition-colors">
-        <div class="w-12 h-12 rounded-xl bg-brand-light text-brand flex items-center justify-center flex-shrink-0">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-        </div>
-        <div>
-          <h4 class="font-serif text-base font-bold text-charcoal-900 uppercase tracking-wide">3. Flexible & Secure Shariah Settlement</h4>
-          <p class="text-xs text-charcoal-600 mt-1.5 leading-relaxed">Choose between instant online payment via Razorpay or Cash on Delivery across all serviceable PIN codes in India with live Telegram order tracking dispatches.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 8. MINIMALIST WHITE FOOTER -->
-  <footer id="footer-contact" class="bg-white border-t border-gray-100 pt-16 pb-28 sm:pb-20 text-charcoal-600">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
-        
-        <!-- Left: Brand Info -->
-        <div class="md:col-span-1 space-y-4">
-          <h3 class="font-serif text-xl font-bold tracking-[0.2em] text-charcoal-900 uppercase">AL-MAKTABAH</h3>
-          <p class="text-xs text-charcoal-600 leading-relaxed">Dedicated to preserving and distributing authoritative Islamic manuscripts, classical exegetical works, and rare Urdu literature.</p>
-          <div class="urdu-font text-brand font-bold text-sm">علم و حکمت کا معتبر گہوارہ</div>
-        </div>
-
-        <!-- Col 2: Quick Links -->
-        <div>
-          <h4 class="font-serif text-xs font-bold tracking-[0.2em] uppercase text-charcoal-900 mb-4">Navigation</h4>
-          <ul class="space-y-2.5 text-xs">
-            <li><a href="#collections" onclick="filterByCategory('hadith')" class="hover:text-brand transition-colors">Hadith Literature</a></li>
-            <li><a href="#collections" onclick="filterByCategory('quran')" class="hover:text-brand transition-colors">Tafseer & Quran</a></li>
-            <li><a href="#collections" onclick="filterByCategory('seerah')" class="hover:text-brand transition-colors">Seerah-un-Nabi ﷺ</a></li>
-            <li><a href="#collections" onclick="filterByCategory('urdu')" class="hover:text-brand transition-colors">Urdu Classical Poetry</a></li>
-            <li><a href="#collections" onclick="filterByCategory('fiqh')" class="hover:text-brand transition-colors">Islamic Jurisprudence</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 3: Customer Care & Policies -->
-        <div>
-          <h4 class="font-serif text-xs font-bold tracking-[0.2em] uppercase text-charcoal-900 mb-4">Customer Care</h4>
-          <ul class="space-y-2.5 text-xs">
-            <li><a href="javascript:void(0)" onclick="alert('Shipping Notice: Dispatched via tracked courier within 24-48 hours of order confirmation.')" class="hover:text-brand transition-colors">Worldwide Delivery Policy</a></li>
-            <li><a href="javascript:void(0)" onclick="alert('Institutional orders: Contact orders@maktabah.org for madrassah and library quotations.')" class="hover:text-brand transition-colors">Institutional Wholesale</a></li>
-            <li><a href="javascript:void(0)" onclick="alert('Returns: Authentic damaged copy replacement guaranteed within 7 days of delivery.')" class="hover:text-brand transition-colors">Replacements & Guarantee</a></li>
-            <li><a href="javascript:void(0)" onclick="alert('Payment Security: Encrypted via 256-bit Razorpay PCI-DSS certified gateway.')" class="hover:text-brand transition-colors">Payment Security</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 4: Contact Details -->
-        <div>
-          <h4 class="font-serif text-xs font-bold tracking-[0.2em] uppercase text-charcoal-900 mb-4">Maktab Inquiries</h4>
-          <div class="space-y-2.5 text-xs">
-            <p><strong class="text-charcoal-900">Address:</strong> Darul Kutub, Main Bazar, Hyderabad / New Delhi</p>
-            <p><strong class="text-charcoal-900">Email:</strong> <a href="mailto:orders@maktabah.org" class="hover:text-brand">orders@maktabah.org</a></p>
-            <p><strong class="text-charcoal-900">Dispatches:</strong> Mon — Sat (Except Islamic Holidays)</p>
-            <p><strong class="text-charcoal-900">Phone:</strong> +91 (0) 9988776655</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Bottom Bar -->
-      <div class="border-t border-gray-100 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-charcoal-400 gap-4">
-        <div>© 1446 AH / 2025 CE Al-Maktabah Islamic Bookstore. All rights reserved.</div>
-        <div class="flex items-center gap-4">
-          <span>Minimum Order Value ₹1000</span>
-          <span>•</span>
-          <span>Razorpay & COD Active</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- 9. COOKIE CONSENT BANNER (Fixed Bottom) -->
-  <div id="cookieBanner" class="fixed bottom-0 inset-x-0 z-30 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-2xl p-4 transition-transform duration-300 transform translate-y-0">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-charcoal-600">
-      <div class="flex items-center gap-2">
-        <svg class="w-4 h-4 text-brand flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <span>We use cookies to maintain your shopping cart, order preferences, and currency settings seamlessly across your sessions.</span>
-      </div>
-      <div class="flex items-center gap-2 flex-shrink-0">
-        <button onclick="dismissCookieBanner()" class="px-4 py-1.5 rounded-full bg-[#63C1E1] text-white font-semibold text-xs hover:bg-brand-hover transition-colors shadow-xs">
+<div class="mt-6">
+<div class="font-sans font-bold text-sm tracking-widest uppercase text-charcoal-900">Dr. Tariq Al-Hashimi</div>
+<div class="text-xs text-brand font-medium mt-0.5">Faculty of Usul al-Din • Hyderabad &amp; London</div>
+</div>
+</div>
+</section>
+<!-- 7. "WHY CHOOSE US": 3 MINIMAL ICONS STACKED VERTICALLY -->
+<section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16 w-full overflow-hidden" id="why-choose-us">
+<div class="text-center mb-10">
+<span class="text-brand text-xs font-bold tracking-[0.25em] uppercase">The Al-Maktabah Standard</span>
+<h2 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal-900 mt-1 uppercase">Why Choose Us</h2>
+<div class="w-12 h-0.5 bg-brand mx-auto mt-3"></div>
+</div>
+<!-- 3 Minimal Icons Stacked Vertically -->
+<div class="space-y-6">
+<!-- Feature 1 -->
+<div class="flex items-start gap-5 p-6 rounded-2xl bg-white border border-gray-100 shadow-card hover:border-brand/40 transition-colors">
+<div class="w-12 h-12 rounded-xl bg-brand-light text-brand flex items-center justify-center flex-shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+</div>
+<div>
+<h4 class="font-serif text-base font-bold text-charcoal-900 uppercase tracking-wide">1. Authentic Scholarly Verification</h4>
+<p class="text-xs text-charcoal-600 mt-1.5 leading-relaxed">Every manuscript and translation is cross-verified for authentic Sanad, authoritative consensus, and certified Islamic publishing houses (Darussalam, Idara-e-Ma'arif, Maktabah Shamela).</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="flex items-start gap-5 p-6 rounded-2xl bg-white border border-gray-100 shadow-card hover:border-brand/40 transition-colors">
+<div class="w-12 h-12 rounded-xl bg-brand-light text-brand flex items-center justify-center flex-shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+</div>
+<div>
+<h4 class="font-serif text-base font-bold text-charcoal-900 uppercase tracking-wide">2. Jewel-Grade Protective Packaging</h4>
+<p class="text-xs text-charcoal-600 mt-1.5 leading-relaxed">Our books are dispatched with corner edge guards, moisture-resistant protective wrap, and custom ribbon markers so your prized library arrives immaculate.</p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="flex items-start gap-5 p-6 rounded-2xl bg-white border border-gray-100 shadow-card hover:border-brand/40 transition-colors">
+<div class="w-12 h-12 rounded-xl bg-brand-light text-brand flex items-center justify-center flex-shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+</div>
+<div>
+<h4 class="font-serif text-base font-bold text-charcoal-900 uppercase tracking-wide">3. Flexible &amp; Secure Shariah Settlement</h4>
+<p class="text-xs text-charcoal-600 mt-1.5 leading-relaxed">Choose between instant online payment via Razorpay or Cash on Delivery across all serviceable PIN codes in India with live Telegram order tracking dispatches.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. MINIMALIST WHITE FOOTER -->
+<footer class="bg-white border-t border-gray-100 pt-16 pb-28 sm:pb-20 text-charcoal-600 w-full overflow-hidden" id="footer-contact">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+<!-- Left: Brand Info -->
+<div class="md:col-span-1 space-y-4">
+<h3 class="font-serif text-xl font-bold tracking-[0.2em] text-charcoal-900 uppercase">AL-MAKTABAH</h3>
+<p class="text-xs text-charcoal-600 leading-relaxed">Dedicated to preserving and distributing authoritative Islamic manuscripts, classical exegetical works, and rare Urdu literature.</p>
+<div class="urdu-font text-brand font-bold text-sm">علم و حکمت کا معتبر گہوارہ</div>
+</div>
+<!-- Col 2: Quick Links -->
+<div>
+<h4 class="font-serif text-xs font-bold tracking-[0.2em] uppercase text-charcoal-900 mb-4">Navigation</h4>
+<ul class="space-y-2.5 text-xs">
+<li><a class="hover:text-brand transition-colors" href="#collections" onclick="filterByCategory('hadith')">Hadith Literature</a></li>
+<li><a class="hover:text-brand transition-colors" href="#collections" onclick="filterByCategory('quran')">Tafseer &amp; Quran</a></li>
+<li><a class="hover:text-brand transition-colors" href="#collections" onclick="filterByCategory('seerah')">Seerah-un-Nabi ﷺ</a></li>
+<li><a class="hover:text-brand transition-colors" href="#collections" onclick="filterByCategory('urdu')">Urdu Classical Poetry</a></li>
+<li><a class="hover:text-brand transition-colors" href="#collections" onclick="filterByCategory('fiqh')">Islamic Jurisprudence</a></li>
+</ul>
+</div>
+<!-- Col 3: Customer Care & Policies -->
+<div>
+<h4 class="font-serif text-xs font-bold tracking-[0.2em] uppercase text-charcoal-900 mb-4">Customer Care</h4>
+<ul class="space-y-2.5 text-xs">
+<li><a class="hover:text-brand transition-colors" href="javascript:void(0)" onclick="alert('Shipping Notice: Dispatched via tracked courier within 24-48 hours of order confirmation.')">Worldwide Delivery Policy</a></li>
+<li><a class="hover:text-brand transition-colors" href="javascript:void(0)" onclick="alert('Institutional orders: Contact orders@maktabah.org for madrassah and library quotations.')">Institutional Wholesale</a></li>
+<li><a class="hover:text-brand transition-colors" href="javascript:void(0)" onclick="alert('Returns: Authentic damaged copy replacement guaranteed within 7 days of delivery.')">Replacements &amp; Guarantee</a></li>
+<li><a class="hover:text-brand transition-colors" href="javascript:void(0)" onclick="alert('Payment Security: Encrypted via 256-bit Razorpay PCI-DSS certified gateway.')">Payment Security</a></li>
+</ul>
+</div>
+<!-- Col 4: Contact Details -->
+<div>
+<h4 class="font-serif text-xs font-bold tracking-[0.2em] uppercase text-charcoal-900 mb-4">Maktab Inquiries</h4>
+<div class="space-y-2.5 text-xs">
+<p><strong class="text-charcoal-900">Address:</strong> Darul Kutub, Main Bazar, Hyderabad / New Delhi</p>
+<p><strong class="text-charcoal-900">Email:</strong> <a class="hover:text-brand" href="mailto:orders@maktabah.org">orders@maktabah.org</a></p>
+<p><strong class="text-charcoal-900">Dispatches:</strong> Mon — Sat (Except Islamic Holidays)</p>
+<p><strong class="text-charcoal-900">Phone:</strong> +91 (0) 9988776655</p>
+</div>
+</div>
+</div>
+<!-- Bottom Bar -->
+<div class="border-t border-gray-100 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-charcoal-400 gap-4">
+<div>© 1446 AH / 2025 CE Al-Maktabah Islamic Bookstore. All rights reserved.</div>
+<div class="flex items-center gap-4">
+<span>Minimum Order Value ₹1000</span>
+<span>•</span>
+<span>Razorpay &amp; COD Active</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- 9. COOKIE CONSENT BANNER (Fixed Bottom) -->
+<div class="fixed bottom-0 inset-x-0 z-30 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-2xl p-4 transition-transform duration-300 transform translate-y-0 w-full overflow-hidden" id="cookieBanner">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-charcoal-600">
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-brand flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>We use cookies to maintain your shopping cart, order preferences, and currency settings seamlessly across your sessions.</span>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<button class="px-4 py-1.5 rounded-full bg-[#63C1E1] text-white font-semibold text-xs hover:bg-brand-hover transition-colors shadow-xs" onclick="dismissCookieBanner()">
           Accept All
         </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 10. FLOATING ACTION BUTTON: WHATSAPP CHAT (Fixed Bottom Right) -->
-  <a 
-    href="https://wa.me/919988776655?text=Assalamu%20Alaikum,%20I%20am%20inquiring%20about%20a%20book%20edition%20from%20Al-Maktabah." 
-    target="_blank" 
-    class="fixed bottom-6 right-6 z-40 bg-[#25D366] hover:bg-[#20ba5a] text-white p-3.5 rounded-full shadow-float transition-transform hover:scale-110 active:scale-95 flex items-center justify-center group"
-    aria-label="Direct WhatsApp Consultation"
-    title="Chat with Al-Maktabah Scholar Support"
-  >
-    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.353.101.173.449.741.964 1.2 1.002.894 1.849 1.17 2.109 1.299.26.13.413.108.566-.065.153-.173.655-.762.829-1.022.174-.26.347-.217.584-.13.238.087 1.512.713 1.772.843.26.13.433.195.497.304.064.108.064.63-.08 1.035z"/>
-    </svg>
-    <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-semibold px-0 group-hover:pl-2">
+</div>
+</div>
+</div>
+<!-- 10. FLOATING ACTION BUTTON: WHATSAPP CHAT (Fixed Bottom Right) -->
+<a aria-label="Direct WhatsApp Consultation" class="fixed bottom-6 right-6 z-40 bg-[#25D366] hover:bg-[#20ba5a] text-white p-3.5 rounded-full shadow-float transition-transform hover:scale-110 active:scale-95 flex items-center justify-center group" href="https://wa.me/919988776655?text=Assalamu%20Alaikum,%20I%20am%20inquiring%20about%20a%20book%20edition%20from%20Al-Maktabah." target="_blank" title="Chat with Al-Maktabah Scholar Support">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24">
+<path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.353.101.173.449.741.964 1.2 1.002.894 1.849 1.17 2.109 1.299.26.13.413.108.566-.065.153-.173.655-.762.829-1.022.174-.26.347-.217.584-.13.238.087 1.512.713 1.772.843.26.13.433.195.497.304.064.108.064.63-.08 1.035z"></path>
+</svg>
+<span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-xs font-semibold px-0 group-hover:pl-2">
       WhatsApp Support
     </span>
-  </a>
-
-  <!-- ========================================================================= -->
-  <!-- 11. SLIDE-OUT CART DRAWER -->
-  <!-- ========================================================================= -->
-  <div id="cartDrawerBackdrop" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs hidden transition-opacity duration-300 opacity-0" onclick="toggleCartDrawer(false)">
-    <div id="cartDrawerPanel" class="absolute top-0 right-0 w-full sm:w-[420px] h-full bg-white shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out" onclick="event.stopPropagation()">
-      
-      <!-- Drawer Header -->
-      <div class="p-5 border-b border-gray-100 flex items-center justify-between">
-        <div>
-          <h3 class="font-serif text-lg font-bold tracking-wider text-charcoal-900 uppercase">Shopping Bag</h3>
-          <p class="text-[11px] text-brand font-medium">Free bookmark & gift wrap on ₹1000+ orders</p>
-        </div>
-        <button onclick="toggleCartDrawer(false)" class="p-2 text-charcoal-400 hover:text-charcoal-800 transition-colors">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>
-
-      <!-- Items List -->
-      <div id="cartItemsList" class="flex-1 overflow-y-auto p-5 divide-y divide-gray-100 space-y-4">
-        <!-- Rendered via renderCart() -->
-      </div>
-
-      <!-- Drawer Footer with Subtotal and Checkout Button -->
-      <div class="p-5 border-t border-gray-100 bg-gray-50/70 space-y-3">
-        <div class="flex items-center justify-between text-xs text-charcoal-600">
-          <span>Catalog Subtotal</span>
-          <span id="cartSubtotalText" class="font-semibold text-charcoal-900">₹0</span>
-        </div>
-        <div class="flex items-center justify-between text-xs text-charcoal-600">
-          <span>Standard Packaging & Care</span>
-          <span class="text-brand font-semibold">Complimentary</span>
-        </div>
-        <div class="flex items-center justify-between text-sm font-bold text-charcoal-900 pt-2 border-t border-gray-200">
-          <span class="font-serif tracking-wider uppercase">Estimated Total</span>
-          <span id="cartGrandTotalText" class="text-base text-brand font-serif">₹0</span>
-        </div>
-
-        <div id="minOrderWarning" class="hidden text-[11px] text-amber-700 bg-amber-50 border border-amber-200 p-2 rounded-lg text-center font-medium">
+</a>
+<!-- ========================================================================= -->
+<!-- 11. SLIDE-OUT CART DRAWER -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs hidden transition-opacity duration-300 opacity-0" id="cartDrawerBackdrop" onclick="toggleCartDrawer(false)">
+<div class="absolute top-0 right-0 w-full sm:w-[420px] h-full bg-white shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out" id="cartDrawerPanel" onclick="event.stopPropagation()">
+<!-- Drawer Header -->
+<div class="p-5 border-b border-gray-100 flex items-center justify-between">
+<div>
+<h3 class="font-serif text-lg font-bold tracking-wider text-charcoal-900 uppercase">Shopping Bag</h3>
+<p class="text-[11px] text-brand font-medium">Free bookmark &amp; gift wrap on ₹1000+ orders</p>
+</div>
+<button class="p-2 text-charcoal-400 hover:text-charcoal-800 transition-colors" onclick="toggleCartDrawer(false)">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+</button>
+</div>
+<!-- Items List -->
+<div class="flex-1 overflow-y-auto p-5 divide-y divide-gray-100 space-y-4" id="cartItemsList">
+<!-- Rendered via renderCart() -->
+</div>
+<!-- Drawer Footer with Subtotal and Checkout Button -->
+<div class="p-5 border-t border-gray-100 bg-gray-50/70 space-y-3">
+<div class="flex items-center justify-between text-xs text-charcoal-600">
+<span>Catalog Subtotal</span>
+<span class="font-semibold text-charcoal-900" id="cartSubtotalText">₹0</span>
+</div>
+<div class="flex items-center justify-between text-xs text-charcoal-600">
+<span>Standard Packaging &amp; Care</span>
+<span class="text-brand font-semibold">Complimentary</span>
+</div>
+<div class="flex items-center justify-between text-sm font-bold text-charcoal-900 pt-2 border-t border-gray-200">
+<span class="font-serif tracking-wider uppercase">Estimated Total</span>
+<span class="text-base text-brand font-serif" id="cartGrandTotalText">₹0</span>
+</div>
+<div class="hidden text-[11px] text-amber-700 bg-amber-50 border border-amber-200 p-2 rounded-lg text-center font-medium" id="minOrderWarning">
           ⚠️ Minimum order of ₹1000 required for dispatch.
         </div>
-
-        <button 
-          id="checkoutProceedBtn" 
-          onclick="openCheckoutModal()" 
-          class="w-full py-3.5 rounded-xl bg-[#63C1E1] hover:bg-brand-hover text-white font-bold text-xs uppercase tracking-[0.18em] shadow-subtle transition-all active:scale-98 flex items-center justify-center gap-2"
-        >
-          <span>Proceed To Checkout</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- 12. CHECKOUT MODAL (Name, Phone, Address, Payment Methods: COD & Razorpay) -->
-  <!-- ========================================================================= -->
-  <div id="checkoutModalBackdrop" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs hidden flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-gray-100 relative my-8 animate-in zoom-in-95">
-      
-      <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 text-charcoal-400 hover:text-charcoal-800 transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-
-      <div class="mb-6">
-        <span class="text-brand text-xs font-bold tracking-[0.2em] uppercase block">Express Checkout</span>
-        <h3 class="font-serif text-2xl font-bold text-charcoal-900 mt-1 uppercase">Complete Your Order</h3>
-        <p class="text-xs text-charcoal-600 mt-1">Please provide your verified dispatch details for tracking.</p>
-      </div>
-
-      <form id="checkoutForm" onsubmit="handleCheckoutSubmit(event)" class="space-y-4 text-xs sm:text-sm">
-        
-        <div>
-          <label class="block font-semibold text-charcoal-800 mb-1 text-xs uppercase tracking-wider">Full Name *</label>
-          <input type="text" id="custName" required placeholder="e.g. Maulana Farooq Ahmad" class="w-full bg-gray-50 border border-gray-200 focus:border-brand rounded-xl p-3 outline-none transition-all text-xs" />
-        </div>
-
-        <div>
-          <label class="block font-semibold text-charcoal-800 mb-1 text-xs uppercase tracking-wider">Mobile Number (WhatsApp Enabled) *</label>
-          <input type="tel" id="custPhone" required placeholder="e.g. +91 98765 43210" class="w-full bg-gray-50 border border-gray-200 focus:border-brand rounded-xl p-3 outline-none transition-all text-xs" />
-        </div>
-
-        <div>
-          <label class="block font-semibold text-charcoal-800 mb-1 text-xs uppercase tracking-wider">Complete Postal Address & PIN Code *</label>
-          <textarea id="custAddress" required rows="3" placeholder="House/Flat No, Landmark, City, State, PIN Code" class="w-full bg-gray-50 border border-gray-200 focus:border-brand rounded-xl p-3 outline-none transition-all text-xs"></textarea>
-        </div>
-
-        <!-- Payment Method Selection -->
-        <div class="pt-2">
-          <label class="block font-semibold text-charcoal-800 mb-2 text-xs uppercase tracking-wider">Select Payment Method *</label>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            
-            <label class="cursor-pointer border border-gray-200 rounded-xl p-3.5 flex items-center gap-3 hover:border-brand has-[:checked]:border-brand has-[:checked]:bg-brand-light/30 transition-all">
-              <input type="radio" name="paymentMethod" value="COD" checked class="text-brand focus:ring-brand h-4 w-4" />
-              <div>
-                <div class="font-bold text-xs text-charcoal-900">Cash on Delivery</div>
-                <div class="text-[10px] text-charcoal-600">Pay when order arrives</div>
-              </div>
-            </label>
-
-            <label class="cursor-pointer border border-gray-200 rounded-xl p-3.5 flex items-center gap-3 hover:border-brand has-[:checked]:border-brand has-[:checked]:bg-brand-light/30 transition-all">
-              <input type="radio" name="paymentMethod" value="Razorpay" class="text-brand focus:ring-brand h-4 w-4" />
-              <div>
-                <div class="font-bold text-xs text-charcoal-900 flex items-center gap-1.5">
-                  <span>Razorpay</span>
-                  <span class="text-[9px] bg-brand text-white px-1.5 py-0.2 rounded font-mono">UPI/Cards</span>
-                </div>
-                <div class="text-[10px] text-charcoal-600">Fast Online Settlement</div>
-              </div>
-            </label>
-
-          </div>
-        </div>
-
-        <!-- Order Summary Card in Modal -->
-        <div class="bg-gray-50 rounded-xl p-3.5 border border-gray-200/80 flex items-center justify-between text-xs">
-          <div>
-            <span class="text-charcoal-600">Total Payable Amount:</span>
-            <span id="modalOrderItemsCount" class="text-[10px] text-charcoal-400 block font-mono">0 items</span>
-          </div>
-          <div id="modalPayableTotal" class="font-serif text-lg font-bold text-brand">₹0</div>
-        </div>
-
-        <button 
-          type="submit" 
-          id="submitOrderBtn" 
-          class="w-full py-3.5 rounded-xl bg-[#63C1E1] hover:bg-brand-hover text-white font-bold text-xs uppercase tracking-[0.18em] shadow-subtle transition-all active:scale-98 flex items-center justify-center gap-2 mt-4"
-        >
-          <span id="submitOrderBtnText">Confirm & Place Order</span>
-        </button>
-
-      </form>
-    </div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- 13. SUCCESS SCREEN / ORDER DISPATCH PREVIEW -->
-  <!-- ========================================================================= -->
-  <div id="orderSuccessBackdrop" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-gray-100 relative my-8 animate-in zoom-in-95 text-center">
-      
-      <div class="w-16 h-16 rounded-full bg-brand-light text-brand mx-auto flex items-center justify-center mb-4">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-      </div>
-
-      <span class="text-brand text-xs font-bold tracking-[0.2em] uppercase block">Order Dispatched</span>
-      <h3 class="font-serif text-2xl font-bold text-charcoal-900 mt-1 uppercase">Jazakallah Khair!</h3>
-      <p class="text-xs text-charcoal-600 mt-2">Your order has been recorded. Our catalog dispatches team has notified the Maktab via automated Telegram webhook.</p>
-
-      <!-- Telegram Payload Preview -->
-      <div class="mt-6 text-left">
-        <div class="text-[11px] font-bold text-charcoal-800 uppercase tracking-wider mb-1 flex items-center justify-between">
-          <span>Telegram Webhook Payload Preview:</span>
-          <span class="text-[10px] text-brand font-mono font-normal">HTTP 200 OK</span>
-        </div>
-        <pre id="telegramPayloadPreview" class="bg-charcoal-900 text-brand-light p-3.5 rounded-xl text-[11px] font-mono leading-relaxed overflow-x-auto max-h-48 border border-charcoal-800 whitespace-pre-wrap"></pre>
-      </div>
-
-      <button 
-        onclick="closeSuccessModal()" 
-        class="mt-6 w-full py-3 rounded-xl bg-[#63C1E1] hover:bg-brand-hover text-white font-bold text-xs uppercase tracking-widest shadow-xs transition-colors"
-      >
+<button class="w-full py-3.5 rounded-xl bg-[#63C1E1] hover:bg-brand-hover text-white font-bold text-xs uppercase tracking-[0.18em] shadow-subtle transition-all active:scale-98 flex items-center justify-center gap-2" id="checkoutProceedBtn" onclick="openCheckoutModal()">
+<span>Proceed To Checkout</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 12. CHECKOUT MODAL (Name, Phone, Address, Payment Methods: COD & Razorpay) -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs hidden flex items-center justify-center p-4 overflow-y-auto" id="checkoutModalBackdrop">
+<div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-gray-100 relative my-8 animate-in zoom-in-95">
+<button class="absolute top-5 right-5 text-charcoal-400 hover:text-charcoal-800 transition-colors" onclick="closeCheckoutModal()">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div class="mb-6">
+<span class="text-brand text-xs font-bold tracking-[0.2em] uppercase block">Express Checkout</span>
+<h3 class="font-serif text-2xl font-bold text-charcoal-900 mt-1 uppercase">Complete Your Order</h3>
+<p class="text-xs text-charcoal-600 mt-1">Please provide your verified dispatch details for tracking.</p>
+</div>
+<form class="space-y-4 text-xs sm:text-sm" id="checkoutForm" onsubmit="handleCheckoutSubmit(event)">
+<div>
+<label class="block font-semibold text-charcoal-800 mb-1 text-xs uppercase tracking-wider">Full Name *</label>
+<input class="w-full bg-gray-50 border border-gray-200 focus:border-brand rounded-xl p-3 outline-none transition-all text-xs" id="custName" placeholder="e.g. Maulana Farooq Ahmad" required="" type="text"/>
+</div>
+<div>
+<label class="block font-semibold text-charcoal-800 mb-1 text-xs uppercase tracking-wider">Mobile Number (WhatsApp Enabled) *</label>
+<input class="w-full bg-gray-50 border border-gray-200 focus:border-brand rounded-xl p-3 outline-none transition-all text-xs" id="custPhone" placeholder="e.g. +91 98765 43210" required="" type="tel"/>
+</div>
+<div>
+<label class="block font-semibold text-charcoal-800 mb-1 text-xs uppercase tracking-wider">Complete Postal Address &amp; PIN Code *</label>
+<textarea class="w-full bg-gray-50 border border-gray-200 focus:border-brand rounded-xl p-3 outline-none transition-all text-xs" id="custAddress" placeholder="House/Flat No, Landmark, City, State, PIN Code" required="" rows="3"></textarea>
+</div>
+<!-- Payment Method Selection -->
+<div class="pt-2">
+<label class="block font-semibold text-charcoal-800 mb-2 text-xs uppercase tracking-wider">Select Payment Method *</label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<label class="cursor-pointer border border-gray-200 rounded-xl p-3.5 flex items-center gap-3 hover:border-brand has-[:checked]:border-brand has-[:checked]:bg-brand-light/30 transition-all">
+<input checked="" class="text-brand focus:ring-brand h-4 w-4" name="paymentMethod" type="radio" value="COD"/>
+<div>
+<div class="font-bold text-xs text-charcoal-900">Cash on Delivery</div>
+<div class="text-[10px] text-charcoal-600">Pay when order arrives</div>
+</div>
+</label>
+<label class="cursor-pointer border border-gray-200 rounded-xl p-3.5 flex items-center gap-3 hover:border-brand has-[:checked]:border-brand has-[:checked]:bg-brand-light/30 transition-all">
+<input class="text-brand focus:ring-brand h-4 w-4" name="paymentMethod" type="radio" value="Razorpay"/>
+<div>
+<div class="font-bold text-xs text-charcoal-900 flex items-center gap-1.5">
+<span>Razorpay</span>
+<span class="text-[9px] bg-brand text-white px-1.5 py-0.2 rounded font-mono">UPI/Cards</span>
+</div>
+<div class="text-[10px] text-charcoal-600">Fast Online Settlement</div>
+</div>
+</label>
+</div>
+</div>
+<!-- Order Summary Card in Modal -->
+<div class="bg-gray-50 rounded-xl p-3.5 border border-gray-200/80 flex items-center justify-between text-xs">
+<div>
+<span class="text-charcoal-600">Total Payable Amount:</span>
+<span class="text-[10px] text-charcoal-400 block font-mono" id="modalOrderItemsCount">0 items</span>
+</div>
+<div class="font-serif text-lg font-bold text-brand" id="modalPayableTotal">₹0</div>
+</div>
+<button class="w-full py-3.5 rounded-xl bg-[#63C1E1] hover:bg-brand-hover text-white font-bold text-xs uppercase tracking-[0.18em] shadow-subtle transition-all active:scale-98 flex items-center justify-center gap-2 mt-4" id="submitOrderBtn" type="submit">
+<span id="submitOrderBtnText">Confirm &amp; Place Order</span>
+</button>
+</form>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 13. SUCCESS SCREEN / ORDER DISPATCH PREVIEW -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto" id="orderSuccessBackdrop">
+<div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-gray-100 relative my-8 animate-in zoom-in-95 text-center">
+<div class="w-16 h-16 rounded-full bg-brand-light text-brand mx-auto flex items-center justify-center mb-4">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<span class="text-brand text-xs font-bold tracking-[0.2em] uppercase block">Order Dispatched</span>
+<h3 class="font-serif text-2xl font-bold text-charcoal-900 mt-1 uppercase">Jazakallah Khair!</h3>
+<p class="text-xs text-charcoal-600 mt-2">Your order has been recorded. Our catalog dispatches team has notified the Maktab via automated Telegram webhook.</p>
+<!-- Telegram Payload Preview -->
+<div class="mt-6 text-left">
+<div class="text-[11px] font-bold text-charcoal-800 uppercase tracking-wider mb-1 flex items-center justify-between">
+<span>Telegram Webhook Payload Preview:</span>
+<span class="text-[10px] text-brand font-mono font-normal">HTTP 200 OK</span>
+</div>
+<pre class="bg-charcoal-900 text-brand-light p-3.5 rounded-xl text-[11px] font-mono leading-relaxed overflow-x-auto max-h-48 border border-charcoal-800 whitespace-pre-wrap" id="telegramPayloadPreview"></pre>
+</div>
+<button class="mt-6 w-full py-3 rounded-xl bg-[#63C1E1] hover:bg-brand-hover text-white font-bold text-xs uppercase tracking-widest shadow-xs transition-colors" onclick="closeSuccessModal()">
         Return To Bookstore Home
       </button>
-
-    </div>
-  </div>
-
-  <!-- TOAST NOTIFICATION CONTAINER -->
-  <div id="toastNotification" class="fixed bottom-5 left-5 z-50 bg-charcoal-900 text-white px-4 py-3 rounded-xl shadow-2xl border border-brand/40 transform -translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-3 text-xs pointer-events-none">
-    <span id="toastIcon">✨</span>
-    <span id="toastMessage">Item added to your shopping bag.</span>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- 14. COMPLETE VANILLA JAVASCRIPT LOGIC -->
-  <!-- ========================================================================= -->
-  <script>
+</div>
+</div>
+<!-- TOAST NOTIFICATION CONTAINER -->
+<div class="fixed bottom-5 left-5 z-50 bg-charcoal-900 text-white px-4 py-3 rounded-xl shadow-2xl border border-brand/40 transform -translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-3 text-xs pointer-events-none" id="toastNotification">
+<span id="toastIcon">✨</span>
+<span id="toastMessage">Item added to your shopping bag.</span>
+</div>
+<!-- ========================================================================= -->
+<!-- 14. COMPLETE VANILLA JAVASCRIPT LOGIC -->
+<!-- ========================================================================= -->
+<script>
     // Fallback Mock Catalogue Data
     const FALLBACK_PRODUCTS = [
       {
